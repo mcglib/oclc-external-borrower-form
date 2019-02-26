@@ -19,7 +19,9 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "doctrine/dbal": "^2.5",
-	    "oclc/auth": "*"
+        "oclc/auth": "*",
+    	"simplesamlphp/simplesamlphp": "^1.16",
+    	"symfony/yaml": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
