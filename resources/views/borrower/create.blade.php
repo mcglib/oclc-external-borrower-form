@@ -7,18 +7,17 @@
 		    <h3 class="mb-0">Create an account</h3>
 		</div>
 		<div class="card-body">
-		    {!! form($form) !!}
-		    <form class="form" role="form" autocomplete="off">
+	    	    {!! Form::open(['route' => 'borrower.store']) !!}
 			<div class="form-group row">
-			    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+			    {!! Form::label('name', 'Your Name',['class' => 'form-control-label col-lg-3 col-form-label']) !!}
 			    <div class="col-lg-9">
-				<input class="form-control" type="text" value="Jane">
+    			    	{!! Form::text('name', null, ['class' => 'form-control']) !!}
 			    </div>
 			</div>
 			<div class="form-group row">
 			    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
 			    <div class="col-lg-9">
-				<input class="form-control" type="text" value="Bishop">
+    			    	{!! Form::text('name', null, ['class' => 'form-control']) !!}
 			    </div>
 			</div>
 			<div class="form-group row">
@@ -75,11 +74,11 @@
 			<div class="form-group row">
 			    <label class="col-lg-3 col-form-label form-control-label"></label>
 			    <div class="col-lg-9">
-				<input type="reset" class="btn btn-secondary" value="Cancel">
-				<input type="button" class="btn btn-primary" value="Save Changes">
+				{!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+				{!! Form::button('Cancel', ['class' => 'btn btn-secondary']) !!}
 			    </div>
 			</div>
-		    </form>
+		    {!! form($form) !!}
 		</div>
 	    </div>
 	    <!-- /form user info -->
