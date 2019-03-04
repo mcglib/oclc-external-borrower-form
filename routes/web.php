@@ -19,3 +19,13 @@ Route::get('/borrower', function() {
 });
 
 Route::get('/helloworld', 'HelloworldController@index');
+
+Route::get('borrower/create', [
+	    'uses' => 'BorrowerController@create',
+            'as' => 'borrower.create'
+]);
+
+Route::post('borrower', [
+	    'uses' => 'BorrowerController@store',
+           'as' => 'borrower.store'
+]);
