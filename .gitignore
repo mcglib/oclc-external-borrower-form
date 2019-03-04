@@ -1,3 +1,4 @@
+/vendor/
 /vendor/**/.git
 /public/hot
 /public/storage
