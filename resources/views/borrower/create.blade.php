@@ -31,17 +31,23 @@
 
 			<div class="form-group"> <!-- Street 1 -->
 				<label for="street1_id" class="control-label">Street Address 1</label>
+			    <div class="col-lg-9">
 				<input type="text" class="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o">
+			    </div>
 			</div>					
 							
 			<div class="form-group"> <!-- Street 2 -->
 				<label for="street2_id" class="control-label">Street Address 2</label>
+			    <div class="col-lg-9">
 				<input type="text" class="form-control" id="street2_id" name="street2" placeholder="Apartment, suite, unit, building, floor, etc.">
+			     </div>
 			</div>	
 
 			<div class="form-group"> <!-- City-->
 				<label for="city_id" class="control-label">City</label>
+			    <div class="col-lg-9">
 				<input type="text" class="form-control" id="city_id" name="city" placeholder="Montreal">
+			    </div>
 			</div>						
 			<div class="form-group"> <!-- Zip Code-->
 				<label for="zip_id" class="control-label">Postal Code</label>
@@ -49,25 +55,12 @@
 			</div>		
 
 
-
-
-
-
 			<div class="form-group row">
-			    {!! Form::label('phone_no', 'Phone no',['class' => 'form-control-label col-lg-3 col-form-label']) !!}
+			    {!! Form::label('phone_no', 'Telephone no:',['class' => 'form-control-label col-lg-3 col-form-label']) !!}
 			    <div class="col-lg-9">
     			    	{!! Form::number('phone_no', null, ['class' => 'form-control']) !!}
 			    </div>
 			</div>
-
-			<div class="form-group">
-                            <span class="col-lg-1 col-lg-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
-			    {!! Form::label('phone_no', 'Phone no',['class' => 'form-control-label col-lg-3 col-form-label']) !!}
-                            <div class="col-lg-9">
-                                <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
-                            </div>
-                        </div>
-
 
 
 			<div class="form-group row">

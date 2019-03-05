@@ -16,3 +16,4 @@
 <!-- Custom styles for this template -->
 
 <link href="/css/borrower.css" rel="stylesheet">
+<script src="/js/validator.min.js"></script>
