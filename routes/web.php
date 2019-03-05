@@ -11,14 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/borrower', function() {
-    return "hello workd!";
-});
-
-Route::get('/helloworld', 'HelloworldController@index');
+Route::get('/','BorrowerController@create');
 
 Route::get('borrower/create', [
 	    'uses' => 'BorrowerController@create',
