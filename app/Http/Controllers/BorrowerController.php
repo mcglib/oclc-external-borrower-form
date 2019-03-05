@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Kris\LaravelFormBuilder\FormBuilder;
+use OCLC\Auth\WSKey;
+use OCLC\User;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
+
 
 class BorrowerController extends BaseController {
 
@@ -27,10 +33,13 @@ class BorrowerController extends BaseController {
 
         // Do saving and other things...a
  	// Or automatically redirect on error. This will throw an HttpResponseException with redirect
-        $form->redirectIfNotValid();
+	$form->redirectIfNotValid();
+
+        $request = $form->getFieldValues();
+	$this->createBorrowerService->make($request);
 
         //Borrower::create($form->getFieldValues());
-        //return redirect()->route('borrower');
+        return redirect()->route('borrower')->with(['success' => 'Congratulations!']);
 
     }
 }
