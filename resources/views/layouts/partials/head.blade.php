@@ -15,4 +15,4 @@
 
 <!-- Custom styles for this template -->
 
-<link href="/css/album.css" rel="stylesheet">
+<link href="/css/borrower.css" rel="stylesheet">
