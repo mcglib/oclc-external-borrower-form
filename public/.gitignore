@@ -2,6 +2,3 @@ services.json
 events.scanned.php
 routes.scanned.php
 down
-css/**
-js/**
-svg/**
