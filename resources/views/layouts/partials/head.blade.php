@@ -10,10 +10,10 @@
 
 <!-- Bootstrap core CSS -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" crossorigin="anonymous">
-
 
 <!-- Custom styles for this template -->
 
-<link href="/css/borrower.css" rel="stylesheet">
-<script src="/js/validator.min.js"></script>
+<link href="public/css/bootstrap.min.css" rel="stylesheet">
+<link href="public/css/app.css" rel="stylesheet">
+<script type="text/javascript" src="{{ URL::asset('public/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('public/js/validator.min.js') }}"></script>

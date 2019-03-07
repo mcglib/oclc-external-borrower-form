@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Kris\LaravelFormBuilder\FormBuilder;
-use OCLC\Auth\WSKey;
-use OCLC\User;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-
 
 
 class BorrowerController extends BaseController {
@@ -36,10 +31,16 @@ class BorrowerController extends BaseController {
 	$form->redirectIfNotValid();
 
         $request = $form->getFieldValues();
-	$this->createBorrowerService->make($request);
+	$borrower = new \App\Oclc\Borrower($request);
+        $borrower->create();
+	
+	// Get the OCLC configurations
+	//$borrower->connect();
+	
+	dd($request);
+	dd($borrower);
 
-        //Borrower::create($form->getFieldValues());
-        return redirect()->route('borrower')->with(['success' => 'Congratulations!']);
+        return redirect()->route('home')->with(['success' => 'Congratulations!']);
 
     }
 }
