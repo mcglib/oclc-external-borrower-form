@@ -28,17 +28,15 @@ class BorrowerController extends BaseController {
 
         // Do saving and other things...a
  	// Or automatically redirect on error. This will throw an HttpResponseException with redirect
-	$form->redirectIfNotValid();
+	//$form->redirectIfNotValid();
 
         $request = $form->getFieldValues();
 	$borrower = new \App\Oclc\Borrower($request);
         $borrower->create();
-	
+
 	// Get the OCLC configurations
 	//$borrower->connect();
 	
-	dd($request);
-	dd($borrower);
 
         return redirect()->route('home')->with(['success' => 'Congratulations!']);
 

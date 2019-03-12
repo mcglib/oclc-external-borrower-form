@@ -40,28 +40,27 @@ class BorrowerForm extends Form
                 'label' => 'Street Address 1',
                 'rules' => 'required|min:5',
                 'error_messages' => [
-                    'address1.required' => 'The last name  field is mandatory.'
+                    'address1.required' => 'The Address field is mandatory.'
                 ]
             ])
             ->add('address2', 'text', [
                 'label' => 'Street Address 2',
-                'rules' => 'required|min:5',
                 'error_messages' => [
                     'address2.required' => 'The last name  field is mandatory.'
                 ]
             ])
             ->add('city', 'text', [
                 'label' => 'City',
-                'rules' => 'required|min:5',
+                'rules' => 'required|min:3',
                 'error_messages' => [
-                    'city.required' => 'The last name  field is mandatory.'
+                    'city.required' => 'The city field is required.'
                 ]
             ])
             ->add('postal_code', 'text', [
                 'label' => 'Postal code',
                 'rules' => 'required|min:5',
                 'error_messages' => [
-                    'postal_code.required' => 'The last name  field is mandatory.'
+                    'postal_code.required' => 'The Postal code field is mandatory.'
                 ]
             ])
 	    ->add('telephone_no', 'number', [
@@ -86,7 +85,6 @@ class BorrowerForm extends Form
 	    ->add('spouse_name', 'text', [
 		 'attr' => ['class' => 'form-control field-input no-display'],
 		 'label' => 'If applying for faculty spouse borrowing card, please enter the name of your spouse',
-                 'rules' => 'min:5',
                  'error_messages' => [
                     'telephone_no.required' => 'Please enter a proper telephone number.'
                  ]
