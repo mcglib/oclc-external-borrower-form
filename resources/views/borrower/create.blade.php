@@ -13,15 +13,23 @@
     	    	    {!! form_row($form->fname) !!}
     	    	    {!! form_row($form->lname) !!}
     	    	    {!! form_row($form->email) !!}
-    	    	    {!! form_row($form->address1) !!}
-    	    	    {!! form_row($form->address2) !!}
-    	    	    {!! form_row($form->city) !!}
-    	    	    {!! form_row($form->postal_code) !!}
     	    	    {!! form_row($form->telephone_no) !!}
     	    	    {!! form_row($form->borrower_cat) !!}
-		    <div id="admDivCheck" class="no-display">
+		    <div id="spouseDivCheck" class="no-display">
     	    	    	{!! form_row($form->spouse_name) !!}
 		     </div>
+		    <div id="homeInstDivCheck" class="no-display">
+    	    	    	{!! form_row($form->home_institution) !!}
+		     </div>
+		    <div id="addressDivCheck" class="no-display">
+			   <fieldset class="form-group" id="borrower_address">
+			    <legend>Borrower Address</legend>
+			    {!! form_row($form->address1) !!}
+			    {!! form_row($form->address2) !!}
+			    {!! form_row($form->city) !!}
+			    {!! form_row($form->postal_code) !!}
+			   </fieldset>
+		    </div>
 		    <div class="form-group row">
 		    	<label class="col-lg-3 col-form-label form-control-label"></label>
 		    	<div class="col-lg-9">

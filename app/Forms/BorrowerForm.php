@@ -10,6 +10,7 @@ class BorrowerForm extends Form
        'method' => 'GET',
         'url' => '/search'
    ];
+   protected $name = 'borrower';
 
     public function buildForm()
     {
@@ -36,6 +37,17 @@ class BorrowerForm extends Form
                     'email.required' => 'Please fill out your email address.'
                 ]
             ])
+	    ->add('borrower_cat', 'select', [
+	        'choices' => $borrower_categories,
+		'attr' => ['onchange' => 'admSelectCheck(this);'],
+	        'selected' => 'value3',
+	        'empty_value' => 'Please select the appropriate borrowing category',
+                'label' => 'Borrower Category',
+                'rules' => 'required',
+                'error_messages' => [
+                   'borrower_cat.required' => 'The last name  field is mandatory.'
+                ]
+	    ])
             ->add('address1', 'text', [
                 'label' => 'Street Address 1',
                 'rules' => 'required|min:5',
@@ -71,22 +83,18 @@ class BorrowerForm extends Form
                     'telephone_no.required' => 'Please enter a proper telephone number.'
                  ]
 	    ])
-	    ->add('borrower_cat', 'select', [
-	        'choices' => $borrower_categories,
-		'attr' => ['onchange' => 'admSelectCheck(this);'],
-	        'selected' => 'value3',
-	        'empty_value' => 'Please select the appropriate borrowing category',
-                'label' => 'Borrower Category',
-                'rules' => 'required',
-                'error_messages' => [
-                   'borrower_cat.required' => 'The last name  field is mandatory.'
-                ]
-	    ])
 	    ->add('spouse_name', 'text', [
 		 'attr' => ['class' => 'form-control field-input no-display'],
 		 'label' => 'If applying for faculty spouse borrowing card, please enter the name of your spouse',
                  'error_messages' => [
                     'telephone_no.required' => 'Please enter a proper telephone number.'
+                 ]
+	   ])
+	    ->add('home_institution', 'text', [
+		 'attr' => ['class' => 'form-control field-input no-display'],
+		 'label' => 'Please enter the name of your home institution',
+                 'error_messages' => [
+                    'home_institution.required' => 'Please enter the name of your home institution.'
                  ]
 	   ]);
     }
