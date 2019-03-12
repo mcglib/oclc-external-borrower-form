@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Routing\Controller as BaseController;
 use Kris\LaravelFormBuilder\FormBuilder;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 
 class BorrowerController extends BaseController {

@@ -7,8 +7,19 @@
 		    <h3 class="mb-0">External Borrower's form</h3>
 		</div>
 		<div class="card-body">
-		    <div class="">
-		     </div>
+		     @if (count($errors) > 0)
+			     <div class="alert alert-danger">
+				 <ul>
+				 @foreach ($errors->all() as $error)
+				  <li>{{ $error }}</li>
+				 @endforeach
+				 </ul>
+			     </div>
+		     @endif
+
+
+
+
     	 	    {!! form_start($form) !!}
     	    	    {!! form_row($form->fname) !!}
     	    	    {!! form_row($form->lname) !!}

@@ -50,7 +50,6 @@ class BorrowerForm extends Form
 	    ])
             ->add('address1', 'text', [
                 'label' => 'Street Address 1',
-                'rules' => 'required|min:5',
                 'error_messages' => [
                     'address1.required' => 'The Address field is mandatory.'
                 ]
@@ -63,14 +62,12 @@ class BorrowerForm extends Form
             ])
             ->add('city', 'text', [
                 'label' => 'City',
-                'rules' => 'required|min:3',
                 'error_messages' => [
                     'city.required' => 'The city field is required.'
                 ]
             ])
             ->add('postal_code', 'text', [
                 'label' => 'Postal code',
-                'rules' => 'required|min:5',
                 'error_messages' => [
                     'postal_code.required' => 'The Postal code field is mandatory.'
                 ]
