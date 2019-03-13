@@ -26,7 +26,7 @@ class BorrowerForm extends Form
                 ]
             ])
             ->add('email', 'email', [
-                'label' => 'Email',
+                'label' => 'Email Address',
                 'rules' => 'required|min:5',
                 'error_messages' => [
                     'email.required' => 'Please fill out your email address.'
@@ -37,7 +37,7 @@ class BorrowerForm extends Form
 		'attr' => ['onchange' => 'admSelectCheck(this);'],
 	        'selected' => 'value3',
 	        'empty_value' => 'Please select the appropriate borrowing category',
-                'label' => 'Borrower Category',
+                'label' => 'Requested Borrowing Category',
                 'rules' => 'required',
                 'error_messages' => [
                    'borrower_cat.required' => 'The last name  field is mandatory.'
@@ -62,14 +62,14 @@ class BorrowerForm extends Form
                 ]
             ])
             ->add('postal_code', 'text', [
-                'label' => 'Postal code',
+                'label' => 'Postal Code',
                 'error_messages' => [
                     'postal_code.required' => 'The Postal code field is mandatory.'
                 ]
             ])
 	    ->add('telephone_no', 'number', [
 		 'attr' => ['class' => 'form-control field-input'],
-		 'label' => 'Telephone number',
+		 'label' => 'Telephone',
                  'rules' => 'min:5',
                  'error_messages' => [
                     'telephone_no.required' => 'Please enter a proper telephone number.'
@@ -79,7 +79,7 @@ class BorrowerForm extends Form
 		 'attr' => ['class' => 'form-control field-input no-display'],
 		 'label' => 'If applying for faculty spouse borrowing card, please enter the name of your spouse',
                  'error_messages' => [
-                    'telephone_no.required' => 'Please enter a proper telephone number.'
+                    'spouse_name.arequired' => 'Please enter a proper telephon.'
                  ]
 	   ])
 	    ->add('home_institution', 'text', [
