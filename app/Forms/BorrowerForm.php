@@ -6,11 +6,6 @@ use Kris\LaravelFormBuilder\Form;
 
 class BorrowerForm extends Form
 {
-   protected $formOptions = [
-       'method' => 'GET',
-        'url' => '/search'
-   ];
-   protected $name = 'borrower';
 
     public function buildForm()
     {

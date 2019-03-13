@@ -17,9 +17,6 @@
 			     </div>
 		     @endif
 
-
-
-
     	 	    {!! form_start($form) !!}
     	    	    {!! form_row($form->fname) !!}
     	    	    {!! form_row($form->lname) !!}
