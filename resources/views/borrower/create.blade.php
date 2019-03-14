@@ -4,7 +4,7 @@
  <div class="col-md-8 offset-md-2">
 	    <div class="card card-outline-secondary">
 		<div class="card-header">
-		    <h3 class="mb-0">External Borrower's form</h3>
+		    <h3 class="mb-0">Library Application form</h3>
 		</div>
 		<div class="card-body">
 		     @if (count($errors) > 0)
@@ -16,7 +16,6 @@
 				 </ul>
 			     </div>
 		     @endif
-
     	 	    {!! form_start($form) !!}
     	    	    {!! form_row($form->fname) !!}
     	    	    {!! form_row($form->lname) !!}
@@ -41,7 +40,7 @@
 		    <div class="form-group row">
 		    	<label class="col-lg-3 col-form-label form-control-label"></label>
 		    	<div class="col-lg-9">
-				{!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+				{!! Form::submit('Next', ['class' => 'btn btn-primary']) !!}
 				{!! Form::button('Cancel', ['class' => 'btn btn-secondary']) !!}
 		    	</div>
 		    </div>

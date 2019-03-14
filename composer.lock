@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2056294599c2b537c39962f191d2a3ea",
+    "content-hash": "700689dbfc70ac7b205e1d21f1401a11",
     "packages": [
         {
             "name": "OCLC/Auth",
@@ -1743,6 +1743,58 @@
                 "storage"
             ],
             "time": "2019-02-01T08:50:36+00:00"
+        },
+        {
+            "name": "maher/laravel-counters",
+            "version": "V1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MaherSaleem/laravel-counters.git",
+                "reference": "06e3b1ce143f66919fce4712e611eaf92d0d83fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MaherSaleem/laravel-counters/zipball/06e3b1ce143f66919fce4712e611eaf92d0d83fc",
+                "reference": "06e3b1ce143f66919fce4712e611eaf92d0d83fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Maher\\Counters\\CountersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Maher\\Counters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MaherSaleem",
+                    "email": "the-maher@live.com"
+                }
+            ],
+            "description": "management for counters in laravel system",
+            "keywords": [
+                "Decrement",
+                "counters",
+                "increment",
+                "laravel",
+                "maher",
+                "number of visitors",
+                "visitors"
+            ],
+            "time": "2018-07-18T06:58:05+00:00"
         },
         {
             "name": "maximebf/debugbar",

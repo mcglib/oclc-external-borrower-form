@@ -11,14 +11,26 @@
 |
 */
 
-Route::get('/','BorrowerController@create');
+Route::get('/', function () {
+	    return view('borrower');
+});
+Route::get('/','BorrowerController@createStep1');
 
-Route::get('borrower/create', [
-	    'uses' => 'BorrowerController@create',
-            'as' => 'borrower.create'
+Route::get('borrower/create-step1', [
+	    'uses' => 'BorrowerController@createStep1',
+            'as' => 'borrower.create_step_1'
+]);
+Route::post('borrower/create-step1', [
+	    'uses' => 'BorrowerController@createStep1',
+           'as' => 'borrower.create_step_1'
 ]);
 
-Route::post('borrower', [
+Route::get('borrower/create-step2', [
+	    'uses' => 'BorrowerController@createStep2',
+            'as' => 'borrower.create_step_2'
+]);
+Route::post('borrower/store', [
 	    'uses' => 'BorrowerController@store',
            'as' => 'borrower.store'
 ]);
+
