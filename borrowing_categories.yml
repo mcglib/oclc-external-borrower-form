@@ -32,7 +32,7 @@ categories:
   - key: value7
     borrower_category: McGill community borrower
     label: Montreal School of Theology faculty member or graduate student	
-    wms_custom_data_3: 
+    wms_custom_data_3: School of theo
     home_institution: false
   - key: value8
     borrower_category: ROAAr reader
@@ -48,4 +48,4 @@ categories:
     borrower_category: McGill faculty and staff
     label: Visiting scholar (with letter of invitation)
     wms_custom_data_3: Visiting scholar
-    home_institution: true
+    home_institution: false
