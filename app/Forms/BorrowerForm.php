@@ -3,6 +3,7 @@
 namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
+use Yaml;
 
 class BorrowerForm extends Form
 {
@@ -36,7 +37,7 @@ class BorrowerForm extends Form
 	    ->add('borrower_cat', 'select', [
 	        'choices' => $borrower_categories,
 		'attr' => ['onchange' => 'admSelectCheck(this);'],
-	        'selected' => 'value3',
+	        'selected' => 'value1',
 	        'empty_value' => 'Please select the appropriate borrowing category',
                 'label' => 'Requested Borrowing Category',
                 'rules' => 'required',
@@ -92,17 +93,9 @@ class BorrowerForm extends Form
 	   ]);
     }
     public function get_borrower_categories() {
-        return array(
-	    "value2" => "Faculty member or graduate student at a Canadian University",
-	    "value3" =>   "McGill alumnus or alumna",
-	    "value4" =>   "McGill Community for Lifelong Learning student",
-	    "value5" =>   "McGill staff spouse",
-	    "value6" =>   "McGill PhD extension",
-	    "value7" =>   "Member of the public ($100 for 6 months)",
-	    "value8" =>   "Montreal School of Theology faculty member or graduate student",
-	    "value9" =>   "Osler/RareBooks reader - consultation only card",
-	    "value10" =>   "Undergraduate student at a Quebec University",
-	    "value11" =>   "Visiting scholar (with letter of invitation)",
-	);
+      $borrowers = Yaml::parse(
+		    file_get_contents(base_path().'/borrowing_categories.yml'));
+      $keys = array_column($borrowers['categories'], 'label', 'key');
+      return $keys;
     }
 }

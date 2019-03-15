@@ -225,7 +225,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
 	'View' => Illuminate\Support\Facades\View::class,
 	'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
-	'Yaml' => Symfony\Component\Yaml\Yaml
+	'Yaml' => Symfony\Component\Yaml\Yaml::class
 
     ],
 

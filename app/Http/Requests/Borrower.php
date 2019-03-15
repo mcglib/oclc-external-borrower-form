@@ -34,7 +34,7 @@ class Borrower extends FormRequest
 	    'address1' => 'required_if:borrower_cat,value7',
 	    'postal_code' => 'required_if:borrower_cat,value7',
 	    'city' => 'required_if:borrower_cat,value7',
-	    'home_institution' => 'required_if:borrower_cat,value9, value1',
+	    'home_institution' => 'required_if:borrower_cat,value1',
         ];
     }
     /**
@@ -46,7 +46,6 @@ class Borrower extends FormRequest
     {
 	// Load the variables
 	$yamlContents = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	dd($yamlContents);
         return [
 	        'fname.required' => 'Your first name  is required',
 	        'lname.required' => 'Your last name  is required',
@@ -54,6 +53,10 @@ class Borrower extends FormRequest
 	        'borrower_cat.required' => 'Please select  a borrowing category',
 	        'telephone_no.required' => 'Please enter a phone number we can reach you at',
 	    	'spouse_name.required_if' => 'Please enter the name of your spouse',
+	    	'address1.required_if' => 'Please fill in your address',
+	    	'postal_code.required_if' => 'Please enter your postal code',
+	    	'city.required_if' => 'Please enter your city',
+	    	'home_institution.required_if' => 'Please enter the name of your home institution',
         ];
     }
 }
