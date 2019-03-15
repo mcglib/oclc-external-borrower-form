@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 
@@ -14,13 +15,14 @@ class BorrowerController extends BaseController {
     use FormBuilderTrait;
     use ValidatesRequests;
 
-    public function createStep1()
+    public function createStep1(Request $request)
     {
+        $borrower = $request->session()->get('borrower');
 	$form = $this->form(BorrowerForm::class, [
 		            'method' => 'POST',
 		            'route' => 'borrower.store'
         ]);
-        return view('borrower.create', compact('form'));
+        return view('borrower.create-step1', compact('form', $borrower));
 
     }
 
@@ -32,14 +34,13 @@ class BorrowerController extends BaseController {
      */
     public function postCreateStep1(Borrower $request)
     {
-        if(empty($request->session()->get('product'))){
-            $product = new Product();
-            $product->fill($validatedData);
-            $request->session()->put('product', $product);
+        $validatedData = $request->validated();
+        if(empty($request->session()->get('borrower'))){
+	    $borrower = new \App\Oclc\Borrower($validatedData);
+            $request->session()->put('borrower', $borrower);
         }else{
-            $product = $request->session()->get('product');
-            $product->fill($validatedData);
-            $request->session()->put('product', $product);
+            $borrower = $request->session()->get('borrower');
+            $request->session()->put('borrower', $borrower);
         }
         return redirect('/create-step2');
     }
@@ -51,32 +52,22 @@ class BorrowerController extends BaseController {
      */
     public function createStep2(Request $request)
     {
-        $product = $request->session()->get('product');
-        return view('products.create-step2',compact('product', $product));
+        $borrower = $request->session()->get('borrower');
+        return view('borrower.create-step2',compact('borrower', $borrower));
     }
-
-
-
-
-
 
     public function store(Borrower $request)
     {
-       $form = $this->form(BorrowerForm::class);
        $validated = $request->validated();
+       $borrower = new \App\Oclc\Borrower($validated);
 
+       dd($validated);
 
-        $request = $form->getFieldValues();
-	$borrower = new \App\Oclc\Borrower($validated);
+       // Create the record
+       $borrower->create();
 
-	// Create the record
-	$borrower->create();
-
-	// Get the OCLC configurations
-	//$borrower->connect();
-	
-
-        return redirect()->route('home')->with(['success' => 'Congratulations, your request has been received!']);
+       return redirect()->route('/')
+	       ->with(['success' => 'Congratulations, your request has been received!']);
 
     }
 }

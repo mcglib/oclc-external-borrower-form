@@ -12,9 +12,11 @@ class Borrower {
      *
      * @var string
      */
-    private $givenName;
-    private $familyName;
-    private $email;
+    public $givenName;
+    public $familyName;
+    public $request = [];
+    public $email;
+
     private $id;
     private $barcode;
     private $circInfo = [];
@@ -22,24 +24,28 @@ class Borrower {
     private $status;
     private $serviceUrl = '.share.worldcat.org/idaas/scim/v2';
     private $authorizationHeader;
+    
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';
     private $homeBranch = 262754; // Maybe 262754
     private $institutionId;
 
     function __construct(array $request = []) {
-	   print "In BaseClass constructor\n";
 	   // Set the variables
-
+	   $this->request = $request;
+	   
 	   $this->givenName = $request['fname'];
 	   $this->familyName = $request['lname'];
 	   $this->email = $request['email'];
+	   
 	   // generate a barcode
 	   $this->barcode = $this->generateBarCode();
+	   
 	   // set the circulation data
 	   $this->circInfo = $this->getCircInfo($request);
 
        	   $oclc_config = config('oclc.connections.development');
+	   
 	   $this->institutionId = $oclc_config['institution_id'];
 	   
 	   // set the addressif any
@@ -48,17 +54,13 @@ class Borrower {
     public function create() {
 
 
-      $url = 'https://worldcat.org/bib/data/823520553?classificationScheme=LibraryOfCongress&holdingLibraryCode=MAIN';
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
-      //$url = 'https://torontotest'. $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
       // Send the request to create a record
-      $this->sendRequest($url, $this->getData());
+      return $this->sendRequest($url, $this->getData());
 
-    
-    }
-    public function setPassword() {
+      
     
     }
 
@@ -126,7 +128,6 @@ class Borrower {
 			    'institutionId' => $this->institutionId,
 	  	     ),
 	    );
-	    //$json =  json_encode($payload);
 	    $body = ['headers' => $headers,
 		     'json' => $payload
 	     ];
@@ -138,32 +139,46 @@ class Borrower {
 		    $error->getResponse()->getStatusCode();
 		    var_dump((string)$error->getResponse()->getBody());die();
 	    }
-	    die();
     	
     }
 
     public function search() {
     
     }
+    public function getBorrowerCategoryName($borrow_cat) {
+    	
+    }
+    
 
     private function addAddress($request) {
-	if (isset($request['postal_code'])) {
+	    if (isset($request['postal_code'])) {
+	       $locality = isset($request['address2']) ? $request['address2'] : "";
 	       $this->addresses[] = [
-		"streetAddress" => $request['streetAddress1'], 
-		"locality" => $request['locality'], 
-		"region" => $request['region'],
+		"streetAddress" => $request['address1'], 
+		"region" => $request['city'],
+		"locality" => $locality,
 		"postalCode" => $request['postal_code'],
 		"type" => "",
 		"primary" => false
 	       ];
-	} 
+	    }
+	     
     }
-    private function getEmail() {
-    
+
+    //**** Accessors ***//
+    public function getFamilyNameAttribute() {
+    	return $this->familyName;
     }
-    private function getOclcPPID() {
-    
+    public function getRequestAttribute() {
+    	return $this->request;
     }
+    public function getGivenNameAttribute() {
+    	return $this->givenName;
+    }
+    public function getEmailAttribute() {
+    	return $this->email;
+    }
+
     public function generateBarcode() {
 	    return  "EXT-".uniqid(15);
 

@@ -4,34 +4,43 @@
     <h1>Library Application Form - Review</h1>
     <hr>
     <h3>Review Your Details</h3>
-    <form action="/borrower/store" method="post" >
+    <form action="/store" method="post" >
         {{ csrf_field() }}
         <table class="table">
             <tr>
-                <td>Product Name:</td>
-                <td><strong>{{$product->name}}</strong></td>
+                <td>First name:</td>
+                <td><strong>{{$borrower->familyName}}</strong></td>
             </tr>
             <tr>
-                <td>Product Amount:</td>
-                <td><strong>{{$product->amount}}</strong></td>
+                <td>Last name:</td>
+                <td><strong>{{$borrower->givenName}}</strong></td>
             </tr>
             <tr>
-                <td>Product Company:</td>
-                <td><strong>{{$product->company}}</strong></td>
+                <td>Email address:</td>
+                <td><strong>{{$borrower->email}}</strong></td>
             </tr>
             <tr>
-                <td>Product Available:</td>
-                <td><strong>{{$product->available ? 'Yes' : 'No'}}</strong></td>
+                <td>Telephone:</td>
+		<td><strong>{{$borrower->request['telephone']}}</strong></td>
             </tr>
             <tr>
-                <td>Product Description:</td>
-                <td><strong>{{$product->description}}</strong></td>
-            </tr>
-            <tr>
-                <td>Product Image:</td>
-            </tr>
+                <td>Requested Borrowing Category:</td>
+                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->request['borrower_cat'])}}</strong></td>
+	    </tr>
+	    @if ($borrower->request['borrower_cat'] == 'value5')
+		    <tr>
+			<td>Spouse's name:</td>
+			<td><strong>{{$borrower->request['spouse_name']}}</strong></td>
+		    </tr>
+	    @endif
+	    @if ($borrower->request['borrower_cat'] == 'value7')
+		    <tr>
+			<td>Home institution name:</td>
+			<td><strong>{{$borrower->request['home_institution']}}</strong></td>
+		    </tr>
+	    @endif
         </table>
-        <a type="button" href="/borrower/create-step1" class="btn btn-warning">Back</a>
-        <button type="submit" class="btn btn-primary">Create Product</button>
+        <a type="button" href="/create-step1" class="btn btn-warning">Back</a>
+        <button type="submit" class="btn btn-primary">Submit request</button>
     </form>
 @endsection
