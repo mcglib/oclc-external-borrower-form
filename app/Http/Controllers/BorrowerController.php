@@ -14,7 +14,7 @@ class BorrowerController extends BaseController {
     use FormBuilderTrait;
     use ValidatesRequests;
 
-    public function create()
+    public function createStep1()
     {
 	$form = $this->form(BorrowerForm::class, [
 		            'method' => 'POST',
@@ -23,6 +23,42 @@ class BorrowerController extends BaseController {
         return view('borrower.create', compact('form'));
 
     }
+
+     /**
+     * Post Request to store step1 info in session
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postCreateStep1(Borrower $request)
+    {
+        if(empty($request->session()->get('product'))){
+            $product = new Product();
+            $product->fill($validatedData);
+            $request->session()->put('product', $product);
+        }else{
+            $product = $request->session()->get('product');
+            $product->fill($validatedData);
+            $request->session()->put('product', $product);
+        }
+        return redirect('/create-step2');
+    }
+
+    /**
+     * Show the step 2 Form for creating a new product.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createStep2(Request $request)
+    {
+        $product = $request->session()->get('product');
+        return view('products.create-step2',compact('product', $product));
+    }
+
+
+
+
+
 
     public function store(Borrower $request)
     {
