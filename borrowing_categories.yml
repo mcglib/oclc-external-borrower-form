@@ -1,0 +1,51 @@
+categories:
+  - key: value1
+    borrower_category: McGill community borrower
+    label: Faculty member or graduate student at a Canadian University 
+    wms_custom_data_3: Reciprocal graduates & profs
+    home_institution: true
+  - key: value2
+    borrower_category: McGill community borrower
+    label: McGill alumnus or alumna
+    wms_custom_data_3: McGill alumni
+    home_institution: false
+  - key: value3
+    borrower_category: McGill undergraduate
+    label: McGill Community for Lifelong Learning student
+    wms_custom_data_3: MCLL
+    home_institution: false
+  - key: value4
+    borrower_category: McGill faculty and staff
+    label: McGill staff spouse	
+    wms_custom_data_3: Faculty spouse
+    home_institution: false
+  - key: value5
+    borrower_category: McGill graduate student	PhD extension
+    label: McGill PhD extension
+    wms_custom_data_3: McGill PhD extension
+    home_institution: false
+  - key: value6
+    borrower_category: Member of the public ($100 for 6 months)
+    label: Member of the public ($100 for 6 months)
+    wms_custom_data_3: Personal (paid)
+    home_institution: false
+  - key: value7
+    borrower_category: McGill community borrower
+    label: Montreal School of Theology faculty member or graduate student	
+    wms_custom_data_3: 
+    home_institution: false
+  - key: value8
+    borrower_category: ROAAr reader
+    label: Osler/RareBooks reader - consultation only card	
+    wms_custom_data_3: Other
+    home_institution: false
+  - key: value9
+    borrower_category: McGill community borrower
+    label: Undergraduate student at a Quebec University
+    wms_custom_data_3: Reciprocal undergrads
+    home_institution: true
+  - key: value10
+    borrower_category: McGill faculty and staff
+    label: Visiting scholar (with letter of invitation)
+    wms_custom_data_3: Visiting scholar
+    home_institution: true

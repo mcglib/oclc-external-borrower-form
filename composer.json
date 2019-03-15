@@ -24,7 +24,7 @@
         "maher/laravel-counters": "^1.0",
         "oclc/auth": "*",
         "simplesamlphp/simplesamlphp": "^1.16",
-        "symfony/yaml": "*"
+        "symfony/yaml": "^4.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
