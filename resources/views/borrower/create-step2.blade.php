@@ -29,13 +29,13 @@
                 <td>Requested Borrowing Category:</td>
                 <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
 	    </tr>
-	    @if ($borrower->borrower_cat == 'value4')
+	    @if (isset($borrower->spouse_name))
 		    <tr>
 			<td>Spouse's name:</td>
-			<td><strong>{{$borrower-spouse_name}}</strong></td>
+			<td><strong>{{$borrower->spouse_name}}</strong></td>
 		    </tr>
 	    @endif
-	    @if ($borrower->home_institution')
+	    @if (isset($borrower->home_institution))
 		    <tr>
 			<td>Home institution name:</td>
 			<td><strong>{{$borrower->home_institution}}</strong></td>
