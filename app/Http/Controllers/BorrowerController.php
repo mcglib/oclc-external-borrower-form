@@ -62,18 +62,18 @@ class BorrowerController extends BaseController {
         return view('borrower.create-step2',compact('borrower', $borrower));
     }
 
-    public function store(Borrower $request)
+    public function store(Request $request)
     {
-       $validated = $request->validated();
-       $borrower = new \App\Oclc\Borrower($validated);
+
+       $borrower = $request->session()->get('borrower');
 
        // Create the record
-       $borrower->create();
+       $state = $borrower->create();
 
 	// clear session data
 	$request->session()->flush();
 
-       return redirect()->route('/')
+       return redirect()->route('create-step-1')
 	       ->with(['success' => 'Congratulations, your request has been received!']);
 
     }

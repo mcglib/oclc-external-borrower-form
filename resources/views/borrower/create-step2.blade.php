@@ -56,7 +56,12 @@
 	    </tr>
 	    @endif
         </table>
-        <a type="button" href="create-step1" class="btn btn-warning">Back</a>
-        <button type="submit" class="btn btn-primary">Submit data</button>
+        <div class="form-group row">
+		<label class="col-lg-3 col-form-label form-control-label"></label>
+		<div class="col-lg-9">
+        		<a type="button" href="create-step1" class="btn btn-primary">Back</a>
+			<input class="btn btn-secondary" type="submit" value="Submit application">
+		</div>
+    	</div>
     </form>
 @endsection

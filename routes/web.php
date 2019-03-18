@@ -30,8 +30,7 @@ Route::get('create-step2', [
 	    'uses' => 'BorrowerController@createStep2',
             'as' => 'borrower.create_step_2'
 ]);
-Route::post('borrower/store', [
+Route::post('store', [
 	    'uses' => 'BorrowerController@store',
            'as' => 'borrower.store'
 ]);
-

@@ -59,7 +59,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www/html/borrower
       - ./apache.conf:/etc/apache2/sites-available/000-default.conf
     networks:
       appnetwork:

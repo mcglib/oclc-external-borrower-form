@@ -76,7 +76,11 @@ class Borrower {
       $this->getAuth($url);
 
       // Send the request to create a record
-      return $this->sendRequest($url, $this->getData());
+      $state = $this->sendRequest($url, $this->getData());
+      dd($state);
+
+      // Return state
+      return $state;
 
       
     
@@ -151,11 +155,11 @@ class Borrower {
 	     ];
             try {
 	          $response = $client->request('POST', $url, $body);
-	          echo $response->getBody(TRUE);
-		  var_dump((string) $response->getBody(TRUE));die();
+		  echo $response->getBody(TRUE);
+		  return $response;
 	    } catch (RequestException $error) {
 		    $error->getResponse()->getStatusCode();
-		    var_dump((string)$error->getResponse()->getBody());die();
+		    return $error;
 	    }
     	
     }
@@ -205,21 +209,33 @@ class Borrower {
     }
 
     public function generateBarcode() {
-	    return  "EXT-".uniqid(15);
+	    return  "EXT-".uniqid(3)."-".uniqid(3);
 
     }
     private function getAddresses() {
 	    return array(
 		    0 => array (
-		       'streetAddress' => 'asdasd',
-		       'locality' => 'asdasd',
-	     	       'region' => 'asdasd',
-	               'postalCode' => 'asdasd',
-	               'type' => $this->defaultType,
-		       'primary' => false
+		      'streetAddress' => $this->address1." ".$this->address2,
+		      'locality' => $this->city ?? "",
+		      'region' => $this->city ?? "",
+		      'postalCode' => $this->postalcode ?? "",
+		      'type' => $this->defaultType,
+		      'primary' => false,
 	           )
 	   );
 
+    }
+    private function getCustomData($location="3") {
+        return array (
+			'barcode' => $this->barcode,
+			'borrowerCategory' => $this->borrowerCategory,
+			'homeBranch' => $this->homeBranch,
+			'isVerified' => false,
+	      	        "isCircBlocked" =>  true,
+                        "isCollectionExempt" =>  false,
+                        "isFineExempt" => false,
+	);
+    
     }
     private function getCircInfo() {
         return array (
@@ -227,6 +243,9 @@ class Borrower {
 			'borrowerCategory' => $this->borrowerCategory,
 			'homeBranch' => $this->homeBranch,
 			'isVerified' => false,
+	      	        "isCircBlocked" =>  true,
+                        "isCollectionExempt" =>  false,
+                        "isFineExempt" => false,
 	);
     
     }
@@ -255,26 +274,9 @@ class Borrower {
 			'primary' => true,
 		),
 	  ),
-	  'addresses' => array (
-		0 => array (
-		      'streetAddress' => 'asdasd',
-		      'locality' => 'asdasd',
-		      'region' => 'asdasd',
-		      'postalCode' => 'asdasd',
-		      'type' => 'home',
-		      'primary' => false,
-		),
-	  ),
+	  'addresses' => $this->getAddresses(),
 	  'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
-	    'circulationInfo' =>   array (
-	      'barcode' => $this->barcode,
-	      'borrowerCategory' => $this->borrowerCategory,
-	      'homeBranch' => $this->homeBranch,
-	      'isVerified' => false,
-	      "isCircBlocked" =>  true,
-              "isCollectionExempt" =>  false,
-              "isFineExempt" => false,
-	    ),
+	    'circulationInfo' =>  $this->getCircInfo()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
 	    'institutionId' => $this->institutionId,
