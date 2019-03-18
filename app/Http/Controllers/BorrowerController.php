@@ -70,8 +70,15 @@ class BorrowerController extends BaseController {
        // Create the record
        $state = $borrower->create();
 
-	// clear session data
-	$request->session()->flush();
+       // clear session data
+       $request->session()->flush();
+
+       // Send the email with the data
+       $this->email($to, $from, $borrower);
+
+       // Send an email to the desk
+       $this->email($to, $from, $borrower);
+
 
        return redirect()->route('create-step-1')
 	       ->with(['success' => 'Congratulations, your request has been received!']);
@@ -82,5 +89,10 @@ class BorrowerController extends BaseController {
 		    file_get_contents(base_path().'/borrowing_categories.yml'));
       $keys = array_column($borrowers['categories'], 'label', 'key');
       return $keys;
+    }
+
+    public function email($to, $from, $borrower_info) {
+	    dd($borrower_info);
+    
     }
 }
