@@ -26,10 +26,10 @@
 		    <div id="spouseDivCheck" class="no-display">
     	    	    	{!! form_row($form->spouse_name) !!}
 		     </div>
-		    <div id="homeInstDivCheck" class="no-display">
+		    <div id="homeInstDivCheck">
     	    	    	{!! form_row($form->home_institution) !!}
 		     </div>
-		    <div id="addressDivCheck" class="no-display">
+		    <div id="addressDivCheck">
 			   <fieldset class="form-group" id="borrower_address">
 			    <legend>Borrower Address</legend>
 			    {!! form_row($form->address1) !!}
