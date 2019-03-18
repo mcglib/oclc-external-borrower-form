@@ -9,37 +9,51 @@
         <table class="table">
             <tr>
                 <td>First name:</td>
-                <td><strong>{{$borrower->familyName}}</strong></td>
+                <td><strong>{{$borrower->fname}}</strong></td>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td><strong>{{$borrower->givenName}}</strong></td>
+                <td><strong>{{$borrower->lname}}</strong></td>
             </tr>
             <tr>
                 <td>Email address:</td>
                 <td><strong>{{$borrower->email}}</strong></td>
             </tr>
-	    @if (isset($borrower->data['telephone_no']))
+	    @if (isset($borrower->telephone_no))
             <tr>
                 <td>Telephone:</td>
-		<td><strong>{{$borrower->data['telephone_no']}}</strong></td>
+		<td><strong>{{$borrower->telephone_no}}</strong></td>
 	    </tr>
 	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->data['borrower_cat'])}}</strong></td>
+                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
 	    </tr>
-	    @if ($borrower->data['borrower_cat'] == 'value5')
+	    @if ($borrower->borrower_cat == 'value4')
 		    <tr>
 			<td>Spouse's name:</td>
-			<td><strong>{{$borrower->data['spouse_name']}}</strong></td>
+			<td><strong>{{$borrower-spouse_name}}</strong></td>
 		    </tr>
 	    @endif
-	    @if ($borrower->data['borrower_cat'] == 'value7')
+	    @if ($borrower->home_institution')
 		    <tr>
 			<td>Home institution name:</td>
-			<td><strong>{{$borrower->data['home_institution']}}</strong></td>
+			<td><strong>{{$borrower->home_institution}}</strong></td>
 		    </tr>
+	    @endif
+	    @if (isset($borrower->postal_code))
+            <tr>
+                <td>Address:</td>
+		<td><strong>
+			<address>
+			{{$borrower->address1}}
+			{{$borrower->address2}}<br />
+			{{$borrower->city}}<br />
+			{{$borrower->postal_code}}<br/>
+			</address>
+	            </strong>
+		</td>
+	    </tr>
 	    @endif
         </table>
         <a type="button" href="/create-step1" class="btn btn-warning">Back</a>

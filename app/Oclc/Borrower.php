@@ -13,10 +13,19 @@ class Borrower {
      *
      * @var string
      */
-    public $givenName;
-    public $familyName;
+    public $fname;
+    public $lname;
     public $data = [];
     public $email;
+    public $telephone_no;
+    public $borrower_cat;
+    public $city;
+    public $address1;
+    public $home_institution;
+    public $address2;
+    public $postal_code, $spouse_name;
+	    
+ 
 
     private $id;
     private $barcode;
@@ -35,9 +44,17 @@ class Borrower {
 	   // Set the variables
 	    $this->data = $request;
 	   
-	   $this->givenName = $request['fname'];
-	   $this->familyName = $request['lname'];
+	   $this->fname = $request['fname'];
+	   $this->lname = $request['lname'];
 	   $this->email = $request['email'];
+	   $this->borrower_cat = $request['borrower_cat'];
+	   $this->telephone_no = $request['telephone_no'] ?? null;
+	   $this->spouse_name = $request['spouse_name'] ?? null;
+	   $this->home_institution = $request['home_institution'] ?? null;
+	   $this->city = $request['city'] ?? null;
+	   $this->address1 = $request['address1'] ?? null;
+	   $this->address2 = $request['address2'] ?? null;
+	   $this->postal_code = $request['postal_code'] ?? null;
 	   
 	   // generate a barcode
 	   $this->barcode = $this->generateBarCode();
@@ -109,7 +126,7 @@ class Borrower {
 		    ),
 	  	   'name' => array (
 			'familyName' => $this->familyName,
-			'givenName' => $this->givenName,
+			'fname' => $this->fname,
 			'middleName' => '',
 			'honorificPrefix' => '',
 			'honorificSuffix' => '',
@@ -171,17 +188,20 @@ class Borrower {
     }
 
     //**** Accessors ***//
-    public function getFamilyNameAttribute() {
-    	return $this->familyName;
+    public function getFNameAttribute() {
+    	return $this->fname;
     }
     public function getRequestAttribute() {
     	return $this->request;
     }
-    public function getGivenNameAttribute() {
-    	return $this->givenName;
-    }
     public function getEmailAttribute() {
     	return $this->email;
+    }
+    public function getTelephoneNoAttribute() {
+    	return $this->telephone_no;
+    }
+    public function getLNameAttribute() {
+    	return $this->lname;
     }
 
     public function generateBarcode() {
@@ -222,8 +242,8 @@ class Borrower {
 		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501'
 	  ),
 	  'name' => array (
-		'familyName' => $this->familyName,
-		'givenName' => $this->givenName,
+		'familyName' => $this->lname,
+		'givenName' => $this->fname,
 		'middleName' => '',
 		'honorificPrefix' => '',
 		'honorificSuffix' => '',
