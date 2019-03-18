@@ -5,6 +5,7 @@ use OCLC\Auth\AccessToken;
 use OCLC\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Yaml;
 
 class Borrower {
     /**
@@ -12,9 +13,20 @@ class Borrower {
      *
      * @var string
      */
-    private $givenName;
-    private $familyName;
-    private $email;
+    public $fname;
+    public $lname;
+    public $data = [];
+    public $email;
+    public $telephone_no;
+    public $borrower_cat;
+    public $city;
+    public $address1;
+    public $home_institution;
+    public $address2;
+    public $postal_code, $spouse_name;
+	    
+ 
+
     private $id;
     private $barcode;
     private $circInfo = [];
@@ -22,24 +34,36 @@ class Borrower {
     private $status;
     private $serviceUrl = '.share.worldcat.org/idaas/scim/v2';
     private $authorizationHeader;
+    
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';
     private $homeBranch = 262754; // Maybe 262754
     private $institutionId;
 
     function __construct(array $request = []) {
-	   print "In BaseClass constructor\n";
 	   // Set the variables
-
-	   $this->givenName = $request['fname'];
-	   $this->familyName = $request['lname'];
+	    $this->data = $request;
+	   
+	   $this->fname = $request['fname'];
+	   $this->lname = $request['lname'];
 	   $this->email = $request['email'];
+	   $this->borrower_cat = $request['borrower_cat'];
+	   $this->telephone_no = $request['telephone_no'] ?? null;
+	   $this->spouse_name = $request['spouse_name'] ?? null;
+	   $this->home_institution = $request['home_institution'] ?? null;
+	   $this->city = $request['city'] ?? null;
+	   $this->address1 = $request['address1'] ?? null;
+	   $this->address2 = $request['address2'] ?? null;
+	   $this->postal_code = $request['postal_code'] ?? null;
+	   
 	   // generate a barcode
 	   $this->barcode = $this->generateBarCode();
+	   
 	   // set the circulation data
 	   $this->circInfo = $this->getCircInfo($request);
 
        	   $oclc_config = config('oclc.connections.development');
+	   
 	   $this->institutionId = $oclc_config['institution_id'];
 	   
 	   // set the addressif any
@@ -48,17 +72,13 @@ class Borrower {
     public function create() {
 
 
-      $url = 'https://worldcat.org/bib/data/823520553?classificationScheme=LibraryOfCongress&holdingLibraryCode=MAIN';
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
-      //$url = 'https://torontotest'. $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
       // Send the request to create a record
-      $this->sendRequest($url, $this->getData());
+      return $this->sendRequest($url, $this->getData());
 
-    
-    }
-    public function setPassword() {
+      
     
     }
 
@@ -106,7 +126,7 @@ class Borrower {
 		    ),
 	  	   'name' => array (
 			'familyName' => $this->familyName,
-			'givenName' => $this->givenName,
+			'fname' => $this->fname,
 			'middleName' => '',
 			'honorificPrefix' => '',
 			'honorificSuffix' => '',
@@ -126,7 +146,6 @@ class Borrower {
 			    'institutionId' => $this->institutionId,
 	  	     ),
 	    );
-	    //$json =  json_encode($payload);
 	    $body = ['headers' => $headers,
 		     'json' => $payload
 	     ];
@@ -138,32 +157,53 @@ class Borrower {
 		    $error->getResponse()->getStatusCode();
 		    var_dump((string)$error->getResponse()->getBody());die();
 	    }
-	    die();
     	
     }
 
     public function search() {
     
     }
+    public function getBorrowerCategoryName($borrow_cat) {
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $label = $data['categories'];
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 return $data['categories'][$key]['label'];
+    	
+    }
+    
 
     private function addAddress($request) {
-	if (isset($request['postal_code'])) {
+	    if (isset($request['postal_code'])) {
+	       $locality = isset($request['address2']) ? $request['address2'] : "";
 	       $this->addresses[] = [
-		"streetAddress" => $request['streetAddress1'], 
-		"locality" => $request['locality'], 
-		"region" => $request['region'],
+		"streetAddress" => $request['address1'], 
+		"region" => $request['city'],
+		"locality" => $locality,
 		"postalCode" => $request['postal_code'],
 		"type" => "",
 		"primary" => false
 	       ];
-	} 
+	    }
+	     
     }
-    private function getEmail() {
-    
+
+    //**** Accessors ***//
+    public function getFNameAttribute() {
+    	return $this->fname;
     }
-    private function getOclcPPID() {
-    
+    public function getRequestAttribute() {
+    	return $this->request;
     }
+    public function getEmailAttribute() {
+    	return $this->email;
+    }
+    public function getTelephoneNoAttribute() {
+    	return $this->telephone_no;
+    }
+    public function getLNameAttribute() {
+    	return $this->lname;
+    }
+
     public function generateBarcode() {
 	    return  "EXT-".uniqid(15);
 
@@ -202,8 +242,8 @@ class Borrower {
 		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501'
 	  ),
 	  'name' => array (
-		'familyName' => $this->familyName,
-		'givenName' => $this->givenName,
+		'familyName' => $this->lname,
+		'givenName' => $this->fname,
 		'middleName' => '',
 		'honorificPrefix' => '',
 		'honorificSuffix' => '',

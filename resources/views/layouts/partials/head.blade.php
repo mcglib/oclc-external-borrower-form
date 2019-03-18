@@ -6,7 +6,7 @@
 
 <meta name="author" content="">
 
-<title>Create an OCLC borrower account</title>
+<title>Library Application form</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -15,6 +15,3 @@
 
 <link href="public/css/bootstrap.min.css" rel="stylesheet">
 <link href="public/css/app.css" rel="stylesheet">
-<script type="text/javascript" src="{{ URL::asset('public/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('public/js/validator.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('public/js/app.js') }}"></script>

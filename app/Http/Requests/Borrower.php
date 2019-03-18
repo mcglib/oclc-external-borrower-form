@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Yaml;
 
 class Borrower extends FormRequest
 {
@@ -29,10 +30,11 @@ class Borrower extends FormRequest
 	    'email' => 'required|email',
 	    'borrower_cat' => 'required',
 	    'telephone_no' => 'required|numeric',
-	    'spouse_name' => 'required_if:borrower_cat,value5',
+	    'spouse_name' => 'required_if:borrower_cat,value4',
 	    'address1' => 'required_if:borrower_cat,value7',
 	    'postal_code' => 'required_if:borrower_cat,value7',
 	    'city' => 'required_if:borrower_cat,value7',
+	    'home_institution' => 'required_if:borrower_cat,value1',
         ];
     }
     /**
@@ -42,12 +44,19 @@ class Borrower extends FormRequest
 	    *     */
     public function messages()
     {
+	// Load the variables
+	$yamlContents = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
         return [
 	        'fname.required' => 'Your first name  is required',
 	        'lname.required' => 'Your last name  is required',
 	        'email.required' => 'Your email  is required',
 	        'borrower_cat.required' => 'Please select  a borrowing category',
 	        'telephone_no.required' => 'Please enter a phone number we can reach you at',
+	    	'spouse_name.required_if' => 'Please enter the name of your spouse',
+	    	'address1.required_if' => 'Please fill in your address',
+	    	'postal_code.required_if' => 'Please enter your postal code',
+	    	'city.required_if' => 'Please enter your city',
+	    	'home_institution.required_if' => 'Please enter the name of your home institution',
         ];
     }
 }
