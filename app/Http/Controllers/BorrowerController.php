@@ -20,9 +20,9 @@ class BorrowerController extends BaseController {
         $borrower = $request->session()->get('borrower');
 	$form = $this->form(BorrowerForm::class, [
 		            'method' => 'POST',
-		            'route' => 'borrower.store'
+		            'route' => 'borrower.create_step_2'
         ]);
-        return view('borrower.create-step1', compact('form', $borrower));
+        return view('borrower.create-step1', compact('borrower', $borrower));
 
     }
 
@@ -62,7 +62,6 @@ class BorrowerController extends BaseController {
        $borrower = new \App\Oclc\Borrower($validated);
 
        dd($validated);
-
        // Create the record
        $borrower->create();
 

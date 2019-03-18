@@ -19,28 +19,30 @@
                 <td>Email address:</td>
                 <td><strong>{{$borrower->email}}</strong></td>
             </tr>
+	    @if (isset($borrower->data['telephone_no']))
             <tr>
                 <td>Telephone:</td>
-		<td><strong>{{$borrower->request['telephone']}}</strong></td>
-            </tr>
+		<td><strong>{{$borrower->data['telephone_no']}}</strong></td>
+	    </tr>
+	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->request['borrower_cat'])}}</strong></td>
+                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->data['borrower_cat'])}}</strong></td>
 	    </tr>
-	    @if ($borrower->request['borrower_cat'] == 'value5')
+	    @if ($borrower->data['borrower_cat'] == 'value5')
 		    <tr>
 			<td>Spouse's name:</td>
-			<td><strong>{{$borrower->request['spouse_name']}}</strong></td>
+			<td><strong>{{$borrower->data['spouse_name']}}</strong></td>
 		    </tr>
 	    @endif
-	    @if ($borrower->request['borrower_cat'] == 'value7')
+	    @if ($borrower->data['borrower_cat'] == 'value7')
 		    <tr>
 			<td>Home institution name:</td>
-			<td><strong>{{$borrower->request['home_institution']}}</strong></td>
+			<td><strong>{{$borrower->data['home_institution']}}</strong></td>
 		    </tr>
 	    @endif
         </table>
         <a type="button" href="/create-step1" class="btn btn-warning">Back</a>
-        <button type="submit" class="btn btn-primary">Submit request</button>
+        <button type="submit" class="btn btn-primary">Submit data</button>
     </form>
 @endsection

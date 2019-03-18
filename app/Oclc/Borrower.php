@@ -5,6 +5,7 @@ use OCLC\Auth\AccessToken;
 use OCLC\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Yaml;
 
 class Borrower {
     /**
@@ -14,7 +15,7 @@ class Borrower {
      */
     public $givenName;
     public $familyName;
-    public $request = [];
+    public $data = [];
     public $email;
 
     private $id;
@@ -32,7 +33,7 @@ class Borrower {
 
     function __construct(array $request = []) {
 	   // Set the variables
-	   $this->request = $request;
+	    $this->data = $request;
 	   
 	   $this->givenName = $request['fname'];
 	   $this->familyName = $request['lname'];
@@ -146,6 +147,10 @@ class Borrower {
     
     }
     public function getBorrowerCategoryName($borrow_cat) {
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $label = $data['categories'];
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 return $data['categories'][$key]['label'];
     	
     }
     
