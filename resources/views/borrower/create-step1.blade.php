@@ -18,7 +18,7 @@
 			     @endif
 		   <h1>Add New Product - Step 1</h1>
 		   <hr>
-		   <form action="/create-step1" method="post">
+		   <form action="create-step1" method="post">
 		    {{ csrf_field() }}
 			    <div class="form-group">
 				    <label for="fname" class="control-label required">First name</label>

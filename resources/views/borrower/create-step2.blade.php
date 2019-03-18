@@ -4,7 +4,7 @@
     <h1>Library Application Form - Review</h1>
     <hr>
     <h3>Review Your Details</h3>
-    <form action="/store" method="post" >
+    <form action="store" method="post" >
         {{ csrf_field() }}
         <table class="table">
             <tr>
@@ -56,7 +56,7 @@
 	    </tr>
 	    @endif
         </table>
-        <a type="button" href="/create-step1" class="btn btn-warning">Back</a>
+        <a type="button" href="create-step1" class="btn btn-warning">Back</a>
         <button type="submit" class="btn btn-primary">Submit data</button>
     </form>
 @endsection

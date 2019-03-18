@@ -17,16 +17,16 @@ Route::get('/', function () {
 Route::get('/','BorrowerController@createStep1');
 
 
-Route::get('/create-step1', [
+Route::get('create-step1', [
 	    'uses' => 'BorrowerController@createStep1',
             'as' => 'borrower.create_step_1'
 ]);
-Route::post('/create-step1', [
+Route::post('create-step1', [
 	    'uses' => 'BorrowerController@postCreateStep1',
            'as' => 'borrower.create_step_1'
 ]);
 
-Route::get('/create-step2', [
+Route::get('create-step2', [
 	    'uses' => 'BorrowerController@createStep2',
             'as' => 'borrower.create_step_2'
 ]);
