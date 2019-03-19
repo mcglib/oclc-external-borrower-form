@@ -5,6 +5,7 @@ use OCLC\Auth\AccessToken;
 use OCLC\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Storage;
 use Yaml;
 
 class Borrower {
@@ -34,6 +35,7 @@ class Borrower {
     private $status;
     private $serviceUrl = '.share.worldcat.org/idaas/scim/v2';
     private $authorizationHeader;
+    private $barcode_counter_init =  260000;
     
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';
@@ -56,12 +58,7 @@ class Borrower {
 	   $this->address2 = $request['address2'] ?? null;
 	   $this->postal_code = $request['postal_code'] ?? null;
 	   
-	   // generate a barcode
-	   $this->barcode = $this->generateBarCode();
 	   
-	   // set the circulation data
-	   $this->circInfo = $this->getCircInfo($request);
-
        	   $oclc_config = config('oclc.connections.development');
 	   
 	   $this->institutionId = $oclc_config['institution_id'];
@@ -75,8 +72,12 @@ class Borrower {
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
+      $this->generateBarCode();
       // Send the request to create a record
-      return $this->sendRequest($url, $this->getData());
+      $state = $this->sendRequest($url, $this->getData());
+
+      // Return state
+      return $state;
 
       
     
@@ -115,47 +116,17 @@ class Borrower {
 	    $headers['Authorization'] = $this->authorizationHeader;
 	    $headers['User-Agent'] = 'McGill OCLC Client';
 	    $headers['Content-Type'] = 'application/scim+json';
-	    $payload = array (
-		   'schemas' => array (
-			 0 => 'urn:ietf:params:scim:schemas:core:2.0:User',
-			 1 => 'urn:mace:oclc.org:eidm:schema:persona:correlationinfo:20180101',
-			 2 => 'urn:mace:oclc.org:eidm:schema:persona:persona:20180305',
-			 3 => 'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101',
-			 4 => 'urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101',
-			 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501'
-		    ),
-	  	   'name' => array (
-			'familyName' => $this->familyName,
-			'fname' => $this->fname,
-			'middleName' => '',
-			'honorificPrefix' => '',
-			'honorificSuffix' => '',
-		    ),
-		    'addresses' => $this->getAddresses(),
-	  	    'emails' => array (
-			0 =>  array (
-				'value' => $this->email,
-				'type' => $this->defaultType,
-				'primary' => true,
-			),
-	  	    ),
-	  	    'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
-	    		'circulationInfo' => $this->getCircInfo()
-          	    ),
-	  	    'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
-			    'institutionId' => $this->institutionId,
-	  	     ),
-	    );
 	    $body = ['headers' => $headers,
 		     'json' => $payload
 	     ];
+	    dd($payload);
             try {
 	          $response = $client->request('POST', $url, $body);
-	          echo $response->getBody(TRUE);
-		  var_dump((string) $response->getBody(TRUE));die();
+		  echo $response->getBody(TRUE);
+		  return $response;
 	    } catch (RequestException $error) {
-		    $error->getResponse()->getStatusCode();
-		    var_dump((string)$error->getResponse()->getBody());die();
+		  $error->getResponse()->getStatusCode();
+		  return $error;
 	    }
     	
     }
@@ -205,28 +176,56 @@ class Borrower {
     }
 
     public function generateBarcode() {
-	    return  "EXT-".uniqid(15);
+
+	if (Storage::disk('local')->exists('counter')){
+	   $curr_val = (int)Storage::disk('local')->get('counter');
+	   $curr_val++;
+	}else {
+	   $curr_val = $this->barcode_counter_init;
+	}
+	Storage::disk('local')->put('counter', $curr_val);
+
+
+	// Read the counter
+        // increament the last counter
+        // write to the counter file
+	$str_val = (string)($curr_val);
+	$str_val = substr_replace( $str_val, "-", 3, 0 ); 
+        return "EXT-".$str_val;
 
     }
     private function getAddresses() {
 	    return array(
 		    0 => array (
-		       'streetAddress' => 'asdasd',
-		       'locality' => 'asdasd',
-	     	       'region' => 'asdasd',
-	               'postalCode' => 'asdasd',
-	               'type' => $this->defaultType,
-		       'primary' => false
+		      'streetAddress' => $this->address1." ".$this->address2,
+		      'locality' => $this->city ?? "",
+		      'region' => $this->city ?? "",
+		      'postalCode' => $this->postalcode ?? "",
+		      'type' => $this->defaultType,
+		      'primary' => false,
 	           )
 	   );
 
     }
-    private function getCircInfo() {
+    private function getCustomData() {
+	
+	// Save data depending on the borrower category
+	
         return array (
-			'barcode' => $this->barcode,
-			'borrowerCategory' => $this->borrowerCategory,
+			'customdata3' => $borrower_data,
+	);
+    
+    }
+    private function getCircInfo() {
+	
+        return array (
+			'barcode' => $this->generatebarCode(),
+			'borrowerCategory' => $this->getBorrowerCategoryName($this->borrower_cat),
 			'homeBranch' => $this->homeBranch,
 			'isVerified' => false,
+	      	        "isCircBlocked" =>  true,
+                        "isCollectionExempt" =>  false,
+                        "isFineExempt" => false,
 	);
     
     }
@@ -248,6 +247,7 @@ class Borrower {
 		'honorificPrefix' => '',
 		'honorificSuffix' => '',
 	  ),
+	  'addresses' => $this->getAddresses(),
 	  'emails' => array (
 		0 =>  array (
 			'value' => $this->email,
@@ -255,35 +255,14 @@ class Borrower {
 			'primary' => true,
 		),
 	  ),
-	  'addresses' => array (
-		0 => array (
-		      'streetAddress' => 'asdasd',
-		      'locality' => 'asdasd',
-		      'region' => 'asdasd',
-		      'postalCode' => 'asdasd',
-		      'type' => 'home',
-		      'primary' => false,
-		),
-	  ),
 	  'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
-	    'circulationInfo' =>   array (
-	      'barcode' => $this->barcode,
-	      'borrowerCategory' => $this->borrowerCategory,
-	      'homeBranch' => $this->homeBranch,
-	      'isVerified' => false,
-	      "isCircBlocked" =>  true,
-              "isCollectionExempt" =>  false,
-              "isFineExempt" => false,
-	    ),
+	    'circulationInfo' =>  $this->getCircInfo()
+          ),
+	  'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
+	    'additionalInfo' =>  $this->getCustomData()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
 	    'institutionId' => $this->institutionId,
-	  ),
-	  'urn:mace:oclc.org:eidm:schema:persona:correlationinfo:20180101' => array(
-	    'correlationInfo' => array (
-	       "sourceSystem" => "",
-	       "idAtSource" => ""
-	    ),
 	  ),
 	);
 	return $data;

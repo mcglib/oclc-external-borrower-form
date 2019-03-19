@@ -14,10 +14,7 @@
 	<div class="navbar navbar-default navbar-static-top">
 	  <div class="container">
 	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="https://www.mcgill.ca/library">Brand</a>
+	      <a class="navbar-brand" href="https://www.mcgill.ca/library"><img src="/borrower/public/img/mcgill_logo.jpg" /></a>
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav">
@@ -31,7 +28,7 @@
 	  </div>
 	</div>
 
-	<div class="containerx">
+	<div class="container">
 	  
 	  <div class="text-censter">
 		@yield('content')

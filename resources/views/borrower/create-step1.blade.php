@@ -1,7 +1,10 @@
 @extends('layouts.mainlayout')
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="icon-bar"></span>
+	      </button>
 
 @section('content')
- <div class="col-md-8 offset-md-2">
+ <div class="col-md-12">
 	    <div class="card card-outline-secondary">
 		<div class="card-header">
 		    <h3 class="mb-0">Library Application form</h3>
@@ -16,9 +19,8 @@
 				 </ul>
 			     </div>
 			     @endif
-		   <h1>Add New Product - Step 1</h1>
 		   <hr>
-		   <form action="/create-step1" method="post">
+		   <form action="create-step1" method="post">
 		    {{ csrf_field() }}
 			    <div class="form-group">
 				    <label for="fname" class="control-label required">First name</label>
