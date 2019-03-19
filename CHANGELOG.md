@@ -1,3 +1,6 @@
+1.0.3
+- Added the logo.
+- Fixed the paths
 1.0.2
 - Added multi-step in the form
 1.0.1
