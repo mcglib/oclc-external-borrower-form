@@ -6,7 +6,6 @@
     <h3>Review Your Details</h3>
     <form action="store" method="post" >
 	{{ csrf_field() }}
-        @section('borrower_summary')
         <table class="table">
             <tr>
                 <td>First name:</td>

@@ -36,6 +36,7 @@ class Borrower {
     private $serviceUrl = '.share.worldcat.org/idaas/scim/v2';
     private $authorizationHeader;
     private $barcode_counter_init =  260000;
+    private $oclc_data;
     
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';
@@ -76,6 +77,9 @@ class Borrower {
       // Send the request to create a record
       $state = $this->sendRequest($url, $this->getData());
 
+      // if success save data to $this->oclc_data
+
+      // if error
       // Return state
       return $state;
 
@@ -119,7 +123,6 @@ class Borrower {
 	    $body = ['headers' => $headers,
 		     'json' => $payload
 	     ];
-	    dd($payload);
             try {
 	          $response = $client->request('POST', $url, $body);
 		  echo $response->getBody(TRUE);
@@ -136,10 +139,26 @@ class Borrower {
     }
     public function getBorrowerCategoryName($borrow_cat) {
 	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $label = $data['categories'];
 	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['label'];
+	 return $data['categories'][$key]['borrower_category'];
     	
+    }
+    public function getBorrowerCustomData3($borrow_cat) {
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 return $data['categories'][$key]['wms_custom_data_3'];
+    
+    }
+    public function getBorrowerCustomData2($borrow_cat){
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 $is_home_inst = $data['categories'][$key]['home_institution'];
+	 if ($is_home_inst) {
+	 	return $this->home_institution;
+	 }else {
+	 	return $data['categories'][$key]['wms_custom_data_2'];
+	 }
+    
     }
     
 
@@ -210,10 +229,30 @@ class Borrower {
     private function getCustomData() {
 	
 	// Save data depending on the borrower category
+	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
+	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
 	
-        return array (
-			'customdata3' => $borrower_data,
-	);
+	$data = [];
+	$data["oclcKeyValuePairs"] = array();
+	
+	if (!empty($custom_data_3)) {
+	   $data_3 = array(
+		 "businessContext" => "Circulation_Info",
+	         "key" => "customdata3",
+		 "value" => $custom_data_3
+	    );
+	    $data["oclcKeyValuePairs"][] = $data_3;
+	}
+	if (!empty($custom_data_2)) {
+	   $data_2 = array(
+		 "businessContext" => "Circulation_Info",
+	         "key" => "customdata2",
+		 "value" => $custom_data_2
+	    );
+	    $data["oclcKeyValuePairs"][] = $data_2;
+	}
+	
+	return $data;
     
     }
     private function getCircInfo() {

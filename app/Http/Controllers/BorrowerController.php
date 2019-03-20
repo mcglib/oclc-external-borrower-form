@@ -70,14 +70,15 @@ class BorrowerController extends BaseController {
        // Create the record
        $state = $borrower->create();
 
-       // clear session data
-       $request->session()->flush();
-
        // Send the email with the data
        $this->email($to, $from, $borrower);
 
        // Send an email to the desk
        $this->email($to, $from, $borrower);
+       
+       // clear session data
+       //$request->session()->flush();
+
 
 
        return redirect()->route('create-step-1')
