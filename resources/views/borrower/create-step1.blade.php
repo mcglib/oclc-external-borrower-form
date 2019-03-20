@@ -1,7 +1,4 @@
 @extends('layouts.mainlayout')
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="icon-bar"></span>
-	      </button>
 
 @section('content')
  <div class="col-md-12">
