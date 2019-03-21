@@ -38,7 +38,7 @@
     
 			    <div class="form-group">
 				    <label for="telephone_no" class="control-label">Telephone</label>
-				    <input class="form-control field-input" min="5" value="{{ $borrower->telephone_no ?? ''}}"  name="telephone_no" type="number" id="telephone_no">
+			      	    {!! Form::input('number', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
     
 			    <div class="form-group">
@@ -57,7 +57,7 @@
 			    <div id="homeInstDivCheck" class="no-display">
 				<div class="form-group">
 				    <label for="home_institution" class="control-label">Please enter the name of your home institution</label>
-				    <input class="form-control field-input no-display" value="{{ $borrower->home_institution ?? ''}}"  name="home_institution" type="text" id="home_institution">
+				    {!! Form::select('home_institution', $home_institutions, $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
         		        </div>
     
 			    </div>

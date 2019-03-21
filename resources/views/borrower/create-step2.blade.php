@@ -27,7 +27,7 @@
 	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
+                <td><strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong></td>
 	    </tr>
 	    @if (isset($borrower->spouse_name))
 		    <tr>
@@ -38,7 +38,7 @@
 	    @if (isset($borrower->home_institution))
 		    <tr>
 			<td>Home institution name:</td>
-			<td><strong>{{$borrower->home_institution}}</strong></td>
+			<td><strong>{{ $borrower->home_institution }}</strong></td>
 		    </tr>
 	    @endif
 	    @if (isset($borrower->postal_code))

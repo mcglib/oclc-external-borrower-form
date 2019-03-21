@@ -53,7 +53,7 @@ class Borrower {
 	   $this->borrower_cat = $request['borrower_cat'];
 	   $this->telephone_no = $request['telephone_no'] ?? null;
 	   $this->spouse_name = $request['spouse_name'] ?? null;
-	   $this->home_institution = $request['home_institution'] ?? null;
+	   $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
 	   $this->city = $request['city'] ?? null;
 	   $this->address1 = $request['address1'] ?? null;
 	   $this->address2 = $request['address2'] ?? null;
@@ -122,7 +122,7 @@ class Borrower {
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
 		     'json' => $payload
-	     ];
+                   ];
             try {
 	          $response = $client->request('POST', $url, $body);
 		  echo $response->getBody(TRUE);
@@ -143,6 +143,22 @@ class Borrower {
 	 return $data['categories'][$key]['borrower_category'];
     	
     }
+    public function getBorrowerCategoryLabel($borrow_cat) {
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 return $data['categories'][$key]['label'];
+    	
+    }
+    public function get_home_institution($key = null) {
+      $borrowers = Yaml::parse(
+		    file_get_contents(base_path().'/home_institutions.yml'));
+      $keys = $borrowers['institutions'];
+      if (!is_null($key)) {
+        return $keys[$key];
+      }
+      return null;
+    }
+
     public function getBorrowerCustomData3($borrow_cat) {
 	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
@@ -234,23 +250,39 @@ class Borrower {
 	
 	$data = [];
 	$data["oclcKeyValuePairs"] = array();
+	$data = array();
 	
-	if (!empty($custom_data_3)) {
-	   $data_3 = array(
-		 "businessContext" => "Circulation_Info",
-	         "key" => "customdata3",
-		 "value" => $custom_data_3
-	    );
-	    $data["oclcKeyValuePairs"][] = $data_3;
-	}
-	if (!empty($custom_data_2)) {
+        $data_1 = array(
+               "businessContext" => "Circulation_Info",
+               "key" => "customdata1",
+               "value" => ""
+        );
+        $data[] = $data_1;
+        
+        if (!empty($custom_data_2)) {
 	   $data_2 = array(
 		 "businessContext" => "Circulation_Info",
 	         "key" => "customdata2",
-		 "value" => $custom_data_2
+		 "value" => ""
 	    );
-	    $data["oclcKeyValuePairs"][] = $data_2;
+	    $data[] = $data_2;
 	}
+        
+        if (!empty($custom_data_3)) {
+	   $data_3 = array(
+		 "businessContext" => "Circulation_Info",
+	         "key" => "customdata3",
+		 "value" => "MCLL"
+	    );
+	    $data[] = $data_3;
+        }
+
+        $data_4 = array(
+               "businessContext" => "Circulation_Info",
+               "key" => "customdata4",
+               "value" => ""
+        );
+        $data[] = $data_4;
 	
 	return $data;
     
@@ -298,7 +330,7 @@ class Borrower {
 	    'circulationInfo' =>  $this->getCircInfo()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
-	    'additionalInfo' =>  $this->getCustomData()
+	    'oclcKeyValuePairs' =>  $this->getCustomData()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
 	    'institutionId' => $this->institutionId,
