@@ -38,3 +38,12 @@ Route::post('store', [
 	    'uses' => 'BorrowerController@store',
            'as' => 'borrower.store'
 ]);
+
+Route::get('success', [
+	    'uses' => 'BorrowerController@success',
+            'as' => 'borrower.success'
+]);
+Route::get('error', [
+	    'uses' => 'BorrowerController@error',
+            'as' => 'borrower.error'
+]);

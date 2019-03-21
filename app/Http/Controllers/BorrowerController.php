@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
+use App\Mail\AccountCreated;
+use App\Mail\LibraryEmail;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
 use Illuminate\Http\Request;
@@ -67,26 +69,44 @@ class BorrowerController extends BaseController {
           ->with(compact('home_institutions', $home_institutions))
         ;
     }
+    public function success(Request $request)
+    {
+        $borrower = $request->session()->get('borrower');
+	// clear session data
+        $request->session()->flush();
+        return view('borrower.success')
+          ->with(compact('borrower', $borrower))
+	  ;
+    }
+    public function error(Request $request)
+    {
+        $borrower = $request->session()->get('borrower');
+	// clear session data
+        $request->session()->flush();
+        return view('borrower.error')
+          ->with(compact('borrower', $borrower))
+	  ;
+    }
+
+
 
     public function store(Request $request)
     {
 
        $borrower = $request->session()->get('borrower');
-
+       $library_email = "mutugi.gathuri@mcgill.ca";
        // Create the record
        if ($borrower->create()){
-	dd($borrower);
 	
 	// Send the email with the data
-        $to = $borrower->email;
-        $this->email($to, $from, $borrower);
+	Mail::to($borrower->email)->send(new AccountCreated($borrower));
 
         // Send an email to the desk
-	$this->email($to, $from, $borrower);
+	Mail::to($library_email)->send(new LibraryEmail($borrower));
 	
 	// clear session data
-        $request->session()->flush();
-        return redirect()->route('create-step-1')
+        //$request->session()->flush();
+        return redirect()->route('success')
 	        ->with(['success' => 'Congratulations, your request has been received!']);
 
        }else {
@@ -118,10 +138,4 @@ class BorrowerController extends BaseController {
       return $keys;
     }
 
-
-    public function email($to, $from, $borrower_info) {
-	    dd($borrower_info);
-
-    
-    }
 }

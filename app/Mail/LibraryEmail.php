@@ -32,6 +32,7 @@ class LibraryEmail extends Mailable
     public function build()
     {
 	  return $this->view('emails.library')
-	              ->text('emails.library_plain');
+	              ->text('emails.library_plain')
+		      ->with("borrower", $this->borrower);
     }
 }
