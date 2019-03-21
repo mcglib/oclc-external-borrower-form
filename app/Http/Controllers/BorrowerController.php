@@ -20,6 +20,7 @@ class BorrowerController extends BaseController {
     public function createStep1(Request $request)
     {
 	$borrower_categories = $this->get_borrower_categories();
+        $home_institutions = $this->get_home_institutions();
 	$borrower = $request->session()->get('borrower');
 
 	// clear session data
@@ -31,6 +32,7 @@ class BorrowerController extends BaseController {
         ]);
 	return view('borrower.create-step1')
 		->with(compact('borrower_categories', $borrower_categories))
+		->with(compact('home_institutions', $home_institutions))
 		->with(compact('borrower', $borrower))
 	;
 
@@ -59,7 +61,11 @@ class BorrowerController extends BaseController {
     public function createStep2(Request $request)
     {
         $borrower = $request->session()->get('borrower');
-        return view('borrower.create-step2',compact('borrower', $borrower));
+        $home_institutions = $this->get_home_institutions();
+        return view('borrower.create-step2')
+          ->with(compact('borrower', $borrower))
+          ->with(compact('home_institutions', $home_institutions))
+        ;
     }
 
     public function store(Request $request)
@@ -70,14 +76,17 @@ class BorrowerController extends BaseController {
        // Create the record
        $state = $borrower->create();
 
-       // clear session data
-       $request->session()->flush();
-
+       dd($state);
        // Send the email with the data
+       $to = $borrower->email;
        $this->email($to, $from, $borrower);
 
        // Send an email to the desk
        $this->email($to, $from, $borrower);
+       
+       // clear session data
+       //$request->session()->flush();
+
 
 
        return redirect()->route('create-step-1')
@@ -90,6 +99,14 @@ class BorrowerController extends BaseController {
       $keys = array_column($borrowers['categories'], 'label', 'key');
       return $keys;
     }
+
+    public function get_home_institutions() {
+      $borrowers = Yaml::parse(
+		    file_get_contents(base_path().'/home_institutions.yml'));
+      $keys = $borrowers['institutions'];
+      return $keys;
+    }
+
 
     public function email($to, $from, $borrower_info) {
 	    dd($borrower_info);

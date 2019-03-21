@@ -1,11 +1,14 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <h1>Library Application Form - Review</h1>
-    <hr>
-    <h3>Review Your Details</h3>
+    <h1>Library Application Form - Completed</h1>
+    <hr />
+    <h3>Registered</h3>
+    <div class="well">
+	Your application has been successfully submitted and a confirmation email sent to your email at {{$borrower->email}}.
+    </div>
     <form action="store" method="post" >
-	{{ csrf_field() }}
+        {{ csrf_field() }}
         <table class="table">
             <tr>
                 <td>First name:</td>
@@ -27,7 +30,7 @@
 	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong></td>
+                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
 	    </tr>
 	    @if (isset($borrower->spouse_name))
 		    <tr>
@@ -38,7 +41,7 @@
 	    @if (isset($borrower->home_institution))
 		    <tr>
 			<td>Home institution name:</td>
-			<td><strong>{{ $borrower->home_institution }}</strong></td>
+			<td><strong>{{$borrower->home_institution}}</strong></td>
 		    </tr>
 	    @endif
 	    @if (isset($borrower->postal_code))

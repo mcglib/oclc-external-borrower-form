@@ -1,3 +1,6 @@
+1.0.4
+- Added the working custom data.
+- Added the universities
 1.0.3
 - Added the logo.
 - Fixed the paths

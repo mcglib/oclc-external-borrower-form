@@ -31,9 +31,9 @@ class Borrower extends FormRequest
 	    'borrower_cat' => 'required',
 	    'telephone_no' => 'required|numeric',
 	    'spouse_name' => 'required_if:borrower_cat,value4',
-	    'address1' => 'required_if:borrower_cat,value7',
-	    'postal_code' => 'required_if:borrower_cat,value7',
-	    'city' => 'required_if:borrower_cat,value7',
+	    'address1' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
+	    'city' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
+	    'postal_code' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
 	    'home_institution' => 'required_if:borrower_cat,value1',
         ];
     }
