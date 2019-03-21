@@ -63,7 +63,7 @@
 			    </div>
 			    <div id="addressDivCheck" class="no-display">
 				   <fieldset class="form-group" id="borrower_address">
-				    <legend>Borrower Address</legend>
+				    <legend>Your address</legend>
 				    <div class="form-group">
 					    <label for="address1" class="control-label">Street Address 1</label>
 					    <input class="form-control" value="{{ $borrower->address1 ?? ''}}"  name="address1" type="text" id="address1">
