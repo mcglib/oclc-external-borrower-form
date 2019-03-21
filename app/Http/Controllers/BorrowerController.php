@@ -14,6 +14,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
 use Mail;
 
+putenv(env('PROXY_HTTPS'));
+putenv(env('PROXY_HTTP'));
+
 
 class BorrowerController extends BaseController {
     use FormBuilderTrait;

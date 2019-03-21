@@ -126,7 +126,11 @@ class Borrower {
 	    $headers['User-Agent'] = 'McGill OCLC Client';
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
-		     'json' => $payload
+		    'json' => $payload,
+		    'proxy' => [
+		    	'http'  => getenv('PROXY_HTTP'), // Use this proxy with "http"
+		        'https' => getenv('PROXY_HTTPS'), // Use this proxy with "https",
+		    ]
                    ];
             try {
 		  $response = $client->request('POST', $url, $body);
