@@ -41,8 +41,8 @@ $.fn.update_fields_info = function ($value) {
 	    $.fn.clear_spouse_name_values();
     	    break;
 	 case 'value4':
-	    $('#spouseDivCheck').remove('no-display').fadeIn('slow');
 	    $('#homeInstDivCheck').add('no-display').hide();
+	    $('#spouseDivCheck').remove('no-display').fadeIn('slow');
 	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_home_inst_values();
 	    break;
