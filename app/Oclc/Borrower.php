@@ -263,7 +263,7 @@ class Borrower {
 	   $data_2 = array(
 		 "businessContext" => "Circulation_Info",
 	         "key" => "customdata2",
-		 "value" => ""
+		 "value" => $custom_data_2
 	    );
 	    $data[] = $data_2;
 	}
@@ -272,7 +272,7 @@ class Borrower {
 	   $data_3 = array(
 		 "businessContext" => "Circulation_Info",
 	         "key" => "customdata3",
-		 "value" => "MCLL"
+		 "value" => $custom_data_3
 	    );
 	    $data[] = $data_3;
         }
