@@ -24,7 +24,7 @@ class Borrower {
     public $address1;
     public $home_institution;
     public $address2;
-    public $postal_code, $spouse_name;
+    public $postal_code, $spouse_name, $province_state;
 	    
  
 
@@ -58,6 +58,7 @@ class Borrower {
 	   $this->address1 = $request['address1'] ?? null;
 	   $this->address2 = $request['address2'] ?? null;
 	   $this->postal_code = $request['postal_code'] ?? null;
+	   $this->province_state = $request['province_state'] ?? "Quebec";
 	   
 	   
        	   $oclc_config = config('oclc.connections.development');
@@ -77,13 +78,17 @@ class Borrower {
       // Send the request to create a record
       $state = $this->sendRequest($url, $this->getData());
 
-      // if success save data to $this->oclc_data
-
-      // if error
-      // Return state
-      return $state;
-
+      $status = $state['status'];
       
+
+      // if success save data to $this->oclc_data
+      if($state['status'] === 201) {
+          $this->oclc_data = $state['body'];
+          return TRUE;
+      }else {
+       	  $this->error_msg = $state['body'];
+      }
+      return FALSE;
     
     }
 
@@ -124,12 +129,24 @@ class Borrower {
 		     'json' => $payload
                    ];
             try {
-	          $response = $client->request('POST', $url, $body);
-		  echo $response->getBody(TRUE);
-		  return $response;
+		  $response = $client->request('POST', $url, $body);
+		  ob_start();
+		   echo $response->getBody();
+		  $body = ob_get_clean();
+		  $status = $response->getStatusCode();
+		  return array("response" => $response,
+			 	 "body" => $body,
+				 "status" => $status
+		  );
 	    } catch (RequestException $error) {
-		  $error->getResponse()->getStatusCode();
-		  return $error;
+		  $status = $error->getResponse()->getStatusCode();
+		  ob_start();
+		   echo $error->getBody();
+		  $body = ob_get_clean();
+		  return array("error" => $error,
+			 	 "body" => $body,
+				 "status" => $status
+		  );
 	    }
     	
     }
@@ -230,17 +247,26 @@ class Borrower {
 
     }
     private function getAddresses() {
-	    return array(
-		    0 => array (
-		      'streetAddress' => $this->address1." ".$this->address2,
-		      'locality' => $this->city ?? "",
-		      'region' => $this->city ?? "",
-		      'postalCode' => $this->postalcode ?? "",
-		      'type' => $this->defaultType,
-		      'primary' => false,
-	           )
-	   );
+	    if($this->requiresAddress($this->borrower_cat)) {
+		    return array(
+			    0 => array (
+			      'streetAddress' => $this->address1." ".$this->address2,
+			      'locality' => $this->city ?? "",
+			      'region' => $this->province_state ?? "",
+			      'postalCode' => $this->postal_code ?? "",
+			      'type' => $this->defaultType,
+			      'primary' => false,
+			   )
+		   );
+	    }
+	    return null;
 
+    }
+    private function requiresAddress($borrow_cat) {
+	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+	 return $data['categories'][$key]['need_address'];
+    
     }
     private function getCustomData() {
 	
@@ -263,7 +289,7 @@ class Borrower {
 	   $data_2 = array(
 		 "businessContext" => "Circulation_Info",
 	         "key" => "customdata2",
-		 "value" => ""
+		 "value" => $custom_data_2
 	    );
 	    $data[] = $data_2;
 	}
@@ -272,7 +298,7 @@ class Borrower {
 	   $data_3 = array(
 		 "businessContext" => "Circulation_Info",
 	         "key" => "customdata3",
-		 "value" => "MCLL"
+		 "value" => $custom_data_3
 	    );
 	    $data[] = $data_3;
         }

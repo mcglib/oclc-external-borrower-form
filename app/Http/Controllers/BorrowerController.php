@@ -74,23 +74,34 @@ class BorrowerController extends BaseController {
        $borrower = $request->session()->get('borrower');
 
        // Create the record
-       $state = $borrower->create();
+       if ($borrower->create()){
+	dd($borrower);
+	
+	// Send the email with the data
+        $to = $borrower->email;
+        $this->email($to, $from, $borrower);
 
-       dd($state);
-       // Send the email with the data
-       $to = $borrower->email;
-       $this->email($to, $from, $borrower);
+        // Send an email to the desk
+	$this->email($to, $from, $borrower);
+	
+	// clear session data
+        $request->session()->flush();
+        return redirect()->route('create-step-1')
+	        ->with(['success' => 'Congratulations, your request has been received!']);
 
-       // Send an email to the desk
-       $this->email($to, $from, $borrower);
+       }else {
+         dd($borrower);
+	 // Error
+	 $borrower->error_msg();
+         return redirect()->route('create-step-1')
+	        ->with(['error' => 'An Error has occured creating a record for you. Please email the following']);
+       }
        
        // clear session data
-       //$request->session()->flush();
+       $request->session()->flush();
 
 
 
-       return redirect()->route('create-step-1')
-	       ->with(['success' => 'Congratulations, your request has been received!']);
 
     }
     public function get_borrower_categories() {
@@ -110,6 +121,7 @@ class BorrowerController extends BaseController {
 
     public function email($to, $from, $borrower_info) {
 	    dd($borrower_info);
+
     
     }
 }

@@ -1,3 +1,5 @@
+1.0.5
+- Added status
 1.0.4
 - Added the working custom data.
 - Added the universities
