@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Borrower;
+use App\Oclc\Borrower;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -32,6 +32,7 @@ class AccountCreated extends Mailable
     public function build()
     {
 	  return $this->view('emails.borrower')
-	              ->text('emails.borrower_plain');
+		  ->text('emails.borrower_plain')
+		  ->with("borrower", $this->borrower);
     }
 }

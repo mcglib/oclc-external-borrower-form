@@ -57,7 +57,7 @@
 			    <div id="homeInstDivCheck" class="no-display">
 				<div class="form-group">
 				    <label for="home_institution" class="control-label">Please enter the name of your home institution</label>
-				    {!! Form::select('home_institution', $home_institutions, $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
+				    {!! Form::select('home_institution', array_merge(['' => 'Please Select an institution'], $home_institutions), $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
         		        </div>
     
 			    </div>
