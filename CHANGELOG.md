@@ -1,3 +1,5 @@
+1.0.6
+- Added mailing capabilities
 1.0.5
 - Added status
 1.0.4
