@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AccountCreated extends Mailable
+class LibraryEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,7 +20,7 @@ class AccountCreated extends Mailable
      */
     public function __construct(Borrower $borrower)
     {
-	    //
+        //
 	 $this->borrower = $borrower;
     }
 
@@ -31,7 +31,7 @@ class AccountCreated extends Mailable
      */
     public function build()
     {
-	  return $this->view('emails.borrower')
-	              ->text('emails.borrower_plain');
+	  return $this->view('emails.library')
+	              ->text('emails.library_plain');
     }
 }
