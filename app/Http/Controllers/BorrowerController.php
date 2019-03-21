@@ -12,6 +12,7 @@ use App\Http\Requests\Borrower;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
+use Mail;
 
 
 class BorrowerController extends BaseController {
@@ -110,7 +111,6 @@ class BorrowerController extends BaseController {
 	        ->with(['success' => 'Congratulations, your request has been received!']);
 
        }else {
-         dd($borrower);
 	 // Error
 	 $borrower->error_msg();
          return redirect()->route('create-step-1')

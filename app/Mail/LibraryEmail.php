@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Borrower;
+use App\Oclc\Borrower;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
