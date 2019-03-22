@@ -25,7 +25,7 @@ class Borrower {
     public $home_institution;
     public $address2;
     public $postal_code, $spouse_name, $province_state;
-	    
+    public $expiry_date;    
  
 
     private $id;
@@ -65,8 +65,10 @@ class Borrower {
 	   
 	   $this->institutionId = $oclc_config['institution_id'];
 	   
-	   // set the addressif any
+	   // set the address
 	   $this->addAddress($request);
+	   // set the expiry date
+	   $this->setExpiryDate();
     }
     public function create() {
 
@@ -112,6 +114,9 @@ class Borrower {
 
     }
 
+    private function setExpiryDate() {
+    	$this->expiry_date = '12/31/2099';
+    }
     private function setAuth($token) {
     	$this->authorizationHeader = "Bearer ".$token->getValue();
     }
@@ -363,7 +368,8 @@ class Borrower {
 	    'oclcKeyValuePairs' =>  $this->getCustomData()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
-	    'institutionId' => $this->institutionId,
+		  'institutionId' => $this->institutionId,
+		  'oclcExpirationDate' => "2018-09-07T00:00:00Z",
 	  ),
 	);
 	return $data;

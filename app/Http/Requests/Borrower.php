@@ -29,7 +29,7 @@ class Borrower extends FormRequest
 	    'lname' => 'required|max:255',
 	    'email' => 'required|email',
 	    'borrower_cat' => 'required',
-	    'telephone_no' => 'required|numeric',
+	    'telephone_no' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
 	    'spouse_name' => 'required_if:borrower_cat,value4',
 	    'address1' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
 	    'city' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',

@@ -1,9 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <h1>Library Application Form - Review</h1>
-    <hr>
-    <h3>Review Your Details</h3>
+    <h3>Review Submission</h3>
     <form action="store" method="post" >
 	{{ csrf_field() }}
         <table class="table">
@@ -19,12 +17,6 @@
                 <td>Email address:</td>
                 <td><strong>{{$borrower->email}}</strong></td>
             </tr>
-	    @if (isset($borrower->telephone_no))
-            <tr>
-                <td>Telephone:</td>
-		<td><strong>{{$borrower->telephone_no}}</strong></td>
-	    </tr>
-	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
                 <td><strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong></td>
@@ -49,10 +41,17 @@
 			{{$borrower->address1}}
 			{{$borrower->address2}}<br />
 			{{$borrower->city}}<br />
+			{{$borrower->province_state}}<br />
 			{{$borrower->postal_code}}<br/>
 			</address>
 	            </strong>
 		</td>
+	    </tr>
+	    @endif
+	    @if (isset($borrower->telephone_no))
+            <tr>
+                <td>Telephone:</td>
+		<td><strong>{{$borrower->telephone_no}}</strong></td>
 	    </tr>
 	    @endif
         </table>
@@ -60,7 +59,7 @@
 		<label class="col-lg-3 col-form-label form-control-label"></label>
 		<div class="col-lg-9">
         		<a type="button" href="create-step1" class="btn btn-primary">Back</a>
-			<input class="btn btn-secondary" type="submit" value="Submit application">
+			<input class="btn btn-secondary" type="submit" value="Submit">
 		</div>
     	</div>
     </form>

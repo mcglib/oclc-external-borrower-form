@@ -4,7 +4,7 @@
  <div class="col-md-12">
 	    <div class="card card-outline-secondary">
 		<div class="card-header">
-		    <h3 class="mb-0">Library Application form</h3>
+		    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
 		</div>
 		<div class="card-body">
 		     @if (count($errors) > 0)
@@ -16,35 +16,30 @@
 				 </ul>
 			     </div>
 			     @endif
-		   <hr>
 		   <form action="create-step1" method="post">
 		    {{ csrf_field() }}
 			    <div class="form-group">
-				    <label for="fname" class="control-label required">First name</label>
+				    <label for="fname" class="control-label required">First name<span class="required">*</span></label>
 				    {!! Form::input('text', 'fname', $borrower->fname ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
     
 			    <div class="form-group">
     
-			       <label for="lname" class="control-label required">Last name</label>
+			       <label for="lname" class="control-label required">Last name<span class="required">*</span></label>
 			      {!! Form::input('text', 'lname', $borrower->lname ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
     
 			    <div class="form-group">
     
-				    <label for="email" class="control-label required">Email Address</label>
+				    <label for="email" class="control-label required">Email Address<span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
     
-			    <div class="form-group">
-				    <label for="telephone_no" class="control-label">Telephone</label>
-			      	    {!! Form::input('number', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
-        		    </div>
     
 			    <div class="form-group">
     
-				    <label for="borrower_cat" class="control-label required">Requested Borrowing Category</label>
-				    {!! Form::select('borrower_cat', $borrower_categories, $borrower->borrower_cat ?? null, ['class' => 'form-control']) !!}
+				    <label for="borrower_cat" class="control-label required">Requested Borrowing Category<span class="required">*</span></label>
+				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], $borrower_categories), $borrower->borrower_cat ?? null, ['class' => 'form-control']) !!}
         		    </div>
     
 			    <div id="spouseDivCheck" class="no-display">
@@ -57,13 +52,13 @@
 			    <div id="homeInstDivCheck" class="no-display">
 				<div class="form-group">
 				    <label for="home_institution" class="control-label">Please enter the name of your home institution</label>
-				    {!! Form::select('home_institution', array_merge(['' => 'Please Select an institution'], $home_institutions), $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
+				    {!! Form::select('home_institution', array_merge(['' => 'Please select an institution'], $home_institutions), $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
         		        </div>
     
 			    </div>
 			    <div id="addressDivCheck" class="no-display">
 				   <fieldset class="form-group" id="borrower_address">
-				    <legend>Your address</legend>
+				    <legend>Borrower information</legend>
 				    <div class="form-group">
 					    <label for="address1" class="control-label">Street Address 1</label>
 					    <input class="form-control" value="{{ $borrower->address1 ?? ''}}"  name="address1" type="text" id="address1">
@@ -79,18 +74,27 @@
 					<input class="form-control" value="{{ $borrower->city ?? ''}}"  name="city" type="text" id="city">
 				    </div>
 				    <div class="form-group">
+					<label for="province" class="control-label">Province/State</label>
+					<input class="form-control" value="{{ $borrower->province ?? ''}}"  name="province" type="text" id="province">
+				    </div>
+				    <div class="form-group">
 					<label for="postal_code" class="control-label">Postal Code</label>
 					<input class="form-control" value="{{ $borrower->postal_code ?? ''}}"  name="postal_code" type="text" id="postal_code">
+				    </div>
+				    <div class="form-group">
+					    <label for="telephone_no" class="control-label">Telephone</label>
+					    {!! Form::input('number', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'placeholder' => '(xxx) xxx - xxxx ext. xxxx']) !!}
 				    </div>
 				    </fieldset>
 			    </div>
 			    <div class="form-group row">
-				<label class="col-lg-3 col-form-label form-control-label"></label>
-				<div class="col-lg-9">
+				<label class="col-lg-4 col-form-label form-control-label"></label>
+				<div class="col-lg-8">
 					<input class="btn btn-primary" type="submit" value="Next">
 					<button class="btn btn-secondary" type="button">Cancel</button>
 				</div>
 			    </div>
+			   @include('layouts.partials.footer')
     	    	    </form>
 		</div>
 	    </div>
