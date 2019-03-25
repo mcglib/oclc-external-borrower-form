@@ -68,7 +68,7 @@ class Borrower {
 	   // set the address
 	   $this->addAddress($request);
 	   // set the expiry date
-	   $this->setExpiryDate();
+	   $this->expiry_date = $this->setExpiryDate();
     }
     public function create() {
 
@@ -115,7 +115,10 @@ class Borrower {
     }
 
     private function setExpiryDate() {
-    	$this->expiry_date = '12/31/2099';
+       $futureDate = date('Y-m-d', strtotime('+1 year'));
+       return $futureDate."T00:00:00Z";
+
+
     }
     private function setAuth($token) {
     	$this->authorizationHeader = "Bearer ".$token->getValue();
