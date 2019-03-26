@@ -1,5 +1,7 @@
-Email message sent to borrower:
----------
+Dear {{ $borrower->fname}} {{ $borrower->lname}},
+
+This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.
+---------Account details-----
 First name: {{$borrower->fname}}
 Last name: {{$borrower->lname}}
 Email address: {{$borrower->email}}
@@ -19,4 +21,9 @@ Address:
 	{{$borrower->postal_code}}
 Telephone: {{$borrower->telephone_no}}
 @endif
+---------Account details-----
+
+
+Thank you
+McGill Library
 

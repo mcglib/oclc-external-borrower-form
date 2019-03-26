@@ -1,4 +1,8 @@
-Email message sent to borrower
+Dear {{ $borrower->fname}} {{ $borrower->lname}},
+
+<p>This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.</p>
+<h3>Account details</h3>
+<hr />
 <table class="table">
     <tr>
 	<td>First name:</td>
@@ -49,4 +53,9 @@ Email message sent to borrower
     </tr>
     @endif
 </table>
+<hr />
 
+<p>
+Thank you<
+McGill Library
+</p>
