@@ -40,6 +40,7 @@ class Borrower {
     private $authorizationHeader;
     private $barcode_counter_init =  260000;
     private $oclc_data;
+    private $error_msg;
     
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';

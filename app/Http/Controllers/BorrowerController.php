@@ -109,16 +109,19 @@ class BorrowerController extends BaseController {
 	// Send the email with the data
 	Mail::to($borrower->email)->send(new AccountCreated($borrower));
 
-	// clear session data
-        //$request->session()->flush();
         return redirect()->route('borrower.created')
-	        ->with('status', ['success' => 'Congratulations, your request has been received!']);
+          ->with('status',
+            ['success' => 'Congratulations, your request has been received!']);
 
        }else {
-	 // Error
-	 $borrower->error_msg();
-         return redirect()->route('create-step-1')
-	        ->with('status', ['error' => 'An Error has occured creating a record for you. Please email the following']);
+         // Error occured.
+         // Alert the appDev team.
+         $borrower->error_msg();
+
+         // Redirect to the form.
+         return redirect()->route('borrower.error')
+           ->with('status',
+             ['error' => 'An Error has occured creating a record for you.']);
        }
        
        // clear session data
