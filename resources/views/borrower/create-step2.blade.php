@@ -56,11 +56,12 @@
 	    @endif
         </table>
         <div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label"></label>
-		<div class="col-lg-9">
+		<label class="col-lg-4 col-form-label form-control-label"></label>
+		<div class="col-lg-8">
         		<a type="button" href="create-step1" class="btn btn-primary">Back</a>
 			<input class="btn btn-secondary" type="submit" value="Submit">
 		</div>
     	</div>
+	@include('layouts.partials.footer')
     </form>
 @endsection
