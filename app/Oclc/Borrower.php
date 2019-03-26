@@ -3,7 +3,10 @@ namespace App\Oclc;
 use OCLC\Auth\WSKey;
 use OCLC\Auth\AccessToken;
 use OCLC\User;
+use App\Extlog;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 use Yaml;
@@ -135,17 +138,31 @@ class Borrower {
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
 		    'json' => $payload,
-		    'proxy' => [
-		    	'http'  => getenv('PROXY_HTTP'), // Use this proxy with "http"
-		        'https' => getenv('PROXY_HTTPS'), // Use this proxy with "https",
-		    ]
                    ];
-            try {
+	    try {
+		    
+		  // Save the post into a db log
+		  $log = new Extlog;
+		  $log->email = $this->email;
+		  $log->post = json_encode($body);
+		  $log->form_data = json_encode($this->data);
+		  $log->posted_on = Carbon::now();
+		  $log->save();
+
+		  // Make the post
 		  $response = $client->request('POST', $url, $body);
+
 		  ob_start();
 		   echo $response->getBody();
 		  $body = ob_get_clean();
+
+		  $log->response = $body;
+		  $log->received_on = Carbon::now();
+		  $log->save();
+
+		  // get the response and save to db log
 		  $status = $response->getStatusCode();
+		  
 		  return array("response" => $response,
 			 	 "body" => $body,
 				 "status" => $status

@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
 use App\Mail\AccountCreated;
 use App\Mail\LibraryEmail;
+use App\Extlog;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
 use Illuminate\Http\Request;
@@ -14,8 +15,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
 use Mail;
 
-putenv(env('PROXY_HTTPS'));
-putenv(env('PROXY_HTTP'));
+if ($_ENV['APP_ENV'] ==='production') {
+  putenv(env('PROXY_HTTPS'));
+  putenv(env('PROXY_HTTP'));
+}
 
 
 class BorrowerController extends BaseController {
@@ -25,12 +28,14 @@ class BorrowerController extends BaseController {
 
     public function createStep1(Request $request)
     {
+
 	$borrower_categories = $this->get_borrower_categories();
         $home_institutions = $this->get_home_institutions();
 	$borrower = $request->session()->get('borrower');
 
 	// clear session data
 	$request->session()->forget('borrower');
+
 	
 	$form = $this->form(BorrowerForm::class, [
 		            'method' => 'POST',
