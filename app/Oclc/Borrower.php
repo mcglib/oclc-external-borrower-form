@@ -139,13 +139,13 @@ class Borrower {
 	    $body = ['headers' => $headers,
 		    'json' => $payload,
                    ];
+	    // Save the post into a db log
+	    $log = new Extlog;
+	    $log->email = $this->email;
+	    $log->post = json_encode($body);
+	    $log->form_data = json_encode($this->data);
 	    try {
 		    
-		  // Save the post into a db log
-		  $log = new Extlog;
-		  $log->email = $this->email;
-		  $log->post = json_encode($body);
-		  $log->form_data = json_encode($this->data);
 		  $log->posted_on = Carbon::now();
 		  $log->save();
 
@@ -155,26 +155,35 @@ class Borrower {
 		  ob_start();
 		   echo $response->getBody();
 		  $body = ob_get_clean();
+		  
+		  // get the response and save to db log
+		  $log->status = $response->getStatusCode();
 
 		  $log->response = $body;
 		  $log->received_on = Carbon::now();
 		  $log->save();
 
-		  // get the response and save to db log
-		  $status = $response->getStatusCode();
 		  
 		  return array("response" => $response,
 			 	 "body" => $body,
-				 "status" => $status
+				 "status" => $log->status
 		  );
 	    } catch (RequestException $error) {
-		  $status = $error->getResponse()->getStatusCode();
+		    
+		  $log->status = $error->getResponse()->getStatusCode();
+		  
 		  ob_start();
-		   echo $error->getBody();
+		  echo (string)$error->getResponse()->getBody();
 		  $body = ob_get_clean();
+		  
+		  $log->response = $body;
+		  $log->received_on = Carbon::now();
+		  $log->error_msg = $error->getResponse()->getBody()->getContents();
+		  $log->save();
+
 		  return array("error" => $error,
 			 	 "body" => $body,
-				 "status" => $status
+				 "status" => $log->status
 		  );
 	    }
     	
@@ -271,7 +280,7 @@ class Borrower {
         // increament the last counter
         // write to the counter file
 	$str_val = (string)($curr_val);
-	$str_val = substr_replace( $str_val, "-", 3, 0 ); 
+	//$str_val = substr_replace( $str_val, "-", 3, 0 ); 
         return "EXT-".$str_val;
 
     }

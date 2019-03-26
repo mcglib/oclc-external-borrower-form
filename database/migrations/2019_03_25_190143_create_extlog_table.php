@@ -21,6 +21,8 @@ class CreateExtlogTable extends Migration
 	    $table->longText('response')->nullable();
 	    $table->timestamp('posted_on')->nullable();
 	    $table->timestamp('received_on')->nullable();
+	    $table->string('response_status')->nullable();
+	    $table->text('error_msg')->nullable();
 	    $table->boolean('created');
             $table->timestamps();
         });
