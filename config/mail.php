@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'web.library@mcgill.ca'),
-        'name' => env('MAIL_FROM_NAME', 'OCLC Library Application'),
+        'name' => env('MAIL_FROM_NAME', 'Library app'),
     ],
 
     /*

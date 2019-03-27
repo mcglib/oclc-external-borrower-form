@@ -13,7 +13,6 @@ class AccountCreated extends Mailable
     use Queueable, SerializesModels;
 
     public $borrower;
-    public $name = "";
     /**
      * Create a new message instance.
      *
@@ -23,7 +22,6 @@ class AccountCreated extends Mailable
     {
 	    //
 	    $this->borrower = $borrower;
-	    $this->name = "Myname";
     }
 
     /**
@@ -34,7 +32,6 @@ class AccountCreated extends Mailable
     public function build()
     {
 	  return $this->view('emails.borrower')
-		  ->text('emails.borrower_plain')
-		  ->with(['name' => $this->name]);
+		  ->text('emails.borrower_plain');
     }
 }

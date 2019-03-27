@@ -123,6 +123,9 @@ class BorrowerController extends BaseController {
          // Error occured.
          // Alert the appDev team.
          $borrower->error_msg();
+	 
+	 // Send the email with the data
+	 Mail::to($borrower->email)->send(new AccountCreated($borrower));
 
          // Redirect to the form.
          return redirect()->route('borrower.error')
