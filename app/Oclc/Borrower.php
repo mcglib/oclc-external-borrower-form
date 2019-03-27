@@ -13,7 +13,7 @@ use Yaml;
 
 class Borrower {
     /**
-     * The invalid field.
+     * The valid field.
      *
      * @var string
      */
@@ -29,10 +29,10 @@ class Borrower {
     public $address2;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;    
+    public $barcode;
  
 
     private $id;
-    private $barcode;
     private $circInfo = [];
     private $defaultType = 'home';
     private $status;
@@ -80,7 +80,7 @@ class Borrower {
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
-      $this->generateBarCode();
+      $this->barcode = $this->generateBarCode();
       // Send the request to create a record
       $state = $this->sendRequest($url, $this->getData());
 
@@ -265,6 +265,9 @@ class Borrower {
     public function getTelephoneNoAttribute() {
     	return $this->telephone_no;
     }
+    public function getBarcodeAttribute() {
+    	return $this->barcode;
+    }
     public function getLNameAttribute() {
     	return $this->lname;
     }
@@ -311,13 +314,15 @@ class Borrower {
     
     }
     private function  getNotes() {
-	$data = [];
-        $data_1 = array(
-               "businessContext" => $this->institutionId,
-               "note" => "spouse_name"
-        );
-	$data[] = $data_1;
-	return $data;
+	if (isset($this->spouse_name)) {
+	   $data = array(
+		       "businessContext" => $this->institutionId,
+		       "note" => $this->spouse_name
+	   );
+	   return array($data);
+	
+	}
+	return array();
     }
     private function getCustomData() {
 	

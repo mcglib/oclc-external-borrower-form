@@ -4,7 +4,7 @@
  <title>Borrower information </title>
 </head>
 <body>
-Dear {{ $name}} {{ $borrower->lname}},
+Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
 <p>This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.</p>
 <h3>Account details</h3>
@@ -22,12 +22,10 @@ Dear {{ $name}} {{ $borrower->lname}},
 	<td>Email address:</td>
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
-    @if (isset($borrower->telephone_no))
     <tr>
-	<td>Telephone:</td>
-	<td><strong>{{$borrower->telephone_no}}</strong></td>
+	<td>Bar code:</td>
+	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
-    @endif
     <tr>
 	<td>Requested Borrowing Category:</td>
 	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
@@ -56,6 +54,8 @@ Dear {{ $name}} {{ $borrower->lname}},
 		</address>
 	    </strong>
 	</td>
+	<td>Telephone:</td>
+	<td><strong>{{$borrower->telephone_no}}</strong></td>
     </tr>
     @endif
 </table>

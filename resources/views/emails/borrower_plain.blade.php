@@ -5,7 +5,7 @@ This is a confirmation that a library account has been created for you. Please p
 First name: {{$borrower->fname}}
 Last name: {{$borrower->lname}}
 Email address: {{$borrower->email}}
-Barcode: {{$borrower->bar_code }}
+Barcode: {{$borrower->barcode }}
 Requested Borrowing Category: {{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}
 @if (isset($borrower->spouse_name))
 Spouse's name: {{$borrower->spouse_name}}
