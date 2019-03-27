@@ -1,4 +1,10 @@
-Dear {{ $borrower->fname}} {{ $borrower->lname}},
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Borrower information </title>
+</head>
+<body>
+Dear {{ $name}} {{ $borrower->lname}},
 
 <p>This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.</p>
 <h3>Account details</h3>
@@ -59,3 +65,5 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 Thank you<
 McGill Library
 </p>
+</body>
+</html>

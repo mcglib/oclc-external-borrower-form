@@ -98,6 +98,9 @@ class Borrower {
     
     }
 
+    public function error_msg() {
+    	return $this->error_msg;
+    }
     public function getAuth($url) {
        $oclc_config = config('oclc.connections.development');
        $key = $oclc_config['api_key'];
@@ -307,14 +310,21 @@ class Borrower {
 	 return $data['categories'][$key]['need_address'];
     
     }
+    private function  getNotes() {
+	$data = [];
+        $data_1 = array(
+               "businessContext" => $this->institutionId,
+               "note" => "spouse_name"
+        );
+	$data[] = $data_1;
+	return $data;
+    }
     private function getCustomData() {
 	
 	// Save data depending on the borrower category
 	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
 	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
 	
-	$data = [];
-	$data["oclcKeyValuePairs"] = array();
 	$data = array();
 	
         $data_1 = array(
@@ -374,7 +384,8 @@ class Borrower {
 		 2 => 'urn:mace:oclc.org:eidm:schema:persona:persona:20180305',
 		 3 => 'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101',
 		 4 => 'urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101',
-		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501'
+		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501',
+		 6 => 'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101'
 	  ),
 	  'name' => array (
 		'familyName' => $this->lname,
@@ -396,6 +407,9 @@ class Borrower {
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
 	    'oclcKeyValuePairs' =>  $this->getCustomData()
+          ),
+	  'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101' =>  array (
+	    'newNotes' =>  $this->getNotes()
           ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
 		  'institutionId' => $this->institutionId,

@@ -80,7 +80,13 @@ class BorrowerController extends BaseController {
     }
     public function created(Request $request)
     {
-        $borrower = $request->session()->get('borrower');
+	$borrower = $request->session()->get('borrower');
+
+	if (is_null($borrower)) {
+		// clear session data
+        	$request->session()->flush();
+        	return redirect('/create-step1');
+	}
 	// clear session data
         $request->session()->flush();
         return view('borrower.success')

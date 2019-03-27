@@ -21,7 +21,7 @@ Route::get('success', [
             'as' => 'borrower.created'
 ]);
 Route::get('error', [
-	    'uses' => 'BorrowerController@error',
+	    'uses' => 'BorrowerController@errorPage',
             'as' => 'borrower.error'
 ]);
 
