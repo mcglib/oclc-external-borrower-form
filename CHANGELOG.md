@@ -1,3 +1,7 @@
+1.0.8
+- Fixed the error page
+- Tested the validations
+- Tweaks to the UI
 1.0.7
 - Working email
 - Tested the expiry dates 
