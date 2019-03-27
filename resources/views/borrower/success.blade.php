@@ -1,13 +1,11 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <h1>Library Application Form - Completed</h1>
+    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
     <hr />
-    <h3>Registered</h3>
     <div class="well">
-	Your application has been successfully submitted and a confirmation email sent to your email at {{$borrower->email}}.
+	Your application has been successfully submitted and a confirmation email sent to your email at <strong>{{$borrower->email}}</strong>.
     </div>
-    <form action="store" method="post" >
         {{ csrf_field() }}
         <table class="table">
             <tr>
@@ -62,9 +60,8 @@
         <div class="form-group row">
 		<label class="col-lg-3 col-form-label form-control-label"></label>
 		<div class="col-lg-9">
-        		<a type="button" href="create-step1" class="btn btn-primary">Back</a>
-			<input class="btn btn-secondary" type="submit" value="Submit application">
+        		<a type="button" href="create-step1" class="btn btn-primary">Back to form</a>
 		</div>
     	</div>
-    </form>
+	@include('layouts.partials.footer')
 @endsection

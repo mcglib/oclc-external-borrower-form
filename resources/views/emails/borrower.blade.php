@@ -1,4 +1,14 @@
-Email message sent to borrower
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Borrower information </title>
+</head>
+<body>
+Dear {{ $borrower->fname}} {{ $borrower->lname}},
+
+<p>This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.</p>
+<h3>Account details</h3>
+<hr />
 <table class="table">
     <tr>
 	<td>First name:</td>
@@ -12,15 +22,13 @@ Email message sent to borrower
 	<td>Email address:</td>
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
-    @if (isset($borrower->telephone_no))
     <tr>
-	<td>Telephone:</td>
-	<td><strong>{{$borrower->telephone_no}}</strong></td>
+	<td>Bar code:</td>
+	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
-    @endif
     <tr>
 	<td>Requested Borrowing Category:</td>
-	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
+	<td><strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong></td>
     </tr>
     @if (isset($borrower->spouse_name))
 	    <tr>
@@ -46,7 +54,16 @@ Email message sent to borrower
 		</address>
 	    </strong>
 	</td>
+	<td>Telephone:</td>
+	<td><strong>{{$borrower->telephone_no}}</strong></td>
     </tr>
     @endif
 </table>
+<hr />
 
+<p>
+Thank you,
+McGill Library
+</p>
+</body>
+</html>

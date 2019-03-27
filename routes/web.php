@@ -16,6 +16,15 @@ Route::get('/', function () {
 });
 Route::get('/','BorrowerController@createStep1');
 
+Route::get('success', [
+	    'uses' => 'BorrowerController@created',
+            'as' => 'borrower.created'
+]);
+Route::get('error', [
+	    'uses' => 'BorrowerController@errorPage',
+            'as' => 'borrower.error'
+]);
+
 
 Route::get('create-step1', [
 	    'uses' => 'BorrowerController@createStep1',
@@ -39,11 +48,3 @@ Route::post('store', [
            'as' => 'borrower.store'
 ]);
 
-Route::get('success', [
-	    'uses' => 'BorrowerController@success',
-            'as' => 'borrower.success'
-]);
-Route::get('error', [
-	    'uses' => 'BorrowerController@error',
-            'as' => 'borrower.error'
-]);

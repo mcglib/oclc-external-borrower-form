@@ -28,14 +28,14 @@ categories:
     wms_custom_data_2: 
     need_address: true
   - key: value5
-    borrower_category: McGill graduate student	PhD extension
+    borrower_category: McGill graduate students
     label: McGill PhD extension
     wms_custom_data_3: McGill PhD extension
     home_institution: false
     wms_custom_data_2: 
     need_address: true
   - key: value6
-    borrower_category: Member of the public ($100 for 6 months)
+    borrower_category: McGill community borrower
     label: Member of the public ($100 for 6 months)
     wms_custom_data_3: Personal (paid)
     home_institution: false

@@ -3,14 +3,17 @@ namespace App\Oclc;
 use OCLC\Auth\WSKey;
 use OCLC\Auth\AccessToken;
 use OCLC\User;
+use App\Extlog;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 use Yaml;
 
 class Borrower {
     /**
-     * The invalid field.
+     * The valid field.
      *
      * @var string
      */
@@ -25,11 +28,11 @@ class Borrower {
     public $home_institution;
     public $address2;
     public $postal_code, $spouse_name, $province_state;
-	    
+    public $expiry_date;    
+    public $barcode;
  
 
     private $id;
-    private $barcode;
     private $circInfo = [];
     private $defaultType = 'home';
     private $status;
@@ -37,6 +40,7 @@ class Borrower {
     private $authorizationHeader;
     private $barcode_counter_init =  260000;
     private $oclc_data;
+    private $error_msg;
     
     private $eTag;
     private $borrowerCategory = 'McGill community borrower';
@@ -65,8 +69,10 @@ class Borrower {
 	   
 	   $this->institutionId = $oclc_config['institution_id'];
 	   
-	   // set the addressif any
+	   // set the address
 	   $this->addAddress($request);
+	   // set the expiry date
+	   $this->expiry_date = $this->setExpiryDate();
     }
     public function create() {
 
@@ -74,7 +80,7 @@ class Borrower {
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
-      $this->generateBarCode();
+      $this->barcode = $this->generateBarCode();
       // Send the request to create a record
       $state = $this->sendRequest($url, $this->getData());
 
@@ -92,6 +98,9 @@ class Borrower {
     
     }
 
+    public function error_msg() {
+    	return $this->error_msg;
+    }
     public function getAuth($url) {
        $oclc_config = config('oclc.connections.development');
        $key = $oclc_config['api_key'];
@@ -112,6 +121,12 @@ class Borrower {
 
     }
 
+    private function setExpiryDate() {
+       $futureDate = date('Y-m-d', strtotime('+1 year'));
+       return $futureDate."T00:00:00Z";
+
+
+    }
     private function setAuth($token) {
     	$this->authorizationHeader = "Bearer ".$token->getValue();
     }
@@ -126,26 +141,53 @@ class Borrower {
 	    $headers['User-Agent'] = 'McGill OCLC Client';
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
-		     'json' => $payload
+		    'json' => $payload,
                    ];
-            try {
+	    // Save the post into a db log
+	    $log = new Extlog;
+	    $log->email = $this->email;
+	    $log->post = json_encode($body);
+	    $log->form_data = json_encode($this->data);
+	    try {
+		    
+		  $log->posted_on = Carbon::now();
+		  $log->save();
+
+		  // Make the post
 		  $response = $client->request('POST', $url, $body);
+
 		  ob_start();
 		   echo $response->getBody();
 		  $body = ob_get_clean();
-		  $status = $response->getStatusCode();
+		  
+		  // get the response and save to db log
+		  $log->status = $response->getStatusCode();
+
+		  $log->response = $body;
+		  $log->received_on = Carbon::now();
+		  $log->save();
+
+		  
 		  return array("response" => $response,
 			 	 "body" => $body,
-				 "status" => $status
+				 "status" => $log->status
 		  );
 	    } catch (RequestException $error) {
-		  $status = $error->getResponse()->getStatusCode();
+		    
+		  $log->status = $error->getResponse()->getStatusCode();
+		  
 		  ob_start();
-		   echo $error->getBody();
+		  echo (string)$error->getResponse()->getBody();
 		  $body = ob_get_clean();
+		  
+		  $log->response = $body;
+		  $log->received_on = Carbon::now();
+		  $log->error_msg = $error->getResponse()->getBody()->getContents();
+		  $log->save();
+
 		  return array("error" => $error,
 			 	 "body" => $body,
-				 "status" => $status
+				 "status" => $log->status
 		  );
 	    }
     	
@@ -223,6 +265,9 @@ class Borrower {
     public function getTelephoneNoAttribute() {
     	return $this->telephone_no;
     }
+    public function getBarcodeAttribute() {
+    	return $this->barcode;
+    }
     public function getLNameAttribute() {
     	return $this->lname;
     }
@@ -242,7 +287,7 @@ class Borrower {
         // increament the last counter
         // write to the counter file
 	$str_val = (string)($curr_val);
-	$str_val = substr_replace( $str_val, "-", 3, 0 ); 
+	//$str_val = substr_replace( $str_val, "-", 3, 0 ); 
         return "EXT-".$str_val;
 
     }
@@ -268,14 +313,23 @@ class Borrower {
 	 return $data['categories'][$key]['need_address'];
     
     }
+    private function  getNotes() {
+	if (isset($this->spouse_name)) {
+	   $data = array(
+		       "businessContext" => $this->institutionId,
+		       "note" => $this->spouse_name
+	   );
+	   return array($data);
+	
+	}
+	return array();
+    }
     private function getCustomData() {
 	
 	// Save data depending on the borrower category
 	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
 	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
 	
-	$data = [];
-	$data["oclcKeyValuePairs"] = array();
 	$data = array();
 	
         $data_1 = array(
@@ -335,7 +389,8 @@ class Borrower {
 		 2 => 'urn:mace:oclc.org:eidm:schema:persona:persona:20180305',
 		 3 => 'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101',
 		 4 => 'urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101',
-		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501'
+		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501',
+		 6 => 'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101'
 	  ),
 	  'name' => array (
 		'familyName' => $this->lname,
@@ -358,8 +413,12 @@ class Borrower {
 	  'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
 	    'oclcKeyValuePairs' =>  $this->getCustomData()
           ),
+	  'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101' =>  array (
+	    'newNotes' =>  $this->getNotes()
+          ),
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
-	    'institutionId' => $this->institutionId,
+		  'institutionId' => $this->institutionId,
+		  'oclcExpirationDate' => $this->setExpiryDate(),
 	  ),
 	);
 	return $data;

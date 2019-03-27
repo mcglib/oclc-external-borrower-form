@@ -36,9 +36,6 @@
 	  
 	</div><!-- /.container -->
 
-
-@include('layouts.partials.footer')
-
 @include('layouts.partials.footer-scripts')
 
  </body>

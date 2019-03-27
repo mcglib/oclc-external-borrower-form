@@ -7,12 +7,18 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
 use App\Mail\AccountCreated;
 use App\Mail\LibraryEmail;
+use App\Extlog;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
 use Mail;
+
+if ($_ENV['APP_ENV'] ==='production') {
+  putenv(env('PROXY_HTTPS'));
+  putenv(env('PROXY_HTTP'));
+}
 
 
 class BorrowerController extends BaseController {
@@ -22,12 +28,14 @@ class BorrowerController extends BaseController {
 
     public function createStep1(Request $request)
     {
+
 	$borrower_categories = $this->get_borrower_categories();
         $home_institutions = $this->get_home_institutions();
 	$borrower = $request->session()->get('borrower');
 
 	// clear session data
 	$request->session()->forget('borrower');
+
 	
 	$form = $this->form(BorrowerForm::class, [
 		            'method' => 'POST',
@@ -70,16 +78,21 @@ class BorrowerController extends BaseController {
           ->with(compact('home_institutions', $home_institutions))
         ;
     }
-    public function success(Request $request)
+    public function created(Request $request)
     {
-        $borrower = $request->session()->get('borrower');
+	$borrower = $request->session()->get('borrower');
+
+	if (is_null($borrower)) {
+		// clear session data
+        	$request->session()->flush();
+        	return redirect('/create-step1');
+	}
 	// clear session data
         $request->session()->flush();
         return view('borrower.success')
-          ->with(compact('borrower', $borrower))
-	  ;
+          ->with(compact('borrower', $borrower));
     }
-    public function error(Request $request)
+    public function errorPage(Request $request)
     {
         $borrower = $request->session()->get('borrower');
 	// clear session data
@@ -102,19 +115,22 @@ class BorrowerController extends BaseController {
 	// Send the email with the data
 	Mail::to($borrower->email)->send(new AccountCreated($borrower));
 
-        // Send an email to the desk
-	Mail::to($library_email)->send(new LibraryEmail($borrower));
-	
-	// clear session data
-        //$request->session()->flush();
-        return redirect()->route('success')
-	        ->with(['success' => 'Congratulations, your request has been received!']);
+        return redirect()->route('borrower.created')
+          ->with('status',
+            ['success' => 'Congratulations, your request has been received!']);
 
        }else {
-	 // Error
-	 $borrower->error_msg();
-         return redirect()->route('create-step-1')
-	        ->with(['error' => 'An Error has occured creating a record for you. Please email the following']);
+         // Error occured.
+         // Alert the appDev team.
+         $borrower->error_msg();
+	 
+	 // Send the email with the data
+	 Mail::to($borrower->email)->send(new AccountCreated($borrower));
+
+         // Redirect to the form.
+         return redirect()->route('borrower.error')
+           ->with('status',
+             ['error' => 'An Error has occured creating a record for you.']);
        }
        
        // clear session data

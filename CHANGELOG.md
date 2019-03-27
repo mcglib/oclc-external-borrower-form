@@ -1,3 +1,7 @@
+1.0.7
+- Working email
+- Tested the expiry dates 
+- tested adding a note field
 1.0.6
 - Added mailing capabilities
 1.0.5
