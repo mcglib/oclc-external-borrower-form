@@ -16,8 +16,8 @@ use Yaml;
 use Mail;
 
 if ($_ENV['APP_ENV'] ==='production') {
-  putenv(env('PROXY_HTTPS'));
-  putenv(env('PROXY_HTTP'));
+  putenv($_ENV['PROXY_HTTPS']);
+  putenv($_ENV['PROXY_HTTP']);
 }
 
 

@@ -29,11 +29,12 @@ class Borrower extends FormRequest
 	    'lname' => 'required|max:255',
 	    'email' => 'required|email',
 	    'borrower_cat' => 'required',
-	    'telephone_no' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
-	    'spouse_name' => 'required_if:borrower_cat,value4',
-	    'address1' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
-	    'city' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
-	    'postal_code' => 'required_if:borrower_cat,value2,value3, value4, value5, value6,value8,value10',
+	    'telephone_no' => 'required_if:borrower_cat,value2,value3,value4,value5,value6,value8,value10',
+	    'spouse_name' => 'required_if:borrower_cat,value4|max:255',
+	    'address1' => 'required_if:borrower_cat,value2,value3,value4,value5,value6,value8,value10',
+	    'city' => 'required_if:borrower_cat,value2,value3,value4,value5,value6,value8,value10',
+	    'province_state' => 'required_if:borrower_cat,value2,value3,value4,value5,value6,value8,value10',
+	    'postal_code' => 'required_if:borrower_cat,value2,value3,value4,value5,value6,value8,value10',
 	    'home_institution' => 'required_if:borrower_cat,value1',
         ];
     }
@@ -51,11 +52,12 @@ class Borrower extends FormRequest
 	        'lname.required' => 'Your last name  is required',
 	        'email.required' => 'Your email  is required',
 	        'borrower_cat.required' => 'Please select  a borrowing category',
-	        'telephone_no.required' => 'Please enter a phone number we can reach you at',
+	        'telephone_no.required_if' => 'Please enter a phone number we can reach you at',
 	    	'spouse_name.required_if' => 'Please enter the name of your spouse',
 	    	'address1.required_if' => 'Please fill in your address',
 	    	'postal_code.required_if' => 'Please enter your postal code',
 	    	'city.required_if' => 'Please enter your city',
+	    	'province_state.required_if' => 'Please enter the name of your province/state',
 	    	'home_institution.required_if' => 'Please enter the name of your home institution',
         ];
     }
