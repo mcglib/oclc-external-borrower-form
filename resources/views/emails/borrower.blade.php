@@ -57,6 +57,10 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 	<td>Telephone:</td>
 	<td><strong>{{$borrower->telephone_no}}</strong></td>
     </tr>
+    <tr>
+	<td>Telephone no:</td>
+	<td>{{$borrower->telephone_no}}</td>
+    </tr>
     @endif
 </table>
 <hr />

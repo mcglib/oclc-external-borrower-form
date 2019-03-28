@@ -108,7 +108,7 @@ class BorrowerController extends BaseController {
     {
 
        $borrower = $request->session()->get('borrower');
-       $library_email = "mutugi.gathuri@mcgill.ca";
+       $error_email = $_ENV['MAIL_ERROR_EMAIL_ADDRESS'] ?? 'dev.library@mcgill.ca';
        // Create the record
        if ($borrower->create()){
 	
@@ -125,7 +125,7 @@ class BorrowerController extends BaseController {
          $borrower->error_msg();
 	 
 	 // Send the email with the data
-	 Mail::to($borrower->email)->send(new AccountCreated($borrower));
+	 Mail::to($error_email)->send(new OclcError($borrower->error_msg));
 
          // Redirect to the form.
          return redirect()->route('borrower.error')
