@@ -83,7 +83,7 @@
 				    </div>
 				    <div class="form-group">
 					    <label for="telephone_no" class="control-label">Telephone<span class="required">*</span></label>
-					    {!! Form::input('number', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'placeholder' => '(xxx) xxx - xxxx ext. xxxx']) !!}
+					    {!! Form::input('text', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'placeholder' => '(xxx) xxx - xxxx ext. xxxx']) !!}
 				    </div>
 				    </fieldset>
 			    </div>
