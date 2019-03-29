@@ -7,12 +7,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Carbon\Carbon;
 
 class AccountCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $borrower;
+    public $borrower, $url, $timestamp;
     /**
      * Create a new message instance.
      *
@@ -21,7 +22,9 @@ class AccountCreated extends Mailable
     public function __construct(Borrower $borrower)
     {
 	    //
-	    $this->borrower = $borrower;
+	$this->borrower = $borrower;
+        $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrower";
+	$this->timestamp = Carbon::now();
     }
 
     /**
@@ -31,7 +34,10 @@ class AccountCreated extends Mailable
      */
     public function build()
     {
+        $subject = $_ENV['MAIL_SUBJECT'] ?? 'McGill Library Borrowing Card Application: Account created';
+	 
 	  return $this->view('emails.borrower')
-		  ->text('emails.borrower_plain');
+		      ->subject($subject)
+		      ->text('emails.borrower_plain');
     }
 }
