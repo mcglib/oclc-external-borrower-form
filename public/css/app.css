@@ -1,3 +1,6 @@
 div.no-display {
 	display:none;
 }
+span.required {
+	color:red;
+}

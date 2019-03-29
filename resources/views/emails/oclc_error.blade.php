@@ -37,7 +37,7 @@ Hi,
     </tr>
     <tr>
 	<td>Bar code:</td>
-	<td><strong>{{$borrower->bar_code}}</strong></td>
+	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     @if (isset($borrower->telephone_no))
     <tr>
