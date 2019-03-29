@@ -14,6 +14,5 @@
 			<a type="button" href="create-step1" class="btn btn-primary">Back to form</a>
 		</div>
      </div>
-
-@include('layouts.partials.footer')
+     @include('layouts.partials.footer')
 @endsection

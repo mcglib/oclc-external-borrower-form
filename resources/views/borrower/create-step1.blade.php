@@ -61,25 +61,25 @@
 				    <legend>Borrower information</legend>
 				    <div class="form-group">
 					    <label for="address1" class="control-label">Street Address 1</label>
-					    <input class="form-control" value="{{ $borrower->address1 ?? ''}}"  name="address1" type="text" id="address1">
+					 {!! Form::input('text', 'address1', $borrower->address1 ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				   <div class="form-group">
 					<label for="address2" class="control-label">Street Address 2</label>
-					<input class="form-control" value="{{ $borrower->address2 ?? ''}}"  name="address2" type="text" id="address2">
+					 {!! Form::input('text', 'address2', $borrower->address2 ?? null, ['class'=> 'form-control']) !!}
 	    
 				   </div>
 
 				    <div class="form-group">
 					<label for="city" class="control-label">City</label>
-					<input class="form-control" value="{{ $borrower->city ?? ''}}"  name="city" type="text" id="city">
+					 {!! Form::input('text', 'city', $borrower->city ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				    <div class="form-group">
 					<label for="province" class="control-label">Province/State</label>
-					<input class="form-control" value="{{ $borrower->province ?? ''}}"  name="province" type="text" id="province">
+					 {!! Form::input('text', 'province_state', $borrower->province_state ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				    <div class="form-group">
 					<label for="postal_code" class="control-label">Postal Code</label>
-					<input class="form-control" value="{{ $borrower->postal_code ?? ''}}"  name="postal_code" type="text" id="postal_code">
+					 {!! Form::input('text', 'postal_code', $borrower->postal_code ?? null, ['class'=> 'form-control', 'placeholder' => 'XXX XXX']) !!}
 				    </div>
 				    <div class="form-group">
 					    <label for="telephone_no" class="control-label">Telephone</label>

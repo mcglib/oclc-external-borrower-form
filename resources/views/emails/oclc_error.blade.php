@@ -1,4 +1,27 @@
-Email message sent to the library
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Borrower information </title>
+</head>
+<body>
+Hi,
+<p> An error has occured when a user submitted the following form on {{$url}} @ {{ $timestamp }}</p>
+
+<h3>Error details</h3>
+<dl class="row">
+  <dt class="col-sm-3">Date occured</dt>
+  <dd class="col-sm-9">{{ $timestamp }}</dd>
+
+  <dt class="col-sm-3">Error Message</dt>
+  <dd class="col-sm-9">
+	<p> {{ $borrower->error_msg() }} </p>
+  </dd>
+
+</dl>
+
+
+<h3>Submission details</h3>
+<hr />
 <table class="table">
     <tr>
 	<td>First name:</td>
@@ -11,6 +34,10 @@ Email message sent to the library
     <tr>
 	<td>Email address:</td>
 	<td><strong>{{$borrower->email}}</strong></td>
+    </tr>
+    <tr>
+	<td>Bar code:</td>
+	<td><strong>{{$borrower->bar_code}}</strong></td>
     </tr>
     @if (isset($borrower->telephone_no))
     <tr>
@@ -46,6 +73,10 @@ Email message sent to the library
 		</address>
 	    </strong>
 	</td>
+    </tr>
+    <tr>
+	<td>Telephone no:</td>
+	<td>{{$borrower->telephone_no}}</td>
     </tr>
     @endif
 </table>
