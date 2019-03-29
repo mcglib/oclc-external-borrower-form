@@ -1,3 +1,5 @@
+1.0.10
+- Added email error sending to dev.library
 1.0.9
 - Added email error sending to dev.library
 - Fixed validations for form remembering
