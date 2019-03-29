@@ -1,3 +1,5 @@
+1.0.11
+- Removed number format for telephone
 1.0.10
 - Added email error sending to dev.library
 1.0.9
