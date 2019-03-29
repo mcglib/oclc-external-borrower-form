@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
 use App\Mail\AccountCreated;
-use App\Mail\LibraryEmail;
+use App\Mail\OclcError;
 use App\Extlog;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
@@ -125,7 +125,7 @@ class BorrowerController extends BaseController {
          $borrower->error_msg();
 	 
 	 // Send the email with the data
-	 Mail::to($error_email)->send(new OclcError($borrower->error_msg));
+	 Mail::to($error_email)->send(new OclcError($borrower));
 
          // Redirect to the form.
          return redirect()->route('borrower.error')
@@ -135,10 +135,6 @@ class BorrowerController extends BaseController {
        
        // clear session data
        $request->session()->flush();
-
-
-
-
     }
     public function get_borrower_categories() {
       $borrowers = Yaml::parse(

@@ -7,12 +7,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Carbon\Carbon;
 
 class OclcError extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $borrower;
+    public $borrower, $timestamp, $url;
     /**
      * Create a new message instance.
      *
@@ -22,6 +23,9 @@ class OclcError extends Mailable
     {
         //
 	$this->borrower = $borrower;
+        $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrower";
+	$this->timestamp = Carbon::now();
+
     }
 
     /**
@@ -31,7 +35,10 @@ class OclcError extends Mailable
      */
     public function build()
     {
+        $subject = $_ENV['MAIL_ERROR_SUBJECT'] ?? 'External borrowers: Error creating patron record';
+	 
 	 return $this->view('emails.oclc_error')
-	           ->text('emails.oclc_error_plain');
+		      ->subject($subject)
+	              ->text('emails.oclc_error_plain');
     }
 }
