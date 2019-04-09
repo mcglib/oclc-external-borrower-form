@@ -91,8 +91,8 @@
 			    <div class="form-group row">
 				<label class="col-lg-4 col-form-label form-control-label"></label>
 				<div class="col-lg-8">
-					<input class="btn btn-primary" type="submit" value="Next">
-					<button class="btn btn-secondary" type="button">Cancel</button>
+					<input class="btn btn-secondary" type="submit" value="Next">
+					<button class="btn btn-primary" type="button">Cancel</button>
 				</div>
 			    </div>
 			   @include('layouts.partials.footer')

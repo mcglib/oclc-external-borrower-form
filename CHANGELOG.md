@@ -1,3 +1,5 @@
+1.0.12
+- Fixed the colors for the back button.
 1.0.11
 - Removed number format for telephone
 1.0.10
