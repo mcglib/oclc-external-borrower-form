@@ -58,7 +58,7 @@
         <div class="form-group row">
 		<label class="col-lg-4 col-form-label form-control-label"></label>
 		<div class="col-lg-8">
-        		<a type="button" href="create-step1" class="btn btn-primary">Back</a>
+        		<a type="button" href="create-step1" class="btn btn-secondary">Back</a>
 			<input class="btn btn-secondary" type="submit" value="Submit">
 		</div>
     	</div>
