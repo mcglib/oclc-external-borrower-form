@@ -60,7 +60,7 @@
         <div class="form-group row">
 		<label class="col-lg-3 col-form-label form-control-label"></label>
 		<div class="col-lg-9">
-        		<a type="button" href="create-step1" class="btn btn-secondary">Back to form</a>
+        		<a role="button" href="create-step1" class="btn btn-primary">Back to form</a>
 		</div>
     	</div>
 	@include('layouts.partials.footer')
