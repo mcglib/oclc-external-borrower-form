@@ -1,3 +1,5 @@
+1.0.16
+- Improved the error message for invalid email that does not exist
 1.0.15
 - Fixed error message 500.
 1.0.14
