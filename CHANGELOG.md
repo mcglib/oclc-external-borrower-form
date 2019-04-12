@@ -1,3 +1,5 @@
+1.0.14
+- Fixed the colors for the back button.agin. caused by incorrect values in <a> href
 1.0.13
 - Implemented a verification check that will handle the 500 error msg when an email that does not exist
 1.0.12
