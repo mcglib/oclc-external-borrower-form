@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Forms\BorrowerForm;
 use App\Mail\AccountCreated;
 use App\Mail\OclcError;
+use App\Mail\GeneralError;
 use App\Extlog;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
@@ -96,8 +97,6 @@ class BorrowerController extends BaseController {
     public function errorPage(Request $request)
     {
         $borrower = $request->session()->get('borrower');
-	// clear session data
-        $request->session()->flush();
         return view('borrower.error')
           ->with(compact('borrower', $borrower))
 	  ;
@@ -110,16 +109,16 @@ class BorrowerController extends BaseController {
 
        $borrower = $request->session()->get('borrower');
        $error_email = $_ENV['MAIL_ERROR_EMAIL_ADDRESS'] ?? 'dev.library@mcgill.ca';
+       
        // Verify the email before sending or creating a record.
        if (!$this->verify_real_email($error_email, $borrower->email)) {
-            $error_msg = "The email address $borrower->email does not exist. Please check your spelling.";
-	    // Send the email with the data
 
+            $error_msg = "The email address $borrower->email does not exist. Please check your spelling.";
 	    Mail::to($error_email)->send(new GeneralError($borrower, $error_msg));
 
-       	    return redirect()->route('borrower.error')
-                   ->with('error',
-			"The email address $borrower->email does not exist. Please check your spelling.");
+	    $request->session()->flash('message', $error_msg);
+       	    return redirect('error')
+                   ->with('error', $error_msg);
        }
 
        if ($borrower->create()){
@@ -136,9 +135,9 @@ class BorrowerController extends BaseController {
 	 Mail::to($error_email)->send(new OclcError($borrower));
 
          // Redirect to the form.
-         return redirect()->route('borrower.error')
-           ->with('error',
-             'An Error has occured creating a record for you.');
+         return redirect('error')
+           ->with('oclcerror',
+             'An Error has occured creating an OCLC record for you.');
        }
        
        // clear session data
