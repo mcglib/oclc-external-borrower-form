@@ -110,23 +110,20 @@ class BorrowerController extends BaseController {
 
        $borrower = $request->session()->get('borrower');
        $error_email = $_ENV['MAIL_ERROR_EMAIL_ADDRESS'] ?? 'dev.library@mcgill.ca';
-       // Create the record
+       // Verify the email before sending or creating a record.
+       if (!$this->verify_real_email($error_email, $borrower->email)) {
+
+       	    return redirect()->route('borrower.error')
+                   ->with('error',
+			"The email address $borrower->email does not exist. Please check your spelling.");
+       }
+
        if ($borrower->create()){
-	
-	// Verify the email before sending it.
-	if ($this->verify_real_mail($error_email, $borrower->email)) {
+
 		$result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
         	return redirect()->route('borrower.created')
-          		->with('status',
-            		['success' => 'Congratulations, your request has been received!']);
-	}else {
-        	return redirect()->route('borrower.error')
-          		->with('status',
-            		['error' => "The email address $borrower->email does not exist. Please check your spelling."]);
-	}
-	
-
-
+          		->with('success',
+            		'Congratulations, your request has been received!');
        }else {
          // Error occured.
          $borrower->error_msg();
@@ -136,8 +133,8 @@ class BorrowerController extends BaseController {
 
          // Redirect to the form.
          return redirect()->route('borrower.error')
-           ->with('status',
-             ['error' => 'An Error has occured creating a record for you.']);
+           ->with('error',
+             'An Error has occured creating a record for you.');
        }
        
        // clear session data

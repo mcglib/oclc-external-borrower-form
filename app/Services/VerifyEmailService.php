@@ -1,5 +1,7 @@
 <?php 
 
+use App\Exceptions\VerifyEmailServiceException;
+
 namespace App\Services;
 /** 
  * Class to validate the email address 
@@ -101,7 +103,7 @@ class VerifyEmailService {
             $this->set_error('Invalid address : ' . $email); 
             $this->edebug($this->ErrorInfo); 
             if ($this->exceptions) { 
-                throw new verifyEmailException($this->ErrorInfo); 
+                throw new VerifyEmailServiceException($this->ErrorInfo); 
             } 
         } 
         $this->from = $email; 
@@ -244,7 +246,7 @@ class VerifyEmailService {
             $this->set_error("{$email} incorrect e-mail"); 
             $this->edebug($this->ErrorInfo); 
             if ($this->exceptions) { 
-                throw new verifyEmailException($this->ErrorInfo); 
+                throw new VerifyEmailServiceException($this->ErrorInfo); 
             } 
             return FALSE; 
         } 
@@ -386,21 +388,4 @@ class VerifyEmailService {
     } 
 
 } 
-
-/** 
- * verifyEmail exception handler 
- */ 
-class verifyEmailException extends Exception { 
-
-    /** 
-     * Prettify error message output 
-     * @return string 
-     */ 
-    public function errorMessage() {
-        $errorMsg = $this->getMessage(); 
-        return $errorMsg; 
-    } 
-
-} 
-
 ?>
