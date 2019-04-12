@@ -1,3 +1,5 @@
+1.0.13
+- Implemented a verification check that will handle the 500 error msg when an email that does not exist
 1.0.12
 - Fixed the colors for the back button.
 1.0.11
