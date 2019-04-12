@@ -113,11 +113,19 @@ class BorrowerController extends BaseController {
        if ($borrower->create()){
 	
 	// Send the email with the data
-	Mail::to($borrower->email)->send(new AccountCreated($borrower));
+	try {
+		$result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+        	return redirect()->route('borrower.created')
+          		->with('status',
+            		['success' => 'Congratulations, your request has been received!']);
+	
+	}catch( Swift_TransportException $e){
+		echo $e->getMessage();
+        	return redirect()->route('borrower.error')
+          		->with('status',
+            		['error' => "The email address $borrower->email does not exist. Please check your spelling."]);
+	}
 
-        return redirect()->route('borrower.created')
-          ->with('status',
-            ['success' => 'Congratulations, your request has been received!']);
 
        }else {
          // Error occured.
