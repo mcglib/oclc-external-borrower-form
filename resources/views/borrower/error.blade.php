@@ -12,6 +12,7 @@
             </ul>
 	</div>
     @endif
+
     @if (session()->has('flash.message'))
 	   <div class="alert alert-{{ session('flash.class') }}">
 	   {{ session('flash.message') }}

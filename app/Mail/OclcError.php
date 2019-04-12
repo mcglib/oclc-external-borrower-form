@@ -13,7 +13,7 @@ class OclcError extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $borrower, $timestamp, $url;
+    public $borrower, $timestamp, $url, $error_msg;
     /**
      * Create a new message instance.
      *
