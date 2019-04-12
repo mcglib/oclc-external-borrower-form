@@ -51,6 +51,7 @@ class Borrower extends FormRequest
 	        'fname.required' => 'Your first name  is required',
 	        'lname.required' => 'Your last name  is required',
 	        'email.required' => 'Your email  is required',
+	        'email.email' => 'Please enter a valid email',
 	        'borrower_cat.required' => 'Please select  a borrowing category',
 	        'telephone_no.required_if' => 'Please enter a phone number we can reach you at',
 	    	'spouse_name.required_if' => 'Please enter the name of your spouse',

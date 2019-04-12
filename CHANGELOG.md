@@ -1,3 +1,5 @@
+1.0.15
+- Fixed error message 500.
 1.0.14
 - Fixed the colors for the back button.agin. caused by incorrect values in <a> href
 1.0.13

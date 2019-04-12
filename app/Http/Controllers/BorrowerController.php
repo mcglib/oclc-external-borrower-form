@@ -10,6 +10,7 @@ use App\Mail\OclcError;
 use App\Extlog;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use App\Http\Requests\Borrower;
+use App\Services\VerifyEmailService;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
@@ -109,27 +110,22 @@ class BorrowerController extends BaseController {
 
        $borrower = $request->session()->get('borrower');
        $error_email = $_ENV['MAIL_ERROR_EMAIL_ADDRESS'] ?? 'dev.library@mcgill.ca';
-       // Create the record
+       // Verify the email before sending or creating a record.
+       if (!$this->verify_real_email($error_email, $borrower->email)) {
+
+       	    return redirect()->route('borrower.error')
+                   ->with('error',
+			"The email address $borrower->email does not exist. Please check your spelling.");
+       }
+
        if ($borrower->create()){
-	
-	// Send the email with the data
-	try {
+
 		$result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
         	return redirect()->route('borrower.created')
-          		->with('status',
-            		['success' => 'Congratulations, your request has been received!']);
-	
-	}catch( Swift_TransportException $e){
-		echo $e->getMessage();
-        	return redirect()->route('borrower.error')
-          		->with('status',
-            		['error' => "The email address $borrower->email does not exist. Please check your spelling."]);
-	}
-
-
+          		->with('success',
+            		'Congratulations, your request has been received!');
        }else {
          // Error occured.
-         // Alert the appDev team.
          $borrower->error_msg();
 	 
 	 // Send the email with the data
@@ -137,8 +133,8 @@ class BorrowerController extends BaseController {
 
          // Redirect to the form.
          return redirect()->route('borrower.error')
-           ->with('status',
-             ['error' => 'An Error has occured creating a record for you.']);
+           ->with('error',
+             'An Error has occured creating a record for you.');
        }
        
        // clear session data
@@ -156,6 +152,28 @@ class BorrowerController extends BaseController {
 		    file_get_contents(base_path().'/home_institutions.yml'));
       $keys = $borrowers['institutions'];
       return $keys;
+    }
+    public function verify_real_email($error_email, $email) {
+
+    	// Initialize library class
+	$mail = new VerifyEmailService();
+
+	// Set the timeout value on stream
+	$mail->setStreamTimeoutWait(20);
+
+	// Set debug output mode
+	$mail->Debug= TRUE; 
+	$mail->Debugoutput= 'html'; 
+
+	// Set email address for SMTP request
+	$mail->setEmailFrom($error_email);
+
+	// Email to check
+
+	// Check if email is valid and exist
+	return $mail->check($email);
+	    
+    
     }
 
 }
