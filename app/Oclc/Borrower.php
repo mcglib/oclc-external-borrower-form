@@ -288,7 +288,7 @@ class Borrower {
         // write to the counter file
 	$str_val = (string)($curr_val);
 	//$str_val = substr_replace( $str_val, "-", 3, 0 ); 
-        return "EXT-".$str_val;
+        return "EXT".$str_val;
 
     }
     private function getAddresses() {
