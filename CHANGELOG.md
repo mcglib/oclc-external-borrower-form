@@ -1,3 +1,5 @@
+1.0.18
+- Fxing the email verification step
 1.0.17
 - Removed the dash in the barcode
 1.0.16
