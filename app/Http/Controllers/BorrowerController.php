@@ -121,8 +121,7 @@ class BorrowerController extends BaseController {
                    ->with('error', $error_msg);
        }
 
-       // check the result of the mail before creating the account
-       $result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+       dd($borrower);
 
        if ($borrower->create()){
 
@@ -160,7 +159,7 @@ class BorrowerController extends BaseController {
     }
     public function verify_real_email($error_email, $borrower) {
 
-        $valid = FALSE
+        $valid = true;
     	// Initialize library class
 	$mail = new VerifyEmailService();
 
@@ -175,8 +174,13 @@ class BorrowerController extends BaseController {
 	$mail->setEmailFrom($error_email);
 
 	// Email to check
-       // check the result of the mail before creating the account
-       $result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+	// check the result of the mail before creating the account
+        try{
+       		$result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+	}catch(\Swift_TransportException $e){
+		$response = $e->getMessage() ;
+		$valid = false;
+	}
 
 
 	// Check if email is valid and exist

@@ -73,6 +73,8 @@ class Borrower {
 	   $this->addAddress($request);
 	   // set the expiry date
 	   $this->expiry_date = $this->setExpiryDate();
+	    // Generate the barcode
+	   $this->barcode = $this->generateBarCode();
     }
     public function create() {
 
@@ -80,7 +82,6 @@ class Borrower {
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
       $this->getAuth($url);
 
-      $this->barcode = $this->generateBarCode();
       // Send the request to create a record
       $state = $this->sendRequest($url, $this->getData());
 
