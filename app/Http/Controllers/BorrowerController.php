@@ -121,7 +121,6 @@ class BorrowerController extends BaseController {
                    ->with('error', $error_msg);
        }
 
-       dd($borrower);
 
        if ($borrower->create()){
 
