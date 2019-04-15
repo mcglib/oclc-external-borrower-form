@@ -111,7 +111,7 @@ class BorrowerController extends BaseController {
        $error_email = $_ENV['MAIL_ERROR_EMAIL_ADDRESS'] ?? 'dev.library@mcgill.ca';
        
        // Verify the email before sending or creating a record.
-       if (!$this->verify_real_email($error_email, $borrower->email)) {
+       if (!$this->verify_real_email($error_email, $borrower)) {
 
             $error_msg = "The email address $borrower->email does not exist. Please check your spelling.";
 	    Mail::to($error_email)->send(new GeneralError($borrower, $error_msg));
@@ -121,9 +121,11 @@ class BorrowerController extends BaseController {
                    ->with('error', $error_msg);
        }
 
+       // check the result of the mail before creating the account
+       $result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+
        if ($borrower->create()){
 
-	    $result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
             return redirect()->route('borrower.created')
                    ->with('success',
             		'Congratulations, your request has been received!');
@@ -156,8 +158,9 @@ class BorrowerController extends BaseController {
       $keys = $borrowers['institutions'];
       return $keys;
     }
-    public function verify_real_email($error_email, $email) {
+    public function verify_real_email($error_email, $borrower) {
 
+        $valid = FALSE
     	// Initialize library class
 	$mail = new VerifyEmailService();
 
@@ -172,10 +175,12 @@ class BorrowerController extends BaseController {
 	$mail->setEmailFrom($error_email);
 
 	// Email to check
+       // check the result of the mail before creating the account
+       $result = Mail::to($borrower->email)->send(new AccountCreated($borrower));
+
 
 	// Check if email is valid and exist
-	return $mail->check($email);
-	    
+	return $valid;
     
     }
 
