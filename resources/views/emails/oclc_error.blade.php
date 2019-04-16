@@ -36,7 +36,7 @@ Hi,
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
     <tr>
-	<td>Bar code:</td>
+	<td>Barcode:</td>
 	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     @if (isset($borrower->telephone_no))
@@ -69,13 +69,14 @@ Hi,
 		{{$borrower->address1}}
 		{{$borrower->address2}}<br />
 		{{$borrower->city}}<br />
+		{{$borrower->province_state}}<br />
 		{{$borrower->postal_code}}<br/>
 		</address>
 	    </strong>
 	</td>
     </tr>
     <tr>
-	<td>Telephone no:</td>
+	<td>Telephone:</td>
 	<td>{{$borrower->telephone_no}}</td>
     </tr>
     @endif
