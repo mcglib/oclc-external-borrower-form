@@ -407,6 +407,13 @@ class Borrower {
 			'primary' => true,
 		),
 	  ),
+	  'phoneNumbers' => array (
+		0 =>  array (
+			'value' => $this->telephone_no,
+			'type' => $this->defaultType,
+			'primary' => true,
+		),
+	  ),
 	  'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
 	    'circulationInfo' =>  $this->getCircInfo()
           ),

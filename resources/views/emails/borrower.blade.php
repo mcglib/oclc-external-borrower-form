@@ -23,7 +23,7 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
     <tr>
-	<td>Bar code:</td>
+	<td>Barcode:</td>
 	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     <tr>
@@ -54,12 +54,10 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 		</address>
 	    </strong>
 	</td>
-	<td>Telephone:</td>
-	<td><strong>{{$borrower->telephone_no}}</strong></td>
     </tr>
     <tr>
-	<td>Telephone no:</td>
-	<td>{{$borrower->telephone_no}}</td>
+	<td>Telephone:</td>
+	<td><strong>{{$borrower->telephone_no}}</strong></td>
     </tr>
     @endif
 </table>
