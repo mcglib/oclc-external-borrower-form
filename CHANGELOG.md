@@ -1,3 +1,5 @@
+1.0.19
+- Added validation checks for string length
 1.0.18
 - Fxing the email verification step
 1.0.17
