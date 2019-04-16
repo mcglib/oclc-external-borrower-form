@@ -1,3 +1,5 @@
+1.0.22
+- Various fixes to show address2, and province_state
 1.0.21
 - Added the telephone numbers
 1.0.20
