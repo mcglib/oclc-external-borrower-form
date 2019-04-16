@@ -19,6 +19,7 @@ Address:
 	{{$borrower->address1}}
 	{{$borrower->address2}}
 	{{$borrower->city}}
+	{{$borrower->province_state}}
 	{{$borrower->postal_code}}
 Telephone: {{$borrower->telephone_no}}
 @endif

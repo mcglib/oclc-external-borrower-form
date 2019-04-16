@@ -50,10 +50,15 @@
 			{{$borrower->address1}}
 			{{$borrower->address2}}<br />
 			{{$borrower->city}}<br />
+			{{$borrower->province_state}}<br />
 			{{$borrower->postal_code}}<br/>
 			</address>
 	            </strong>
 		</td>
+	    </tr>
+	    <tr>
+		<td>Telephone:</td>
+		<td><strong>{{$borrower->telephone_no}}</strong></td>
 	    </tr>
 	    @endif
         </table>

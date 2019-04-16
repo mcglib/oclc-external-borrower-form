@@ -50,6 +50,7 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 		{{$borrower->address1}}
 		{{$borrower->address2}}<br />
 		{{$borrower->city}}<br />
+		{{$borrower->province_state}}<br />
 		{{$borrower->postal_code}}<br/>
 		</address>
 	    </strong>

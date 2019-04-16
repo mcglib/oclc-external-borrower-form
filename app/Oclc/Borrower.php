@@ -25,8 +25,8 @@ class Borrower {
     public $borrower_cat;
     public $city;
     public $address1;
-    public $home_institution;
     public $address2;
+    public $home_institution;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;    
     public $barcode;
@@ -50,7 +50,7 @@ class Borrower {
     function __construct(array $request = []) {
 	   // Set the variables
 	    $this->data = $request;
-	   
+
 	   $this->fname = $request['fname'];
 	   $this->lname = $request['lname'];
 	   $this->email = $request['email'];
