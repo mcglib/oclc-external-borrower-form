@@ -1,3 +1,5 @@
+1.0.20
+- Fixed bug with the barcode not being saved twice
 1.0.19
 - Added validation checks for string length
 1.0.18

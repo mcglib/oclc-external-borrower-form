@@ -87,7 +87,6 @@ class Borrower {
 
       $status = $state['status'];
       
-
       // if success save data to $this->oclc_data
       if($state['status'] === 201) {
           $this->oclc_data = $state['body'];
@@ -371,7 +370,7 @@ class Borrower {
     private function getCircInfo() {
 	
         return array (
-			'barcode' => $this->generatebarCode(),
+			'barcode' => $this->barcode,
 			'borrowerCategory' => $this->getBorrowerCategoryName($this->borrower_cat),
 			'homeBranch' => $this->homeBranch,
 			'isVerified' => false,
