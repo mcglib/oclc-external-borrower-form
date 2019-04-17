@@ -1,3 +1,5 @@
+1.0.23
+- Updated the borrowing category amd updated the name of he emails and step2
 1.0.22
 - Various fixes to show address2, and province_state
 1.0.21
