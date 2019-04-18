@@ -44,7 +44,7 @@ categories:
   - key: value7
     borrower_category: McGill community borrower
     label: Montreal School of Theology faculty member or graduate student	
-    wms_custom_data_3: School of theology
+    wms_custom_data_3: Reciprocal graduates & profs
     home_institution: false
     wms_custom_data_2: Montreal School of Theology
     need_address: false
