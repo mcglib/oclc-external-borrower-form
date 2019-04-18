@@ -1,3 +1,5 @@
+1.0.25
+- Updated the borrowing category for custom data 3 for school of theology.
 1.0.23
 - Updated the borrowing category amd updated the name of he emails and step2
 1.0.22
