@@ -20,6 +20,12 @@
                 <td>Email address:</td>
                 <td><strong>{{$borrower->email}}</strong></td>
             </tr>
+	    @if (isset($borrower->barcode))
+	    <tr>
+		<td>Barcode:</td>
+		<td><strong>{{$borrower->barcode}}</strong></td>
+	    </tr>
+	    @endif
 	    @if (isset($borrower->telephone_no))
             <tr>
                 <td>Telephone:</td>
@@ -28,7 +34,9 @@
 	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
+		<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong>
+	    	    (<strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong>)
+		</td>
 	    </tr>
 	    @if (isset($borrower->spouse_name))
 		    <tr>

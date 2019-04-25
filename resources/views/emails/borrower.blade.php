@@ -28,7 +28,9 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
     </tr>
     <tr>
 	<td>Requested Borrowing Category:</td>
-	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
+	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong>
+	    (<strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong>)
+	</td>
     </tr>
     @if (isset($borrower->spouse_name))
 	    <tr>
