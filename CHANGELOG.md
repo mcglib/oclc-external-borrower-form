@@ -1,5 +1,8 @@
+1.0.30
+- Font size issues
+- Ordering in home institutions
 1.0.29
-- Borrower Category fixes.
+- borrower category fixes.
 1.0.28
 - Fixing the validation for BCI undergrads.
 1.0.27
