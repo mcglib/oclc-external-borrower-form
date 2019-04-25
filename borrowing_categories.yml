@@ -30,7 +30,7 @@ categories:
   - key: value5
     borrower_category: McGill graduate student
     label: McGill PhD extension
-    wms_custom_data_3: McGill PhD extension
+    wms_custom_data_3: PhD extension
     home_institution: false
     wms_custom_data_2: 
     need_address: true

@@ -8,6 +8,12 @@
     </div>
         {{ csrf_field() }}
         <table class="table">
+	    @if (isset($borrower->barcode))
+	    <tr>
+		<td>Barcode:</td>
+		<td class="text-large"><strong>{{$borrower->barcode}}</strong></td>
+	    </tr>
+	    @endif
             <tr>
                 <td>First name:</td>
                 <td><strong>{{$borrower->fname}}</strong></td>
@@ -20,12 +26,6 @@
                 <td>Email address:</td>
                 <td><strong>{{$borrower->email}}</strong></td>
             </tr>
-	    @if (isset($borrower->barcode))
-	    <tr>
-		<td>Barcode:</td>
-		<td><strong>{{$borrower->barcode}}</strong></td>
-	    </tr>
-	    @endif
 	    @if (isset($borrower->telephone_no))
             <tr>
                 <td>Telephone:</td>
