@@ -15,8 +15,8 @@ Submission details
 First name: {{$borrower->fname}}
 Last name: {{$borrower->lname}}
 Email address:{{$borrower->email}}
-Barcode: {{ $borrower->barcode }} 
-Requested Borrowing Category: {{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}
+Temporary barcode: {{ $borrower->barcode }} 
+Requested borrowing category: {{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}
 @if (isset($borrower->spouse_name))
 Spouse's name: {{$borrower->spouse_name}}
 @endif

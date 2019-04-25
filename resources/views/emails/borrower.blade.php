@@ -6,7 +6,7 @@
 <body>
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-<p>This is a confirmation that a library account has been created for you. Please bring this temporary barcode  to a Library Services desk: </p>
+<p>This is a confirmation that a library account has been created for you.Please bring this temporary barcode to a Library Services desk: </p>
 <p class="text-large"> <strong>{{$borrower->barcode}}</strong></p>
 <h3>Account details</h3>
 <hr />
@@ -28,7 +28,7 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 	<td ><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     <tr>
-	<td>Requested Borrowing Category:</td>
+	<td>Requested borrowing category:</td>
 	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong>
 	    (<strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong>)
 	</td>

@@ -36,7 +36,7 @@ Hi,
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
     <tr>
-	<td>Barcode:</td>
+	<td>Temporary barcode:</td>
 	<td><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     @if (isset($borrower->telephone_no))
@@ -46,7 +46,7 @@ Hi,
     </tr>
     @endif
     <tr>
-	<td>Requested Borrowing Category:</td>
+	<td>Requested borrowing category:</td>
 	<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
     </tr>
     @if (isset($borrower->spouse_name))

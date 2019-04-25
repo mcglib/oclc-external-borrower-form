@@ -1,13 +1,14 @@
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.
+This is a confirmation that a library account has been created for you.Please bring this temporary barcode to a Library Services desk: 
+{{$borrower->barcode }}
 
 ---------Account details-----
 First name: {{$borrower->fname}}
 Last name: {{$borrower->lname}}
 Email address: {{$borrower->email}}
-Barcode: {{$borrower->barcode }}
-Requested Borrowing Category:
+Temporary barcode: {{$borrower->barcode }}
+Requested borrowing category:
 	 {{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}
 	 {{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}
 @if (isset($borrower->spouse_name))

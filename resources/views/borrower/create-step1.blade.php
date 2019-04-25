@@ -31,14 +31,14 @@
     
 			    <div class="form-group">
     
-				    <label for="email" class="control-label required">Email Address <span class="required">*</span></label>
+				    <label for="email" class="control-label required">Email address <span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
     
     
 			    <div class="form-group">
     
-				    <label for="borrower_cat" class="control-label required">Requested Borrowing Category<span class="required">*</span></label>
+				    <label for="borrower_cat" class="control-label required">Requested borrowing category<span class="required">*</span></label>
 				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], $borrower_categories), $borrower->borrower_cat ?? null, ['class' => 'form-control']) !!}
         		    </div>
     
@@ -60,11 +60,11 @@
 				   <fieldset class="form-group" id="borrower_address">
 				    <legend>Borrower information</legend>
 				    <div class="form-group">
-					    <label for="address1" class="control-label">Street Address 1<span class="required">*</span></label>
+					    <label for="address1" class="control-label">Street address 1<span class="required">*</span></label>
 					 {!! Form::input('text', 'address1', $borrower->address1 ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				   <div class="form-group">
-					<label for="address2" class="control-label">Street Address 2</label>
+					<label for="address2" class="control-label">Street address 2</label>
 					 {!! Form::input('text', 'address2', $borrower->address2 ?? null, ['class'=> 'form-control']) !!}
 	    
 				   </div>
@@ -78,7 +78,7 @@
 					 {!! Form::input('text', 'province_state', $borrower->province_state ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				    <div class="form-group">
-					<label for="postal_code" class="control-label">Postal Code<span class="required">*</span></label>
+					<label for="postal_code" class="control-label">Postal code<span class="required">*</span></label>
 					 {!! Form::input('text', 'postal_code', $borrower->postal_code ?? null, ['class'=> 'form-control', 'placeholder' => 'XXX XXX']) !!}
 				    </div>
 				    <div class="form-group">
@@ -101,4 +101,3 @@
 	    </div>
 	    <!-- /form user info -->
 @endsection
-
