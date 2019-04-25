@@ -6,7 +6,8 @@
 <body>
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-<p>This is a confirmation that a library account has been created for you. Please print out or bring this email to a library desk near you.</p>
+<p>This is a confirmation that a library account has been created for you. Please bring this temporary barcode  to a Library Services desk: </p>
+<p class="text-large"> <strong>{{$borrower->barcode}}</strong></p>
 <h3>Account details</h3>
 <hr />
 <table class="table">
@@ -23,8 +24,8 @@ Dear {{ $borrower->fname}} {{ $borrower->lname}},
 	<td><strong>{{$borrower->email}}</strong></td>
     </tr>
     <tr>
-	<td>Barcode:</td>
-	<td><strong>{{$borrower->barcode}}</strong></td>
+	<td>Temporary barcode:</td>
+	<td ><strong>{{$borrower->barcode}}</strong></td>
     </tr>
     <tr>
 	<td>Requested Borrowing Category:</td>
