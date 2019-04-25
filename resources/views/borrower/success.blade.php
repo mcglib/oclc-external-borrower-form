@@ -8,6 +8,12 @@
     </div>
         {{ csrf_field() }}
         <table class="table">
+	    @if (isset($borrower->barcode))
+	    <tr>
+		<td>Barcode:</td>
+		<td class="text-large"><strong>{{$borrower->barcode}}</strong></td>
+	    </tr>
+	    @endif
             <tr>
                 <td>First name:</td>
                 <td><strong>{{$borrower->fname}}</strong></td>
@@ -28,7 +34,9 @@
 	    @endif
             <tr>
                 <td>Requested Borrowing Category:</td>
-                <td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong></td>
+		<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong>
+	    	    (<strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong>)
+		</td>
 	    </tr>
 	    @if (isset($borrower->spouse_name))
 		    <tr>

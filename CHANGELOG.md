@@ -1,3 +1,6 @@
+1.0.26
+- Updated the home institutions lists.
+- Moved the barcode into the top of lists.
 1.0.25
 - Updated the borrowing category for custom data 3 for school of theology.
 1.0.23
