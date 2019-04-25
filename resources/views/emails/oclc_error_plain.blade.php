@@ -16,7 +16,7 @@ First name: {{$borrower->fname}}
 Last name: {{$borrower->lname}}
 Email address:{{$borrower->email}}
 Temporary barcode: {{ $borrower->barcode }} 
-Requested borrowing category: {{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}
+Requested borrowing category: {{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}
 @if (isset($borrower->spouse_name))
 Spouse's name: {{$borrower->spouse_name}}
 @endif
