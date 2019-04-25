@@ -28,10 +28,10 @@ class BorrowerForm extends Form
                 ]
             ])
             ->add('email', 'email', [
-                'label' => 'Email Address',
+                'label' => 'Email address',
                 'rules' => 'required|min:5',
                 'error_messages' => [
-                    'email.required' => 'Please fill out your email address.'
+                    'email.required' => 'Please fill in your email address.'
                 ]
             ])
 	    ->add('borrower_cat', 'select', [
@@ -39,20 +39,20 @@ class BorrowerForm extends Form
 		'attr' => ['onchange' => 'admSelectCheck(this);'],
 	        'selected' => 'value1',
 	        'empty_value' => 'Please select the appropriate borrowing category',
-                'label' => 'Requested Borrowing Category',
+                'label' => 'Requested borrowing category',
                 'rules' => 'required',
                 'error_messages' => [
                    'borrower_cat.required' => 'The last name  field is mandatory.'
                 ]
 	    ])
             ->add('address1', 'text', [
-                'label' => 'Street Address 1',
+                'label' => 'Street address 1',
                 'error_messages' => [
                     'address1.required' => 'The Address field is mandatory.'
                 ]
             ])
             ->add('address2', 'text', [
-                'label' => 'Street Address 2',
+                'label' => 'Street address 2',
                 'error_messages' => [
                     'address2.required' => 'The last name  field is mandatory.'
                 ]
@@ -64,7 +64,7 @@ class BorrowerForm extends Form
                 ]
             ])
             ->add('postal_code', 'text', [
-                'label' => 'Postal Code',
+                'label' => 'Postal code',
                 'error_messages' => [
                     'postal_code.required' => 'The Postal code field is mandatory.'
                 ]

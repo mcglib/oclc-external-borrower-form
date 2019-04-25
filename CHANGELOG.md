@@ -1,3 +1,5 @@
+1.0.27
+- Fixed typos and email wordings for the borrower email.
 1.0.26
 - Updated the home institutions lists.
 - Moved the barcode into the top of lists.

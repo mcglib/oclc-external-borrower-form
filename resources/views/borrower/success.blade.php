@@ -10,7 +10,7 @@
         <table class="table">
 	    @if (isset($borrower->barcode))
 	    <tr>
-		<td>Barcode:</td>
+		<td>Temporary barcode:</td>
 		<td class="text-large"><strong>{{$borrower->barcode}}</strong></td>
 	    </tr>
 	    @endif
@@ -33,7 +33,7 @@
 	    </tr>
 	    @endif
             <tr>
-                <td>Requested Borrowing Category:</td>
+                <td>Requested borrowing category:</td>
 		<td><strong>{{$borrower->getBorrowerCategoryName($borrower->borrower_cat)}}</strong>
 	    	    (<strong>{{$borrower->getBorrowerCategoryLabel($borrower->borrower_cat)}}</strong>)
 		</td>
