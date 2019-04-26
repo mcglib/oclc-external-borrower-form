@@ -68,6 +68,8 @@ class Borrower {
        	   $oclc_config = config('oclc.connections.development');
 	   
 	   $this->institutionId = $oclc_config['institution_id'];
+
+	   $this->homeBranch = $oclc_config['home_branch'];
 	   
 	   // set the address
 	   $this->addAddress($request);
