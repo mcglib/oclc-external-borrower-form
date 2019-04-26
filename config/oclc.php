@@ -43,17 +43,19 @@ return [
 	    'api_secret' => env('OCLC_API_SECRET', ''),
 	    'ppid' => env('OCLC_PPID', ''),
 	    'pdns' => env('OCLC_PDNS', ''),
+	    'home_branch' => env('OCLC_HOMEBRANCH', ''),
 	    'url' => 'https://'.env('OCLC_REG_ID', '').'.share.worldcat.org/idaas/'
         ],
 
         'production' => [
 	    'host' => env('OCLC_URL', '127.0.0.1'),
-	    'institution_id' => env('OCLC_REG_ID', ''),
             'port' => env('OCLC_PORT', '3306'),
+	    'institution_id' => env('OCLC_REG_ID', ''),
             'api_key' => env('OCLC_API_KEY', 'forge'),
             'api_secret' => env('OCLC_API_SECRET', ''),
 	    'ppid' => env('OCLC_PPID', ''),
 	    'pdns' => env('OCLC_PDNS', ''),
+	    'home_branch' => env('OCLC_HOMEBRANCH', ''),
 	    'url' => 'https://'.env('OCLC_REG_ID').'.share.worldcat.org/idaas/'
         ],
     ],
