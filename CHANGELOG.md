@@ -1,3 +1,5 @@
+1.0.32
+- Removed the defaulttype of home from the address, phone and email
 1.0.31
 - Added home branch as a env variable
 1.0.30
