@@ -301,7 +301,8 @@ class Borrower {
 			      'locality' => $this->city ?? "",
 			      'region' => $this->province_state ?? "",
 			      'postalCode' => $this->postal_code ?? "",
-			      'type' => $this->defaultType,
+			      //'type' => $this->defaultType,
+			      'type' => "",
 			      'primary' => false,
 			   )
 		   );
@@ -405,13 +406,15 @@ class Borrower {
 	  'emails' => array (
 		0 =>  array (
 			'value' => $this->email,
-			'type' => $this->defaultType,
+			//'type' => $this->defaultType,
+			'type' => "",
 			'primary' => true,
 		),
 	  ),
 	  'phoneNumbers' => array (
 		0 =>  array (
 			'value' => $this->telephone_no,
+			//'type' => $this->defaultType,
 			'type' => $this->defaultType,
 			'primary' => true,
 		),
