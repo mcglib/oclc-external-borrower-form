@@ -43,7 +43,7 @@ categories:
     need_address: true
   - key: value8
     borrower_category: ROAAr reader
-    label: Osler/RareBooks/Archives reader 
+    label: Osler/Rare Books/Archives reader 
     wms_custom_data_3: Other
     home_institution: false
     wms_custom_data_2:
