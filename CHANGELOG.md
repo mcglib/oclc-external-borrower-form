@@ -1,3 +1,6 @@
+1.1.0
+- Remove entry for Montreal School of Theology
+- Update Osler/Rare Books reader entry to say Osler/Rare Books/Archives reader
 1.0.33
 - Fixing the date for laravel
 1.0.32
