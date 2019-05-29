@@ -41,16 +41,9 @@ categories:
     home_institution: false
     wms_custom_data_2: 
     need_address: true
-  - key: value7
-    borrower_category: McGill community borrower
-    label: Montreal School of Theology faculty member or graduate student	
-    wms_custom_data_3: Reciprocal graduates & profs
-    home_institution: false
-    wms_custom_data_2: Montreal School of Theology
-    need_address: false
   - key: value8
     borrower_category: ROAAr reader
-    label: Osler/RareBooks reader - consultation only card	
+    label: Osler/RareBooks/Archives reader 
     wms_custom_data_3: Other
     home_institution: false
     wms_custom_data_2:
