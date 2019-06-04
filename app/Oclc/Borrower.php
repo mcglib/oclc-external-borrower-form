@@ -144,7 +144,7 @@ class Borrower {
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
 		    'json' => $payload,
-                   ];
+            ];
 	    // Save the post into a db log
 	    $log = new Extlog;
 	    $log->email = $this->email;
@@ -330,8 +330,11 @@ class Borrower {
     private function getCustomData() {
 	
 	// Save data depending on the borrower category
-	$custom_data_3 = utf8_encode($this->getBorrowerCustomData3($this->borrower_cat)); 
-	$custom_data_2 = utf8_encode($this->getBorrowerCustomData2($this->borrower_cat)); 
+	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
+	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
+
+	$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
+	$custom_data_3 = mb_convert_encoding($custom_data_3, "UTF-8");
 	
 	$data = array();
 	
