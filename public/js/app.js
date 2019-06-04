@@ -4,6 +4,7 @@
 
                 var $form = $(this);
   	        $(this).find(':submit').attr('disabled','disabled');
+  	        $(this).find(':submit').attr('value','Please wait..');
 
 
                 if ($form.data('submitted') === true) {
