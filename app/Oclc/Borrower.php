@@ -144,7 +144,7 @@ class Borrower {
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
 		    'json' => $payload,
-                   ];
+            ];
 	    // Save the post into a db log
 	    $log = new Extlog;
 	    $log->email = $this->email;
@@ -332,6 +332,9 @@ class Borrower {
 	// Save data depending on the borrower category
 	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
 	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
+
+	$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
+	$custom_data_3 = mb_convert_encoding($custom_data_3, "UTF-8");
 	
 	$data = array();
 	
@@ -359,14 +362,6 @@ class Borrower {
 	    );
 	    $data[] = $data_3;
         }
-
-        $data_4 = array(
-               "businessContext" => "Circulation_Info",
-               "key" => "customdata4",
-               "value" => ""
-        );
-        $data[] = $data_4;
-	
 	return $data;
     
     }
@@ -414,7 +409,6 @@ class Borrower {
 	  'phoneNumbers' => array (
 		0 =>  array (
 			'value' => $this->telephone_no,
-			//'type' => $this->defaultType,
 			'type' => $this->defaultType,
 			'primary' => true,
 		),

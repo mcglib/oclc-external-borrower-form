@@ -1,3 +1,31 @@
+ // jQuery plugin to prevent double submission of forms
+ $.fn.preventDoubleSubmission = function () {
+            $(this).on('submit', function (e) {
+
+                var $form = $(this);
+  	        $(this).find(':submit').attr('disabled','disabled');
+  	        $(this).find(':submit').attr('value','Please wait..');
+
+
+                if ($form.data('submitted') === true) {
+                    // Previously submitted - don't submit again
+                    alert('The form has already been submitted. Please wait.');
+		    $(':submit', $form).prop('disabled',true)
+                    e.preventDefault();
+                } else {
+                    // Mark it so that the next submit can be ignored
+                    // ADDED requirement that form be valid
+                    if($form.valid()) {
+                        $form.data('submitted', true);
+                    }
+                }
+            });
+
+            // Keep chainability
+            return this;
+ };
+
+
 $.fn.clear_address_values = function () {
 	 $("#address1").val("");
 	 $("#address2").val("");
@@ -7,12 +35,10 @@ $.fn.clear_address_values = function () {
 
 };
 $.fn.clear_home_inst_values = function () {
-	console.log("clear select opts");
 	 $("#home_institution").val("");
 
 };
 $.fn.clear_spouse_name_values = function () {
-	console.log("clear select opts");
 	 $("#spouse_name").val("");
 
 };
@@ -103,8 +129,14 @@ $(document).ready(function () {
     $curr_val = $('select[name="borrower_cat"]').val();
     $.fn.update_fields_info($curr_val);
 
+    $('#store-form').preventDoubleSubmission();
+
+
     $('select[name="borrower_cat"]').change(function () {
 	$selected_val = $(this).val();
         $.fn.update_fields_info($selected_val);
     });
+
+    
+
 });

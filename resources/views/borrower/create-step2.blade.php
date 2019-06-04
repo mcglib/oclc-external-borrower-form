@@ -2,7 +2,7 @@
 
 @section('content')
     <h3>Review Submission</h3>
-    <form action="store" method="post" >
+    <form action="store" method="post" id="store-form" >
 	{{ csrf_field() }}
         <table class="table">
             <tr>
@@ -60,7 +60,7 @@
 		<label class="col-lg-4 col-form-label form-control-label"></label>
 		<div class="col-lg-8">
         		<a role="button" href="create-step1" class="btn btn-secondary">Back</a>
-			<input class="btn btn-primary" type="submit" value="Submit">
+			<input class="btn btn-primary" type="submit" value="Submit" id="submit-request">
 		</div>
     	</div>
 	@include('layouts.partials.footer')
