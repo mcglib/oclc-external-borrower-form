@@ -143,7 +143,7 @@ class Borrower {
 	    $headers['User-Agent'] = 'McGill OCLC Client';
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
-		    'json' => json_encode($payload),
+		    'json' => $payload,
                    ];
 	    // Save the post into a db log
 	    $log = new Extlog;
@@ -330,8 +330,8 @@ class Borrower {
     private function getCustomData() {
 	
 	// Save data depending on the borrower category
-	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat); 
-	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat); 
+	$custom_data_3 = utf8_encode($this->getBorrowerCustomData3($this->borrower_cat)); 
+	$custom_data_2 = utf8_encode($this->getBorrowerCustomData2($this->borrower_cat)); 
 	
 	$data = array();
 	
