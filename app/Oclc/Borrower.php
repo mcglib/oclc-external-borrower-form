@@ -143,7 +143,7 @@ class Borrower {
 	    $headers['User-Agent'] = 'McGill OCLC Client';
 	    $headers['Content-Type'] = 'application/scim+json';
 	    $body = ['headers' => $headers,
-		    'json' => $payload,
+		    'json' => json_encode($payload),
                    ];
 	    // Save the post into a db log
 	    $log = new Extlog;
@@ -414,7 +414,6 @@ class Borrower {
 	  'phoneNumbers' => array (
 		0 =>  array (
 			'value' => $this->telephone_no,
-			//'type' => $this->defaultType,
 			'type' => $this->defaultType,
 			'primary' => true,
 		),
