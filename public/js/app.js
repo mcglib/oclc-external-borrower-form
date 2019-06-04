@@ -1,7 +1,10 @@
  // jQuery plugin to prevent double submission of forms
  $.fn.preventDoubleSubmission = function () {
             $(this).on('submit', function (e) {
+
                 var $form = $(this);
+  	        $(this).find(':submit').attr('disabled','disabled');
+
 
                 if ($form.data('submitted') === true) {
                     // Previously submitted - don't submit again
@@ -126,6 +129,7 @@ $(document).ready(function () {
     $.fn.update_fields_info($curr_val);
 
     $('#store-form').preventDoubleSubmission();
+
 
     $('select[name="borrower_cat"]').change(function () {
 	$selected_val = $(this).val();
