@@ -6,6 +6,7 @@
                 if ($form.data('submitted') === true) {
                     // Previously submitted - don't submit again
                     alert('The form has already been submitted. Please wait.');
+		    $(':submit', $form).prop('disabled',true)
                     e.preventDefault();
                 } else {
                     // Mark it so that the next submit can be ignored
@@ -130,4 +131,7 @@ $(document).ready(function () {
 	$selected_val = $(this).val();
         $.fn.update_fields_info($selected_val);
     });
+
+    
+
 });
