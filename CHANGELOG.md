@@ -1,3 +1,6 @@
+1.1.2
+- Disabled the submit button to prevent double submissions
+- Removed the extra data for custom data 4 that was not being sent
 1.1.0
 - Remove entry for Montreal School of Theology
 - Update Osler/Rare Books reader entry to say Osler/Rare Books/Archives reader
