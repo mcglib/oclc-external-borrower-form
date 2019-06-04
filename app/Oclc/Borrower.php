@@ -362,14 +362,6 @@ class Borrower {
 	    );
 	    $data[] = $data_3;
         }
-
-        $data_4 = array(
-               "businessContext" => "Circulation_Info",
-               "key" => "customdata4",
-               "value" => ""
-        );
-        $data[] = $data_4;
-	
 	return $data;
     
     }
