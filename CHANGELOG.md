@@ -1,3 +1,5 @@
+1.1.3
+- Added ARC/Association pour la recherche au collégial to list of home institutions
 1.1.2
 - Disabled the submit button to prevent double submissions
 - Removed the extra data for custom data 4 that was not being sent
