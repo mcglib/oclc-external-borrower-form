@@ -1,3 +1,5 @@
+1.1.4
+- Moved the home institutions to the top
 1.1.3
 - Added ARC/Association pour la recherche au collégial to list of home institutions
 1.1.2
