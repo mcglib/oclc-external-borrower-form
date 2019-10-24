@@ -122,26 +122,29 @@ class BorrowerController extends BaseController {
        }
 
 
-       if ($borrower->create()){
+       if ($borrower->create()) {
+
+           // clear session data
+           $request->session()->flush();
 
             return redirect()->route('borrower.created')
                    ->with('success',
             		'Congratulations, your request has been received!');
-       }else {
-         // Error occured.
+       } else {
+         // Error occurred.
          $borrower->error_msg();
-	 
-	 // Send the email with the data
-	 Mail::to($error_email)->send(new OclcError($borrower));
+
+         // Send the email with the data
+         Mail::to($error_email)->send(new OclcError($borrower));
+
+         // clear session data
+         $request->session()->flush();
 
          // Redirect to the form.
          return redirect('error')
            ->with('oclcerror',
              'An Error has occured creating an OCLC record for you.');
        }
-       
-       // clear session data
-       $request->session()->flush();
     }
     public function get_borrower_categories() {
       $borrowers = Yaml::parse(
