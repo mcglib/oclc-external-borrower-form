@@ -1,13 +1,13 @@
 <?php
 namespace App\Oclc;
-use OCLC\Auth\WSKey;
-use OCLC\Auth\AccessToken;
-use OCLC\User;
+use League\OAuth2\Client\OptionProvider\HttpBasicAuthOptionProvider;
+use League\OAuth2\Client\Provider\GenericProvider;
 use App\Extlog;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Storage;
 use Yaml;
 
@@ -65,7 +65,7 @@ class Borrower {
 	   $this->province_state = $request['province_state'] ?? "Quebec";
 	   
 	   
-       	   $oclc_config = config('oclc.connections.development');
+	   $oclc_config = config('oclc.connections.development');
 	   
 	   $this->institutionId = $oclc_config['institution_id'];
 
@@ -104,23 +104,31 @@ class Borrower {
     	return $this->error_msg;
     }
     public function getAuth($url) {
-       $oclc_config = config('oclc.connections.development');
-       $key = $oclc_config['api_key'];
-       $secret = $oclc_config['api_secret'];
-       $inst_id = $oclc_config['institution_id'];
+        $oclc_config = config('oclc.connections.development');
+        $key = $oclc_config['api_key'];
+        $secret = $oclc_config['api_secret'];
+        $inst_id = $oclc_config['institution_id'];
 
-       $services = array('SCIM');
+        $oauth2_options = [
+            'clientId' => $key,
+            'clientSecret' => $secret,
+            'urlAuthorize' => env('OCLC_URL_AUTHORIZE') . '/' . $inst_id,
+            'urlAccessToken' => env('OCLC_URL_ACCESSTOKEN'),
+            'urlResourceOwnerDetails' => '',
+            'scopes' => array('SCIM'),
+        ];
 
-       $user = new User($inst_id, $oclc_config['ppid'], $oclc_config['pdns']);
+        $basicAuth_provider = new HttpBasicAuthOptionProvider();
+        $provider = new GenericProvider($oauth2_options, ['optionProvider' => $basicAuth_provider]);
 
-       $options = array('services' => $services);
-       $wskey = new WSKey($key, $secret, $options);
-       // provide the WSKEY
-       $accessToken = $wskey->getAccessTokenWithClientCredentials($inst_id, $inst_id, $user);
+        try {
+            // Try to get an access token using the client credentials grant.
+            $accessToken = $provider->getAccessToken('client_credentials', ['scope' => 'SCIM']);
 
-
-       $this->setAuth($accessToken);
-
+            $this->setAuth($accessToken);
+        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+            echo "Failed to get access token";
+        }
     }
 
     private function setExpiryDate() {
@@ -130,7 +138,7 @@ class Borrower {
 
     }
     private function setAuth($token) {
-    	$this->authorizationHeader = "Bearer ".$token->getValue();
+    	$this->authorizationHeader = "Bearer ". $token->getToken();
     }
 
     private function sendRequest($url, $payload) {
