@@ -123,10 +123,6 @@ class BorrowerController extends BaseController {
 
 
        if ($borrower->create()) {
-
-           // clear session data
-           $request->session()->flush();
-
             return redirect()->route('borrower.created')
                    ->with('success',
             		'Congratulations, your request has been received!');
