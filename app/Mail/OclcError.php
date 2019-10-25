@@ -23,7 +23,7 @@ class OclcError extends Mailable
     {
         //
 	$this->borrower = $borrower;
-        $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrower";
+        $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrowing-card";
 	$this->timestamp = Carbon::now();
 
     }
