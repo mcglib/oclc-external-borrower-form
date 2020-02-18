@@ -1,3 +1,5 @@
+1.1.6
+- Updated the confirmation message so as to indicate the end of expiry date
 1.1.5
 - Changed the expiry date to one month
 1.1.4
