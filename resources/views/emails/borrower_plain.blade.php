@@ -1,6 +1,6 @@
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-This is a confirmation that a library account has been created for you.Please bring this temporary barcode to a Library Services desk: 
+This is a confirmation that a library account has been created for you. Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by {{ $borrower->expiry_date }}
 {{$borrower->barcode }}
 
 ---------Account details-----
