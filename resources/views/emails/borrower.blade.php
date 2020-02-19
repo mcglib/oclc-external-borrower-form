@@ -6,7 +6,7 @@
 <body>
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-<p>This is a confirmation that a library account has been created for you. Please bring this temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong></p>
+<p>This is a confirmation that a library account has been created for you. Please bring this temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong>:</p>
 <p class="text-large"> <strong>{{$borrower->barcode}}</strong></p>
 <h3>Account details</h3>
 <hr />

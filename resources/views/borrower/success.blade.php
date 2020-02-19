@@ -5,7 +5,7 @@
     <hr />
     <div class="well">
     Your application has been successfully submitted and a confirmation email sent to your email at <strong>{{$borrower->email}}</strong>.
-    Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong>.
+    Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong>:
     </div>
         {{ csrf_field() }}
         <table class="table">
