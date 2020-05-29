@@ -229,23 +229,27 @@ class Borrower {
     }
 
     public function getBorrowerCustomData3($borrow_cat) {
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['wms_custom_data_3'];
-
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		return $data['categories'][$key]['wms_custom_data_3'];
     }
     public function getBorrowerCustomData2($borrow_cat){
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 $is_home_inst = $data['categories'][$key]['home_institution'];
-	 if ($is_home_inst) {
-	 	return $this->home_institution;
-	 }else {
-	 	return $data['categories'][$key]['wms_custom_data_2'];
-	 }
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		$is_home_inst = $data['categories'][$key]['home_institution'];
+		if ($is_home_inst) {
+			return $this->home_institution;
+		} else {
+			return $data['categories'][$key]['wms_custom_data_2'];
+		}
 
     }
 
+    public function getBorrowerCustomData1($borrow_cat) {
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		return $data['categories'][$key]['wms_custom_data_1'];
+    }
 
     private function addAddress($request) {
 	    if (isset($request['postal_code'])) {
@@ -340,36 +344,38 @@ class Borrower {
 	// Save data depending on the borrower category
 	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat);
 	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat);
+	$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
 
+	$custom_data_1 = mb_convert_encoding($custom_data_1, "UTF-8");
 	$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
 	$custom_data_3 = mb_convert_encoding($custom_data_3, "UTF-8");
 
 	$data = array();
 
-        $data_1 = array(
-               "businessContext" => "Circulation_Info",
-               "key" => "customdata1",
-               "value" => ""
-        );
-        $data[] = $data_1;
+	$data_1 = array(
+		"businessContext" => "Circulation_Info",
+		"key" => "customdata1",
+		"value" => $custom_data_1
+	);
+	$data[] = $data_1;
 
-        if (!empty($custom_data_2)) {
-	   $data_2 = array(
-		 "businessContext" => "Circulation_Info",
-	         "key" => "customdata2",
-		 "value" => $custom_data_2
+    if (!empty($custom_data_2)) {
+	   	$data_2 = array(
+			"businessContext" => "Circulation_Info",
+	        "key" => "customdata2",
+		 	"value" => $custom_data_2
 	    );
 	    $data[] = $data_2;
 	}
 
-        if (!empty($custom_data_3)) {
-	   $data_3 = array(
-		 "businessContext" => "Circulation_Info",
-	         "key" => "customdata3",
-		 "value" => $custom_data_3
+    if (!empty($custom_data_3)) {
+		$data_3 = array(
+			"businessContext" => "Circulation_Info",
+	        "key" => "customdata3",
+		 	"value" => $custom_data_3
 	    );
 	    $data[] = $data_3;
-        }
+    }
 	return $data;
 
     }
