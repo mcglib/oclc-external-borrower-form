@@ -1,11 +1,13 @@
 categories:
   - key: value1
-    borrower_category: McGill community borrower
+    borrower_category: McG - Extern. agreements BUQ
     label: Faculty member or graduate student at a Canadian University
-    wms_custom_data_3: Reciprocal graduates & profs
+    wms_custom_data_3:
     wms_custom_data_2:
+    wms_custom_data_1:
     home_institution: true
     need_address: false
+    consortium_name: true
   - key: value2
     borrower_category: McG - Alumni
     label: McGill alumnus or alumna
@@ -14,6 +16,7 @@ categories:
     wms_custom_data_1:
     home_institution: false
     need_address: true
+    consortium_name: false
   - key: value3
     borrower_category: McG - Local agreements
     label: McGill Community for Lifelong Learning student
@@ -22,6 +25,7 @@ categories:
     wms_custom_data_1: MCLL
     home_institution: false
     need_address: true
+    consortium_name: false
   - key: value4
     borrower_category: McG - Local agreements
     label: McGill staff spouse
@@ -30,6 +34,7 @@ categories:
     wms_custom_data_1: Faculty spouse
     home_institution: false
     need_address: true
+    consortium_name: false
   - key: value5
     borrower_category: McG - Uni. community BUQ
     label: McGill PhD extension
@@ -38,6 +43,7 @@ categories:
     wms_custom_data_1: Graduate
     home_institution: false
     need_address: true
+    consortium_name: false
   - key: value6
     borrower_category: McG - Local agreements
     label: Member of the public ($100 for 6 months)
@@ -46,22 +52,8 @@ categories:
     wms_custom_data_1: Personal (paid)
     home_institution: false
     need_address: true
-  - key: value8
-    borrower_category: McG - Local Agreements
-    label: Osler/Rare Books/Archives reader
-    wms_custom_data_3:
-    wms_custom_data_2:
-    wms_custom_data_1: ROAAr Readers
-    home_institution: false
-    need_address: true
-  - key: value9
-    borrower_category: McGill community borrower
-    label: Undergraduate student at a Quebec University
-    wms_custom_data_3: Reciprocal undergrads
-    home_institution: true
-    wms_custom_data_2:
-    need_address: false
-  - key: value10
+    consortium_name: false
+  - key: value7
     borrower_category: McG - Local agreements
     label: Visiting scholar (with letter of invitation)
     wms_custom_data_3:
@@ -69,3 +61,40 @@ categories:
     wms_custom_data_1: Visiting scholar
     home_institution: false
     need_address: true
+    consortium_name: false
+  - key: value8
+    borrower_category: McG - Local Agreements
+    label: Osler/Rare Books/Archives reader
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: ROAAr reader
+    home_institution: false
+    need_address: true
+    consortium_name: false
+  - key: value9
+    borrower_category: McG - Local agreements
+    label: Friend of the Library membership
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: Friends of the Library
+    home_institution: false
+    need_address: false
+    consortium_name: false
+  - key: value10
+    borrower_category: McG - CÉGEP agreements
+    label: CÉGEP faculty member - ARC/Association pour la recherche au collégial
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: ARC/Association pour la recherche au collégial
+    home_institution: false
+    need_address: false
+    consortium_name: false
+  - key: value11
+    borrower_category: McG - Extern. agreements BUQ
+    label: BAnQ
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: BANQ
+    home_institution: false
+    need_address: false
+    consortium_name: false

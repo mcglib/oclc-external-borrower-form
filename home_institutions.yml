@@ -1,60 +1,60 @@
 institutions:
- - Acadia University
- - Algoma University
- - Athabasca University
- - Atlantic School of Theology
- - Brandon University
- - Brock University
- - Cape Breton University
- - Carleton University
- - Concordia University of Edmonton
- - Dalhousie University
- - Holland College
- - Kwantlen Polytechnic University
- - Lakehead University
- - Laurentian University
- - MacEwan University
- - McMaster University
- - Memorial University of Newfoundland
- - Mount Allison University
- - Mount Royal University
- - Mount Saint Vincent University
- - Nipissing University
- - NSCAD University (Nova Scotia College of Art & Design)
- - OCAD University (Ontario Collge of Art & Design)
- - Ontario Tech University (formerly UOIT)
- - Queen's University
- - Royal Military College of Canada
- - Royal Roads University
- - Ryerson University
- - Saint Mary’s University
- - Simon Fraser University
- - St. Francis Xavier University
- - Thompson Rivers University
- - Trent University
- - Trinity Western University
- - Université de Moncton
- - Université Sainte-Anne
- - University of Alberta
- - University of British Columbia
- - University of Calgary
- - University of Guelph
- - University of King’s College
- - University of Lethbridge
- - University of Manitoba
- - University of New Brunswick
- - University of Northern British Columbia
- - University of Ottawa
- - University of Prince Edward Island
- - University of Regina
- - University of Saskatchewan
- - University of the Fraser Valley
- - University of Toronto
- - University of Victoria
- - University of Waterloo
- - University of Windsor
- - University of Winnipeg
- - Vancouver Island University
- - Western University
- - Wilfrid Laurier University
- - York University
+  Acadia University: 'CAUL-CBUA'
+  Atlantic School of Theology: 'CAUL-CBUA'
+  Algoma University: OCUL
+  Athabasca University: COPPUL
+  Brandon University: COPPUL
+  Brock University: OCUL
+  Cape Breton University: 'CAUL-CBUA'
+  Carleton University: OCUL
+  Concordia University of Edmonton: COPPUL
+  Dalhousie University: 'CAUL-CBUA'
+  Holland College: 'CAUL-CBUA'
+  Kwantlen Polytechnic University: COPPUL
+  Lakehead University: OCUL
+  Laurentian University: OCUL
+  MacEwan University: COPPUL
+  McMaster University: OCUL
+  Memorial University of Newfoundland: 'CAUL-CBUA'
+  Mount Allison University: 'CAUL-CBUA'
+  Mount Royal University: COPPUL
+  Mount Saint Vincent University: 'CAUL-CBUA'
+  Nipissing University: OCUL
+  NSCAD University (Nova Scotia College of Art & Design): 'CAUL-CBUA'
+  OCAD University (Ontario Collge of Art & Design): OCUL
+  Ontario Tech University (formerly UOIT): OCUL
+  Queen's University: OCUL
+  Royal Military College of Canada: OCUL
+  Royal Roads University: COPPUL
+  Ryerson University: OCUL
+  Saint Mary’s University: 'CAUL-CBUA'
+  Simon Fraser University: COPPUL
+  St. Francis Xavier University: 'CAUL-CBUA'
+  Thompson Rivers University: COPPUL
+  Trent University: OCUL
+  Trinity Western University: COPPUL
+  Université de Moncton: 'CAUL-CBUA'
+  Université Sainte-Anne: 'CAUL-CBUA'
+  University of Alberta: COPPUL
+  University of British Columbia: COPPUL
+  University of Calgary: COPPUL
+  University of Guelph: OCUL
+  University of King’s College: 'CAUL-CBUA'
+  University of Lethbridge: COPPUL
+  University of Manitoba: COPPUL
+  University of New Brunswick: 'CAUL-CBUA'
+  University of Northern British Columbia: COPPUL
+  University of Ottawa: OCUL
+  University of Prince Edward Island: 'CAUL-CBUA'
+  University of Regina: COPPUL
+  University of Saskatchewan: COPPUL
+  University of the Fraser Valley: COPPUL
+  University of Toronto: OCUL
+  University of Victoria: COPPUL
+  University of Waterloo: OCUL
+  University of Windsor: OCUL
+  University of Winnipeg: COPPUL
+  Vancouver Island University: COPPUL
+  Western University: OCUL
+  Wilfrid Laurier University: OCUL
+  York University: OCUL
