@@ -212,7 +212,15 @@ class Borrower {
 	public function getBorrowerCategoryName($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-		return $data['categories'][$key]['borrower_category'];
+
+		$borrower_category = $data['categories'][$key]['borrower_category'];
+		if ($borrower_category == 'McG - Extern. agreements BUQ'
+			&& ($this->home_institution == 'Centre de recherche informatique de Montréal (CRIM)'
+				|| $this->home_institution == 'Montreal School of Theology')) {
+			return 'McG - Local agreements';
+		}
+
+		return $borrower_category;
     }
 
 	public function getBorrowerCategoryLabel($borrow_cat) {
