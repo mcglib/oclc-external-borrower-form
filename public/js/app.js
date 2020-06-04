@@ -65,7 +65,7 @@ $.fn.update_fields_info = function ($value) {
 	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_home_inst_values();
 	    $.fn.clear_spouse_name_values();
-    	    break;
+    	break;
 	 case 'value4':
 	    $('#homeInstDivCheck').add('no-display').hide();
 	    $('#spouseDivCheck').remove('no-display').fadeIn('slow');
@@ -78,20 +78,19 @@ $.fn.update_fields_info = function ($value) {
 	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_home_inst_values();
 	    $.fn.clear_spouse_name_values();
-    	    break;
+    	break;
 	 case 'value6':
 	    $('#spouseDivCheck').add('no-display').hide();
 	    $('#homeInstDivCheck').add('no-display').hide();
 	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_home_inst_values();
 	    $.fn.clear_spouse_name_values();
-    	    break;
+    	break;
 	 case 'value7':
 	    $('#spouseDivCheck').add('no-display').hide();
-	    $('#addressDivCheck').add('no-display').hide();
 	    $('#homeInstDivCheck').add('no-display').hide();
+		$('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_spouse_name_values();
-	    $.fn.clear_address_values();
 	    $.fn.clear_home_inst_values();
 	    break;
 	 case 'value8':
@@ -100,22 +99,32 @@ $.fn.update_fields_info = function ($value) {
 	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_home_inst_values();
 	    $.fn.clear_spouse_name_values();
-    	    break;
+    	break;
 	 case 'value9':
-	    $('#spouseDivCheck').add('no-display').hide();
+		$('#spouseDivCheck').add('no-display').hide();
+		$('#homeInstDivCheck').add('no-display').hide();
 	    $('#addressDivCheck').add('no-display').hide();
-	    $('#homeInstDivCheck').remove('no-display').fadeIn('slow');
 	    $.fn.clear_address_values();
-	    $.fn.clear_spouse_name_values();
+		$.fn.clear_spouse_name_values();
+		$.fn.clear_home_inst_values();
 	    break;
 	 case 'value10':
 	    $('#spouseDivCheck').add('no-display').hide();
 	    $('#homeInstDivCheck').add('no-display').hide();
-	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
+		$('#addressDivCheck').add('no-display').hide();
 	    $.fn.clear_home_inst_values();
-	    $.fn.clear_spouse_name_values();
-    	    break
-	 default:
+		$.fn.clear_spouse_name_values();
+		$.fn.clear_address_values();
+    	break;
+	case 'value11':
+		$('#spouseDivCheck').add('no-display').hide();
+		$('#homeInstDivCheck').add('no-display').hide();
+		$('#addressDivCheck').add('no-display').hide();
+		$.fn.clear_home_inst_values();
+		$.fn.clear_spouse_name_values();
+		$.fn.clear_address_values();
+		break;
+	default:
 	    $('#homeInstDivCheck').add('no-display').hide();
 	    $('#addressDivCheck').add('no-display').hide();
 	    $('#spouseDivCheck').add('no-display').hide();
@@ -124,7 +133,7 @@ $.fn.update_fields_info = function ($value) {
 };
 
 $(document).ready(function () {
-    
+
     // Get the curr val
     $curr_val = $('select[name="borrower_cat"]').val();
     $.fn.update_fields_info($curr_val);
@@ -137,6 +146,6 @@ $(document).ready(function () {
         $.fn.update_fields_info($selected_val);
     });
 
-    
+
 
 });
