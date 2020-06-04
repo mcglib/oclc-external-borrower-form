@@ -63,7 +63,7 @@ categories:
     need_address: true
     consortium_name: false
   - key: value8
-    borrower_category: McG - Local Agreements
+    borrower_category: McG - Local agreements
     label: Osler/Rare Books/Archives reader
     wms_custom_data_3:
     wms_custom_data_2:
