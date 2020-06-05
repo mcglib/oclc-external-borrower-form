@@ -136,7 +136,7 @@ class BorrowerController extends BaseController {
          // Redirect to the form.
          return redirect('error')
            ->with('oclcerror',
-             'An Error has occured creating an OCLC record for you.');
+             'An Error has occurred creating an OCLC record for you.');
        }
     }
 
