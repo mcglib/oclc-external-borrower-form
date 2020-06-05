@@ -75,9 +75,10 @@ $.fn.update_fields_info = function ($value) {
 	 case 'value5':
 	    $('#spouseDivCheck').add('no-display').hide();
 	    $('#homeInstDivCheck').add('no-display').hide();
-	    $('#addressDivCheck').remove('no-display').fadeIn('slow');
+		$('#addressDivCheck').add('no-display').hide();
 	    $.fn.clear_home_inst_values();
-	    $.fn.clear_spouse_name_values();
+		$.fn.clear_spouse_name_values();
+		$.fn.clear_address_values();
     	break;
 	 case 'value6':
 	    $('#spouseDivCheck').add('no-display').hide();
