@@ -64,7 +64,7 @@ class Borrower {
 	   $this->address1 = $request['address1'] ?? null;
 	   $this->address2 = $request['address2'] ?? null;
 	   $this->postal_code = $request['postal_code'] ?? null;
-	   $this->province_state = $request['province_state'] ?? "Quebec";
+	   $this->province_state = $request['province_state'] ?? null;
 
 
 	   $oclc_config = config('oclc.connections.development');
