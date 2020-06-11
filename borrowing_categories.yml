@@ -42,7 +42,7 @@ categories:
     wms_custom_data_2: PhD extension
     wms_custom_data_1: Graduate
     home_institution: false
-    need_address: true
+    need_address: false
     consortium_name: false
   - key: value6
     borrower_category: McG - Local agreements
