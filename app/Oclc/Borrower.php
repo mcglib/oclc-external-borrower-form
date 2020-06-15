@@ -27,6 +27,7 @@ class Borrower {
     public $address1;
     public $address2;
     public $home_institution;
+	public $consortium_name;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
@@ -58,11 +59,12 @@ class Borrower {
 	   $this->telephone_no = $request['telephone_no'] ?? null;
 	   $this->spouse_name = $request['spouse_name'] ?? null;
 	   $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
+	   $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
 	   $this->city = $request['city'] ?? null;
 	   $this->address1 = $request['address1'] ?? null;
 	   $this->address2 = $request['address2'] ?? null;
 	   $this->postal_code = $request['postal_code'] ?? null;
-	   $this->province_state = $request['province_state'] ?? "Quebec";
+	   $this->province_state = $request['province_state'] ?? null;
 
 
 	   $oclc_config = config('oclc.connections.development');
@@ -206,57 +208,87 @@ class Borrower {
     public function search() {
 
     }
-    public function getBorrowerCategoryName($borrow_cat) {
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['borrower_category'];
 
-    }
-    public function getBorrowerCategoryLabel($borrow_cat) {
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['label'];
+	public function getBorrowerCategoryName($borrow_cat) {
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 
+		$borrower_category = $data['categories'][$key]['borrower_category'];
+		if ($borrower_category == 'McG - Extern. agreements BUQ'
+			&& ($this->home_institution == 'Centre de recherche informatique de Montréal (CRIM)'
+				|| $this->home_institution == 'Montreal School of Theology')) {
+			return 'McG - Local agreements';
+		}
+
+		return $borrower_category;
     }
-    public function get_home_institution($key = null) {
-      $borrowers = Yaml::parse(
-		    file_get_contents(base_path().'/home_institutions.yml'));
-      $keys = $borrowers['institutions'];
-      if (!is_null($key)) {
-        return $keys[$key];
-      }
-      return null;
+
+	public function getBorrowerCategoryLabel($borrow_cat) {
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		return $data['categories'][$key]['label'];
+    }
+
+	public function get_home_institution($key = null) {
+		$borrowers = Yaml::parse(
+			file_get_contents(base_path().'/home_institutions.yml'));
+		$keys = $borrowers['institutions'];
+		$home_institution_name = array_keys($keys);
+		if (!is_null($key)) {
+			return $home_institution_name[$key];
+		}
+		return null;
+    }
+
+	public function get_consortium_name($key = null) {
+		$borrowers = Yaml::parse(
+			file_get_contents(base_path().'/home_institutions.yml'));
+		$keys = $borrowers['institutions'];
+		$consortium_names = array_values($keys);
+		if (!is_null($key)) {
+			return $consortium_names[$key];
+		}
+		return null;
     }
 
     public function getBorrowerCustomData3($borrow_cat) {
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['wms_custom_data_3'];
-
-    }
-    public function getBorrowerCustomData2($borrow_cat){
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 $is_home_inst = $data['categories'][$key]['home_institution'];
-	 if ($is_home_inst) {
-	 	return $this->home_institution;
-	 }else {
-	 	return $data['categories'][$key]['wms_custom_data_2'];
-	 }
-
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		return $data['categories'][$key]['wms_custom_data_3'];
     }
 
+	public function getBorrowerCustomData2($borrow_cat) {
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		$is_home_inst = $data['categories'][$key]['home_institution'];
+		if ($is_home_inst) {
+			return $this->home_institution;
+		} else {
+			return $data['categories'][$key]['wms_custom_data_2'];
+		}
+    }
+
+    public function getBorrowerCustomData1($borrow_cat) {
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		$is_consortium_name = $data['categories'][$key]['consortium_name'];
+		if ($is_consortium_name) {
+			return $this->consortium_name;
+		} else {
+			return $data['categories'][$key]['wms_custom_data_1'];
+		}
+    }
 
     private function addAddress($request) {
 	    if (isset($request['postal_code'])) {
-	       $locality = isset($request['address2']) ? $request['address2'] : "";
-	       $this->addresses[] = [
-		"streetAddress" => $request['address1'],
-		"region" => $request['city'],
-		"locality" => $locality,
-		"postalCode" => $request['postal_code'],
-		"type" => "",
-		"primary" => false
+	       	$locality = isset($request['address2']) ? $request['address2'] : "";
+	    	$this->addresses[] = [
+				"streetAddress" => $request['address1'],
+				"region" => $request['city'],
+				"locality" => $locality,
+				"postalCode" => $request['postal_code'],
+				"type" => "",
+				"primary" => false
 	       ];
 	    }
 
@@ -283,25 +315,25 @@ class Borrower {
     }
 
     public function generateBarcode() {
+		if (Storage::disk('local')->exists('counter')){
+			$curr_val = (int)Storage::disk('local')->get('counter');
+			$curr_val++;
+		} else {
+			$curr_val = $this->barcode_counter_init;
+		}
+		Storage::disk('local')->put('counter', $curr_val);
 
-	if (Storage::disk('local')->exists('counter')){
-	   $curr_val = (int)Storage::disk('local')->get('counter');
-	   $curr_val++;
-	}else {
-	   $curr_val = $this->barcode_counter_init;
-	}
-	Storage::disk('local')->put('counter', $curr_val);
 
-
-	// Read the counter
-        // increament the last counter
-        // write to the counter file
-	$str_val = (string)($curr_val);
-	//$str_val = substr_replace( $str_val, "-", 3, 0 );
-        return "EXT".$str_val;
+		// Read the counter
+		// increment the last counter
+		// write to the counter file
+		$str_val = (string)($curr_val);
+		//$str_val = substr_replace( $str_val, "-", 3, 0 );
+		return "EXT".$str_val;
 
     }
-    private function getAddresses() {
+
+	private function getAddresses() {
 	    if($this->requiresAddress($this->borrower_cat)) {
 		    return array(
 			    0 => array (
@@ -318,124 +350,127 @@ class Borrower {
 	    return null;
 
     }
+
     private function requiresAddress($borrow_cat) {
-	 $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-	 $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-	 return $data['categories'][$key]['need_address'];
+		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+		return $data['categories'][$key]['need_address'];
+    }
+
+	private function getNotes() {
+		if (isset($this->spouse_name)) {
+			$data = array(
+				"businessContext" => $this->institutionId,
+				"note" => $this->spouse_name
+			);
+			return array($data);
+		}
+		return array();
+    }
+
+	private function getCustomData() {
+		// Save data depending on the borrower category
+		$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat);
+		$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat);
+		$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
+
+		$custom_data_1 = mb_convert_encoding($custom_data_1, "UTF-8");
+		$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
+		$custom_data_3 = mb_convert_encoding($custom_data_3, "UTF-8");
+
+		$data = array();
+
+		if (!empty($custom_data_1)) {
+			$data_1 = array(
+				"businessContext" => "Circulation_Info",
+				"key" => "customdata1",
+				"value" => $custom_data_1
+			);
+			$data[] = $data_1;
+		}
+
+		if (!empty($custom_data_2)) {
+			$data_2 = array(
+				"businessContext" => "Circulation_Info",
+				"key" => "customdata2",
+				"value" => $custom_data_2
+			);
+			$data[] = $data_2;
+		}
+
+		if (!empty($custom_data_3)) {
+			$data_3 = array(
+				"businessContext" => "Circulation_Info",
+				"key" => "customdata3",
+				"value" => $custom_data_3
+			);
+			$data[] = $data_3;
+		}
+		return $data;
 
     }
-    private function  getNotes() {
-	if (isset($this->spouse_name)) {
-	   $data = array(
-		       "businessContext" => $this->institutionId,
-		       "note" => $this->spouse_name
-	   );
-	   return array($data);
 
-	}
-	return array();
-    }
-    private function getCustomData() {
-
-	// Save data depending on the borrower category
-	$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat);
-	$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat);
-
-	$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
-	$custom_data_3 = mb_convert_encoding($custom_data_3, "UTF-8");
-
-	$data = array();
-
-        $data_1 = array(
-               "businessContext" => "Circulation_Info",
-               "key" => "customdata1",
-               "value" => ""
-        );
-        $data[] = $data_1;
-
-        if (!empty($custom_data_2)) {
-	   $data_2 = array(
-		 "businessContext" => "Circulation_Info",
-	         "key" => "customdata2",
-		 "value" => $custom_data_2
-	    );
-	    $data[] = $data_2;
-	}
-
-        if (!empty($custom_data_3)) {
-	   $data_3 = array(
-		 "businessContext" => "Circulation_Info",
-	         "key" => "customdata3",
-		 "value" => $custom_data_3
-	    );
-	    $data[] = $data_3;
-        }
-	return $data;
-
-    }
-    private function getCircInfo() {
-
+	private function getCircInfo() {
         return array (
 			'barcode' => $this->barcode,
 			'borrowerCategory' => $this->getBorrowerCategoryName($this->borrower_cat),
 			'homeBranch' => $this->homeBranch,
 			'isVerified' => false,
-	      	        "isCircBlocked" =>  true,
-                        "isCollectionExempt" =>  false,
-                        "isFineExempt" => false,
-	);
-
+	      	"isCircBlocked" =>  true,
+            "isCollectionExempt" =>  false,
+            "isFineExempt" => false,
+		);
     }
 
     private function getData() {
-	$data = array (
-	  'schemas' => array (
-		 0 => 'urn:ietf:params:scim:schemas:core:2.0:User',
-		 1 => 'urn:mace:oclc.org:eidm:schema:persona:correlationinfo:20180101',
-		 2 => 'urn:mace:oclc.org:eidm:schema:persona:persona:20180305',
-		 3 => 'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101',
-		 4 => 'urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101',
-		 5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501',
-		 6 => 'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101'
-	  ),
-	  'name' => array (
-		'familyName' => $this->lname,
-		'givenName' => $this->fname,
-		'middleName' => '',
-		'honorificPrefix' => '',
-		'honorificSuffix' => '',
-	  ),
-	  'addresses' => $this->getAddresses(),
-	  'emails' => array (
-		0 =>  array (
-			'value' => $this->email,
-			//'type' => $this->defaultType,
-			'type' => "",
-			'primary' => true,
-		),
-	  ),
-	  'phoneNumbers' => array (
-		0 =>  array (
-			'value' => $this->telephone_no,
-			'type' => $this->defaultType,
-			'primary' => true,
-		),
-	  ),
-	  'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
-	    'circulationInfo' =>  $this->getCircInfo()
-          ),
-	  'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
-	    'oclcKeyValuePairs' =>  $this->getCustomData()
-          ),
-	  'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101' =>  array (
-	    'newNotes' =>  $this->getNotes()
-          ),
-	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
-		  'institutionId' => $this->institutionId,
-		  'oclcExpirationDate' => $this->setExpiryDate(),
-	  ),
-	);
-	return $data;
+		$data = array (
+			'schemas' => array (
+				0 => 'urn:ietf:params:scim:schemas:core:2.0:User',
+				1 => 'urn:mace:oclc.org:eidm:schema:persona:correlationinfo:20180101',
+				2 => 'urn:mace:oclc.org:eidm:schema:persona:persona:20180305',
+				3 => 'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101',
+				4 => 'urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101',
+				5 => 'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501',
+				6 => 'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101'
+			),
+			'name' => array (
+				'familyName' => $this->lname,
+				'givenName' => $this->fname,
+				'middleName' => '',
+				'honorificPrefix' => '',
+				'honorificSuffix' => '',
+			),
+			'addresses' => $this->getAddresses(),
+			'emails' => array (
+				0 =>  array (
+					'value' => $this->email,
+					//'type' => $this->defaultType,
+					'type' => "",
+					'primary' => true,
+				),
+			),
+			'phoneNumbers' => array (
+				0 =>  array (
+					'value' => $this->telephone_no,
+					'type' => $this->defaultType,
+					'primary' => true,
+				),
+			),
+			'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
+				'circulationInfo' =>  $this->getCircInfo()
+				),
+			'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
+				'oclcKeyValuePairs' =>  $this->getCustomData()
+				),
+			'urn:mace:oclc.org:eidm:schema:persona:newnotes:20180101' =>  array (
+				'newNotes' =>  $this->getNotes()
+				),
+			'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
+				'institutionId' => $this->institutionId,
+				'oclcExpirationDate' => $this->setExpiryDate(),
+			),
+		);
+		return $data;
     }
 
 }

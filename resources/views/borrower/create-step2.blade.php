@@ -3,7 +3,7 @@
 @section('content')
     <h3>Review Submission</h3>
     <form action="store" method="post" id="store-form" >
-	{{ csrf_field() }}
+		@csrf
         <table class="table">
             <tr>
                 <td>First name:</td>

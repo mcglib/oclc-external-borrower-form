@@ -5,11 +5,11 @@
 </head>
 <body>
 Hi,
-<p> An error has occured when a user submitted the following form on {{$url}} @ {{ $timestamp }}</p>
+<p> An error has occurred when a user submitted the following form on {{$url}} @ {{ $timestamp }}</p>
 
 <h3>Error details</h3>
 <dl class="row">
-  <dt class="col-sm-3">Date occured</dt>
+  <dt class="col-sm-3">Date occurred</dt>
   <dd class="col-sm-9">{{ $timestamp }}</dd>
 
   <dt class="col-sm-3">Error Message</dt>
