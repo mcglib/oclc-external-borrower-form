@@ -58,11 +58,11 @@ class BorrowerController extends BaseController {
      */
     public function postCreateStep1(Borrower $request)
     {
-	    $validatedData = $request->validated();
+      $validatedData = $request->validated();
 
-	    $borrower = new \App\Oclc\Borrower($validatedData);
-            $request->session()->put('borrower', $borrower);
-        return redirect('/create-step2');
+      $borrower = new \App\Oclc\Borrower($validatedData);
+      $request->session()->put('borrower', $borrower);
+      return redirect('/create-step2');
     }
 
     /**
