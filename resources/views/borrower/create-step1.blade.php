@@ -35,7 +35,6 @@
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 
-
 			    <div class="form-group">
 
 				    <label for="borrower_cat" class="control-label required">Requested borrowing category<span class="required">*</span></label>
@@ -56,6 +55,15 @@
         		        </div>
 
 			    </div>
+
+
+				<div id="telephoneDivCheck" class="no-display">
+				    <div class="form-group">
+					    <label for="telephone_no" class="control-label">Telephone<span class="required">*</span></label>
+					    {!! Form::input('text', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'placeholder' => '(xxx) xxx - xxxx ext. xxxx']) !!}
+				    </div>
+				</div>
+
 			    <div id="addressDivCheck" class="no-display">
 				   <fieldset class="form-group" id="borrower_address">
 				    <legend>Borrower information</legend>
@@ -80,10 +88,6 @@
 				    <div class="form-group">
 					<label for="postal_code" class="control-label">Postal code<span class="required">*</span></label>
 					 {!! Form::input('text', 'postal_code', $borrower->postal_code ?? null, ['class'=> 'form-control', 'placeholder' => 'XXX XXX']) !!}
-				    </div>
-				    <div class="form-group">
-					    <label for="telephone_no" class="control-label">Telephone<span class="required">*</span></label>
-					    {!! Form::input('text', 'telephone_no', $borrower->telephone_no ?? null, ['class'=> 'form-control', 'placeholder' => '(xxx) xxx - xxxx ext. xxxx']) !!}
 				    </div>
 				    </fieldset>
 			    </div>

@@ -7,6 +7,7 @@ categories:
     wms_custom_data_1:
     home_institution: true
     need_address: false
+    need_phone: false
     consortium_name: true
   - key: value2
     borrower_category: McG - Alumni
@@ -16,6 +17,7 @@ categories:
     wms_custom_data_1:
     home_institution: false
     need_address: true
+    need_phone: false
     consortium_name: false
   - key: value3
     borrower_category: McG - Local agreements
@@ -25,6 +27,7 @@ categories:
     wms_custom_data_1: MCLL
     home_institution: false
     need_address: true
+    need_phone: true
     consortium_name: false
   - key: value4
     borrower_category: McG - Local agreements
@@ -34,6 +37,7 @@ categories:
     wms_custom_data_1: Faculty spouse
     home_institution: false
     need_address: true
+    need_phone: true
     consortium_name: false
   - key: value5
     borrower_category: McG - Uni. community BUQ
@@ -43,6 +47,7 @@ categories:
     wms_custom_data_1: Graduate
     home_institution: false
     need_address: false
+    need_phone: false
     consortium_name: false
   - key: value6
     borrower_category: McG - Local agreements
@@ -52,6 +57,7 @@ categories:
     wms_custom_data_1: Personal (paid)
     home_institution: false
     need_address: true
+    need_phone: true
     consortium_name: false
   - key: value7
     borrower_category: McG - Local agreements
@@ -61,6 +67,7 @@ categories:
     wms_custom_data_1: Visiting scholar
     home_institution: false
     need_address: true
+    need_phone: true
     consortium_name: false
   - key: value8
     borrower_category: McG - Local agreements
@@ -70,6 +77,7 @@ categories:
     wms_custom_data_1: ROAAr reader
     home_institution: false
     need_address: true
+    need_phone: true
     consortium_name: false
   - key: value9
     borrower_category: McG - Local agreements
@@ -79,6 +87,7 @@ categories:
     wms_custom_data_1: Friends of the Library
     home_institution: false
     need_address: false
+    need_phone: true
     consortium_name: false
   - key: value10
     borrower_category: McG - CÉGEP agreements
@@ -88,6 +97,7 @@ categories:
     wms_custom_data_1: ARC/Association pour la recherche au collégial
     home_institution: false
     need_address: false
+    need_phone: false
     consortium_name: false
   - key: value11
     borrower_category: McG - Extern. agreements BUQ
@@ -97,4 +107,5 @@ categories:
     wms_custom_data_1: BANQ
     home_institution: false
     need_address: false
+    need_phone: false
     consortium_name: false
