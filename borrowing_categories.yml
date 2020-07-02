@@ -16,8 +16,8 @@ categories:
     wms_custom_data_2:
     wms_custom_data_1:
     home_institution: false
-    need_address: true
-    need_phone: false
+    need_address: false
+    need_phone: true
     consortium_name: false
   - key: value3
     borrower_category: McG - Local agreements
