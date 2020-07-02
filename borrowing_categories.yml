@@ -26,7 +26,7 @@ categories:
     wms_custom_data_2:
     wms_custom_data_1: MCLL
     home_institution: false
-    need_address: true
+    need_address: false
     need_phone: true
     consortium_name: false
   - key: value4
@@ -36,7 +36,7 @@ categories:
     wms_custom_data_2:
     wms_custom_data_1: Faculty spouse
     home_institution: false
-    need_address: true
+    need_address: false
     need_phone: true
     consortium_name: false
   - key: value5

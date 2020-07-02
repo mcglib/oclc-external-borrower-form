@@ -70,16 +70,18 @@ $.fn.update_fields_info = function ($value) {
 		case 'value3':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
-			$('#addressDivCheck').remove('no-display').fadeIn('slow');
+			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			break;
 		case 'value4':
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#addressDivCheck').add('no-display').hide();
 			$('#spouseDivCheck').remove('no-display').fadeIn('slow');
-			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			break;
 		case 'value5':
