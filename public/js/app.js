@@ -27,23 +27,23 @@
 
 
 $.fn.clear_address_values = function () {
-	$("#address1").val("");
-	$("#address2").val("");
-	$("#city").val("");
-	$("#postal_code").val("");
+	$("input[name=address1]").val("");
+	$("input[name=address2]").val("");
+	$("input[name=city]").val("");
+	$("input[name=postal_code]").val("");
 	console.log("clear select opts");
 
 };
 $.fn.clear_home_inst_values = function () {
-	$("#home_institution").val("");
+	$("select[name=home_institution]").val("");
 
 };
 $.fn.clear_spouse_name_values = function () {
-	$("#spouse_name").val("");
+	$("input[name=spouse_name]").val("");
 
 };
 $.fn.clear_telephone_no_values = function () {
-	$("#telephone_no").val("");
+	$("input[name=telephone_no]").val("");
 
 };
 
