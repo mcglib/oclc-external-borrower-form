@@ -44,7 +44,7 @@
 			    <div id="spouseDivCheck" class="no-display">
 				<div class="form-group">
 
-				    <label for="spouse_name" class="control-label">If applying for faculty spouse borrowing card, please enter the name of your spouse</label>
+				    <label for="spouse_name" class="control-label">If applying for faculty spouse borrowing card, please enter the name of your spouse<span class="required">*</span></label>
 			      	    {!! Form::input('text', 'spouse_name', $borrower->spouse_name ?? null, ['class'=> 'form-control']) !!}
         		        </div>
 			    </div>
@@ -82,7 +82,7 @@
 					 {!! Form::input('text', 'city', $borrower->city ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				    <div class="form-group">
-					<label for="province" class="control-label">Province/State<span class="required">*</span></label>
+					<label for="province_state" class="control-label">Province/State<span class="required">*</span></label>
 					 {!! Form::input('text', 'province_state', $borrower->province_state ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				    <div class="form-group">
