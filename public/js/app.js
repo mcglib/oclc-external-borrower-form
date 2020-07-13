@@ -30,6 +30,7 @@ $.fn.clear_address_values = function () {
 	$("input[name=address1]").val("");
 	$("input[name=address2]").val("");
 	$("input[name=city]").val("");
+	$("input[name=province_state]").val("");
 	$("input[name=postal_code]").val("");
 	console.log("clear select opts");
 
