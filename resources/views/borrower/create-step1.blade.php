@@ -44,7 +44,7 @@
 			    <div id="spouseDivCheck" class="no-display">
 				<div class="form-group">
 
-				    <label for="spouse_name" class="control-label">If applying for faculty spouse borrowing card, please enter the name of your spouse<span class="required">*</span></label>
+				    <label for="spouse_name" class="control-label">Name of your spouse<span class="required">*</span></label>
 			      	    {!! Form::input('text', 'spouse_name', $borrower->spouse_name ?? null, ['class'=> 'form-control']) !!}
         		        </div>
 			    </div>
