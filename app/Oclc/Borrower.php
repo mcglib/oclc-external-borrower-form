@@ -31,7 +31,7 @@ class Borrower {
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
-
+	public $borrower_consent;
 
     private $id;
     private $circInfo = [];
@@ -49,38 +49,39 @@ class Borrower {
     private $institutionId;
 
     function __construct(array $request = []) {
-	   // Set the variables
-	    $this->data = $request;
+		// Set the variables
+		$this->data = $request;
 
-	   $this->fname = $request['fname'];
-	   $this->lname = $request['lname'];
-	   $this->email = $request['email'];
-	   $this->borrower_cat = $request['borrower_cat'];
-	   $this->telephone_no = $request['telephone_no'] ?? null;
-	   $this->spouse_name = $request['spouse_name'] ?? null;
-	   $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
-	   $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
-	   $this->city = $request['city'] ?? null;
-	   $this->address1 = $request['address1'] ?? null;
-	   $this->address2 = $request['address2'] ?? null;
-	   $this->postal_code = $request['postal_code'] ?? null;
-	   $this->province_state = $request['province_state'] ?? null;
+		$this->fname = $request['fname'];
+		$this->lname = $request['lname'];
+		$this->email = $request['email'];
+		$this->borrower_cat = $request['borrower_cat'];
+		$this->telephone_no = $request['telephone_no'] ?? null;
+		$this->spouse_name = $request['spouse_name'] ?? null;
+		$this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
+		$this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
+		$this->city = $request['city'] ?? null;
+		$this->address1 = $request['address1'] ?? null;
+		$this->address2 = $request['address2'] ?? null;
+		$this->postal_code = $request['postal_code'] ?? null;
+		$this->province_state = $request['province_state'] ?? null;
+		$this->borrower_consent = $request['borrower_consent'];
 
+		$oclc_config = config('oclc.connections.development');
 
-	   $oclc_config = config('oclc.connections.development');
+		$this->institutionId = $oclc_config['institution_id'];
 
-	   $this->institutionId = $oclc_config['institution_id'];
+		$this->homeBranch = $oclc_config['home_branch'];
 
-	   $this->homeBranch = $oclc_config['home_branch'];
-
-	   // set the address
-	   $this->addAddress($request);
-	   // set the expiry date
-	   $this->expiry_date = $this->setExpiryDate();
-	    // Generate the barcode
-	   $this->barcode = $this->generateBarCode();
+		// set the address
+		$this->addAddress($request);
+		// set the expiry date
+		$this->expiry_date = $this->setExpiryDate();
+		// Generate the barcode
+		$this->barcode = $this->generateBarCode();
     }
-    public function create() {
+
+	public function create() {
 
 
       $url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
@@ -92,10 +93,10 @@ class Borrower {
       $status = $state['status'];
 
       // if success save data to $this->oclc_data
-      if($state['status'] === 201) {
+      if ($state['status'] === 201) {
           $this->oclc_data = $state['body'];
           return TRUE;
-      }else {
+      } else {
        	  $this->error_msg = $state['body'];
       }
       return FALSE;
@@ -105,7 +106,8 @@ class Borrower {
     public function error_msg() {
     	return $this->error_msg;
     }
-    public function getAuth($url) {
+
+	public function getAuth($url) {
         $oclc_config = config('oclc.connections.development');
         $key = $oclc_config['api_key'];
         $secret = $oclc_config['api_secret'];
@@ -136,10 +138,9 @@ class Borrower {
     private function setExpiryDate() {
        $futureDate = date('Y-m-d', strtotime('+1 month'));
        return $futureDate."T00:00:00Z";
-
-
     }
-    private function setAuth($token) {
+
+	private function setAuth($token) {
     	$this->authorizationHeader = "Bearer ". $token->getToken();
     }
 
@@ -315,7 +316,7 @@ class Borrower {
     }
 
     public function generateBarcode() {
-		if (Storage::disk('local')->exists('counter')){
+		if (Storage::disk('local')->exists('counter')) {
 			$curr_val = (int)Storage::disk('local')->get('counter');
 			$curr_val++;
 		} else {
@@ -358,14 +359,24 @@ class Borrower {
     }
 
 	private function getNotes() {
+		$notes = array();
+
 		if (isset($this->spouse_name)) {
 			$data = array(
 				"businessContext" => $this->institutionId,
 				"note" => $this->spouse_name
 			);
-			return array($data);
+			$notes[] = $data;
 		}
-		return array();
+
+		$consent = array(
+            "businessContext" => $this->institutionId,
+            "note" => "Consent form signed on " . date('Y-m-d')
+        );
+
+        $notes[] = $consent;
+
+        return $notes;
     }
 
 	private function getCustomData() {

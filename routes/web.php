@@ -48,3 +48,4 @@ Route::post('store', [
            'as' => 'borrower.store'
 ]);
 
+Route::view('/consent', 'borrower.consent')->name('consent');
