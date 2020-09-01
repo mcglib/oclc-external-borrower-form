@@ -94,9 +94,13 @@
 
 				<div id="consentDivCheck">
 					<div class="form-group">
-						<label for="borrower_consent" class="control-label">Consent<span class="required">*</span></label><br />
+						<label for="borrower_consent_text" class="control-label">Consent<span class="required">*</span></label><br />
+						{!! Form::textarea('borrower_consent_text', trans('consent.consent'), ['readonly', 'style' => 'max-width:100%;width:100%;height:50vh;overflow:auto;padding:2%']) !!}
+					</div>
+
+					<div class="form-group">
 						{!! Form::checkbox('borrower_consent', 'Yes', $borrower->borrower_consent ?? false, ['class'=> 'checkbox', 'required' => 'required']) !!}
-						I <a href="{{ route('consent') }}" target="_blank">agree</a>.
+						I agree</a>.
 					</div>
 				</div>
 
