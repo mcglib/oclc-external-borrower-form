@@ -47,5 +47,3 @@ Route::post('store', [
 	    'uses' => 'BorrowerController@store',
            'as' => 'borrower.store'
 ]);
-
-Route::view('/consent', 'borrower.consent')->name('consent');
