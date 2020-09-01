@@ -95,7 +95,7 @@
 				<div id="consentDivCheck">
 					<div class="form-group">
 						<label for="borrower_consent_text" class="control-label">Consent<span class="required">*</span></label><br />
-						{!! Form::textarea('borrower_consent_text', trans('consent.consent'), ['readonly', 'style' => 'max-width:100%;width:100%;height:50vh;overflow:auto;padding:2%']) !!}
+						{!! Form::textarea('borrower_consent_text', trans('consent.consent'), ['readonly', 'style' => 'max-width:100%;width:100%;height:50vh;overflow:auto;padding:2%;resize:none']) !!}
 					</div>
 
 					<div class="form-group">
