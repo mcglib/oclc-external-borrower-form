@@ -71,7 +71,7 @@
 					    <label for="address1" class="control-label">Street address 1<span class="required">*</span></label>
 					 {!! Form::input('text', 'address1', $borrower->address1 ?? null, ['class'=> 'form-control']) !!}
 				    </div>
-				   <div class="form-group">
+				   	<div class="form-group">
 					<label for="address2" class="control-label">Street address 2</label>
 					 {!! Form::input('text', 'address2', $borrower->address2 ?? null, ['class'=> 'form-control']) !!}
 
@@ -91,7 +91,20 @@
 				    </div>
 				    </fieldset>
 			    </div>
-			    <div> <span>* Required</span></div>
+
+				<div id="consentDivCheck">
+					<div class="form-group">
+						<label for="borrower_consent_text" class="control-label">Consent form</label><br />
+						{!! Form::textarea('borrower_consent_text', trans('consent.consent'), ['readonly', 'style' => 'max-width:100%;width:100%;height:50vh;overflow:auto;padding:2%;resize:none']) !!}
+					</div>
+
+					<div class="form-group">
+						{!! Form::checkbox('borrower_consent', 'Yes', $borrower->borrower_consent ?? false, ['class'=> 'checkbox', 'required' => 'required']) !!}
+						{!! trans('consent.consent_agree') !!}<span class="required">*</span>
+					</div>
+				</div>
+
+				<div> <span>* Required</span></div>
 			    <div class="form-group row">
 				<label class="col-lg-4 col-form-label form-control-label"></label>
 				<div class="col-lg-8">

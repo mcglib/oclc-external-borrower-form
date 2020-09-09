@@ -37,38 +37,41 @@ class Borrower extends FormRequest
 			'province_state' => 'required_if:borrower_cat,value6,value7,value8|max:50',
 			'postal_code' => 'required_if:borrower_cat,value6,value7,value8|max:20',
 			'home_institution' => 'required_if:borrower_cat,value1|max:120',
+			'borrower_consent' => 'required',
         ];
     }
-    /**
-	    *  * Get the error messages for the defined validation rules.
-	    *   *
-	    *    * @return array
-	    *     */
+
+	/**
+	* Get the error messages for the defined validation rules.
+	*
+	* @return array
+	*/
     public function messages()
     {
-	// Load the variables
-	$yamlContents = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-        return [
-	        'fname.required' => 'Your first name is required',
-	        'lname.required' => 'Your last name is required',
-	        'email.required' => 'Your email is required',
-	        'email.email' => 'Please enter a valid email',
-	        'borrower_cat.required' => 'Please select a borrowing category',
-	        'telephone_no.required_if' => 'Please enter a phone number we can reach you at',
-	    	'spouse_name.required_if' => 'Please enter the name of your spouse',
-	    	'address1.required_if' => 'Please fill in your address',
-	    	'postal_code.required_if' => 'Please enter your postal code',
-	    	'city.required_if' => 'Please enter your city',
-	    	'province_state.required_if' => 'Please enter the name of your province/state',
-	    	'home_institution.required_if' => 'Please enter the name of your home institution',
-	        'fname.max' => 'Your first name may not be greater than 50 characters',
-	        'lname.max' => 'Your last name may not be greater than 50 characters',
-	        'email.max' => 'Your email  may not be greater than 254 characters',
-	        'telephone_no.max' => 'Your telephone number may not be greater than 17 characters',
-	        'spouse_name.max' => 'The spouse name may not be greater than 50 characters',
-	        'address1.max' => 'The address 1 may not be greater than 120 characters',
-	        'city.max' => 'The city may not be greater than 50 characters',
-	        'postal_code.max' => 'Your telephone number may not be greater than 20 characters',
-        ];
+		// Load the variables
+		$yamlContents = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+		return [
+			'fname.required' => 'Your first name is required',
+			'lname.required' => 'Your last name is required',
+			'email.required' => 'Your email is required',
+			'email.email' => 'Please enter a valid email',
+			'borrower_cat.required' => 'Please select a borrowing category',
+			'telephone_no.required_if' => 'Please enter a phone number we can reach you at',
+			'spouse_name.required_if' => 'Please enter the name of your spouse',
+			'address1.required_if' => 'Please fill in your address',
+			'postal_code.required_if' => 'Please enter your postal code',
+			'city.required_if' => 'Please enter your city',
+			'province_state.required_if' => 'Please enter the name of your province/state',
+			'home_institution.required_if' => 'Please enter the name of your home institution',
+			'fname.max' => 'Your first name may not be greater than 50 characters',
+			'lname.max' => 'Your last name may not be greater than 50 characters',
+			'email.max' => 'Your email  may not be greater than 254 characters',
+			'telephone_no.max' => 'Your telephone number may not be greater than 17 characters',
+			'spouse_name.max' => 'The spouse name may not be greater than 50 characters',
+			'address1.max' => 'The address 1 may not be greater than 120 characters',
+			'city.max' => 'The city may not be greater than 50 characters',
+			'postal_code.max' => 'Your telephone number may not be greater than 20 characters',
+			'borrower_consent.required' => 'You must give consent before submitting the form',
+		];
     }
 }
