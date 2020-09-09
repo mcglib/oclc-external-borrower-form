@@ -47,4 +47,3 @@ Route::post('store', [
 	    'uses' => 'BorrowerController@store',
            'as' => 'borrower.store'
 ]);
-
