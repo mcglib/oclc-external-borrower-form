@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "acorn": "^6.0.5",
+        "mixin-deep": "^1.2.0",
         "webpack": "^4.29.6"
     }
 }
