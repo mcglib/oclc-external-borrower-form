@@ -26,6 +26,7 @@
         "webpack-cli": "^3.2.3"
     },
     "dependencies": {
+        "acorn": "^6.0.5",
         "webpack": "^4.29.6"
     }
 }
