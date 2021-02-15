@@ -31,7 +31,9 @@
 	<div class="container">
 	  
 	  <div class="text-censter">
-		@yield('content')
+		<p>Please note: Due to the library’s closure during Covid-19, memberships for community members are not currently available.
+			 When the library reopens, information about registration and the application form will be added to this page.</p>
+		<!--yield('content')-->
 	  </div>
 	  
 	</div><!-- /.container -->
