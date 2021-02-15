@@ -130,7 +130,7 @@ $.fn.update_fields_info = function ($value) {
 			break;
 		case 'value10':
 			$('#spouseDivCheck').add('no-display').hide();
-			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$.fn.clear_home_inst_values();

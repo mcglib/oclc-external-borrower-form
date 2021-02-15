@@ -8,6 +8,20 @@ institutions:
   Cape Breton University: 'CAUL-CBUA'
   Carleton University: OCUL
   Centre de recherche informatique de Montréal (CRIM): 'Other institutions'
+  Cégep André-Laurendeau: OCUL
+  Cégep de Saint-Laurent: OCUL
+  Cégep du Vieux-Montréal: OCUL
+  Cégep Gérald-Godin: OCUL
+  Cégep John Abbott College: OCUL
+  Cégep Marie-Victorin: OCUL
+  Cégep Vanier: OCUL
+  Collège Ahunstic: OCUL
+  Collège de Bois-de-Boulogne: OCUL
+  Collège de Maisonneuve: OCUL
+  Collège de Rosemont: OCUL
+  Collège Montmorency: OCUL
+  Champlain College: OCUL
+  Dawson College: OCUL
   Concordia University of Edmonton: COPPUL
   Dalhousie University: 'CAUL-CBUA'
   Holland College: 'CAUL-CBUA'
@@ -60,3 +74,4 @@ institutions:
   Western University: OCUL
   Wilfrid Laurier University: OCUL
   York University: OCUL
+  Other: OCUL
