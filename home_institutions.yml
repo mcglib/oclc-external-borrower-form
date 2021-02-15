@@ -8,6 +8,20 @@ institutions:
   Cape Breton University: 'CAUL-CBUA'
   Carleton University: OCUL
   Centre de recherche informatique de Montréal (CRIM): 'Other institutions'
+  Cégep André-Laurendeau: 'ARC / Cégep'
+  Cégep de Saint-Laurent: 'ARC / Cégep'
+  Cégep du Vieux-Montréal: 'ARC / Cégep'
+  Cégep Gérald-Godin: 'ARC / Cégep'
+  Cégep John Abbott College: 'ARC / Cégep'
+  Cégep Marie-Victorin: 'ARC / Cégep'
+  Cégep Vanier: 'ARC / Cégep'
+  Collège Ahunstic: 'ARC / Cégep'
+  Collège de Bois-de-Boulogne: 'ARC / Cégep'
+  Collège de Maisonneuve: 'ARC / Cégep'
+  Collège de Rosemont: 'ARC / Cégep'
+  Collège Montmorency: 'ARC / Cégep'
+  Champlain College: 'ARC / Cégep'
+  Dawson College: 'ARC / Cégep'
   Concordia University of Edmonton: COPPUL
   Dalhousie University: 'CAUL-CBUA'
   Holland College: 'CAUL-CBUA'
@@ -60,3 +74,4 @@ institutions:
   Western University: OCUL
   Wilfrid Laurier University: OCUL
   York University: OCUL
+  Other: 'Other institutions'
