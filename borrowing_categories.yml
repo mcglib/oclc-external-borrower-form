@@ -90,12 +90,12 @@ categories:
     need_phone: true
     consortium_name: false
   - key: value10
-    borrower_category: McG - CÉGEP agreements
+    borrower_category: McG - Extern. agreements BUQ
     label: CÉGEP faculty member - ARC/Association pour la recherche au collégial
     wms_custom_data_3:
     wms_custom_data_2:
-    wms_custom_data_1: ARC/Association pour la recherche au collégial
-    home_institution: false
+    wms_custom_data_1: ARC / Cégep
+    home_institution: true
     need_address: false
     need_phone: false
     consortium_name: false
@@ -105,7 +105,7 @@ categories:
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1: BANQ
-    home_institution: false
+    home_institution: true
     need_address: false
     need_phone: false
     consortium_name: false

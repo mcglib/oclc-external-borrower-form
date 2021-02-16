@@ -12,3 +12,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /node_modules
+app/.DS_Store
+app/Http/.DS_Store
+app/Http/Controllers/.DS_Store
+config/.DS_Store

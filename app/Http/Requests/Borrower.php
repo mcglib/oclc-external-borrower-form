@@ -36,7 +36,7 @@ class Borrower extends FormRequest
 			'city' => 'required_if:borrower_cat,value6,value7,value8|max:50',
 			'province_state' => 'required_if:borrower_cat,value6,value7,value8|max:50',
 			'postal_code' => 'required_if:borrower_cat,value6,value7,value8|max:20',
-			'home_institution' => 'required_if:borrower_cat,value1|max:120',
+			'home_institution' => 'required_if:borrower_cat,value1,value10|max:120',
 			'borrower_consent' => 'required',
         ];
     }

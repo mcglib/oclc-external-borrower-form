@@ -49,36 +49,36 @@ class Borrower {
     private $institutionId;
 
     function __construct(array $request = []) {
-		// Set the variables
-		$this->data = $request;
+      // Set the variables
+      $this->data = $request;
 
-		$this->fname = $request['fname'];
-		$this->lname = $request['lname'];
-		$this->email = $request['email'];
-		$this->borrower_cat = $request['borrower_cat'];
-		$this->telephone_no = $request['telephone_no'] ?? null;
-		$this->spouse_name = $request['spouse_name'] ?? null;
-		$this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
-		$this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
-		$this->city = $request['city'] ?? null;
-		$this->address1 = $request['address1'] ?? null;
-		$this->address2 = $request['address2'] ?? null;
-		$this->postal_code = $request['postal_code'] ?? null;
-		$this->province_state = $request['province_state'] ?? null;
-		$this->borrower_consent = $request['borrower_consent'];
+      $this->fname = $request['fname'];
+      $this->lname = $request['lname'];
+      $this->email = $request['email'];
+      $this->borrower_cat = $request['borrower_cat'];
+      $this->telephone_no = $request['telephone_no'] ?? null;
+      $this->spouse_name = $request['spouse_name'] ?? null;
+      $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
+      $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
+      $this->city = $request['city'] ?? null;
+      $this->address1 = $request['address1'] ?? null;
+      $this->address2 = $request['address2'] ?? null;
+      $this->postal_code = $request['postal_code'] ?? null;
+      $this->province_state = $request['province_state'] ?? null;
+      $this->borrower_consent = $request['borrower_consent'];
 
-		$oclc_config = config('oclc.connections.development');
+      $oclc_config = config('oclc.connections.development');
 
-		$this->institutionId = $oclc_config['institution_id'];
+      $this->institutionId = $oclc_config['institution_id'];
 
-		$this->homeBranch = $oclc_config['home_branch'];
+      $this->homeBranch = $oclc_config['home_branch'];
 
-		// set the address
-		$this->addAddress($request);
-		// set the expiry date
-		$this->expiry_date = $this->setExpiryDate();
-		// Generate the barcode
-		$this->barcode = $this->generateBarCode();
+      // set the address
+      $this->addAddress($request);
+      // set the expiry date
+      $this->expiry_date = $this->setExpiryDate();
+      // Generate the barcode
+      $this->barcode = $this->generateBarCode();
     }
 
 	public function create() {
@@ -211,23 +211,23 @@ class Borrower {
     }
 
 	public function getBorrowerCategoryName($borrow_cat) {
-		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+      $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+      $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 
-		$borrower_category = $data['categories'][$key]['borrower_category'];
-		if ($borrower_category == 'McG - Extern. agreements BUQ'
-			&& ($this->home_institution == 'Centre de recherche informatique de Montréal (CRIM)'
-				|| $this->home_institution == 'Montreal School of Theology')) {
-			return 'McG - Local agreements';
-		}
+      $borrower_category = $data['categories'][$key]['borrower_category'];
+      if ($borrower_category == 'McG - Extern. agreements BUQ'
+          && ($this->home_institution == 'Centre de recherche informatique de Montréal (CRIM)'
+              || $this->home_institution == 'Montreal School of Theology')) {
+          return 'McG - Local agreements';
+      }
 
-		return $borrower_category;
+      return $borrower_category;
     }
 
-	public function getBorrowerCategoryLabel($borrow_cat) {
-		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
-		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-		return $data['categories'][$key]['label'];
+  public function getBorrowerCategoryLabel($borrow_cat) {
+      $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
+      $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
+      return $data['categories'][$key]['label'];
     }
 
 	public function get_home_institution($key = null) {
