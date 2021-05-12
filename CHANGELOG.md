@@ -1,3 +1,7 @@
+1.1.8
+- Updated varios node_module plugins
+- Upgrading to laravel 7
+- CEGEP accounts (ARC) should now be in borrower Category: McG – Extern. Agreements
 1.1.7.1
 - Added the full colon at the end of the submission statement
 1.1.7

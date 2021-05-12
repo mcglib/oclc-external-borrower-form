@@ -105,7 +105,7 @@ categories:
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1: BANQ
-    home_institution: true
+    home_institution: false
     need_address: false
     need_phone: false
     consortium_name: false
