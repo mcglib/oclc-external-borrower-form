@@ -43,9 +43,9 @@ class BorrowerController extends BaseController {
                     'route' => 'borrower.create_step_2'
             ]);
       return view('borrower.create-step1')
-        ->with(compact('borrower_categories', $borrower_categories))
-        ->with(compact('home_institutions', $home_institutions))
-        ->with(compact('borrower', $borrower))
+        ->with('borrower_categories', $borrower_categories)
+        ->with('home_institutions', $home_institutions)
+        ->with('borrower', $borrower)
       ;
 
     }
@@ -75,8 +75,8 @@ class BorrowerController extends BaseController {
         $borrower = $request->session()->get('borrower');
         $home_institutions = $this->get_home_institutions();
         return view('borrower.create-step2')
-          ->with(compact('borrower', $borrower))
-          ->with(compact('home_institutions', $home_institutions))
+          ->with('borrower', $borrower)
+          ->with('home_institutions', $home_institutions)
         ;
     }
 
@@ -92,14 +92,14 @@ class BorrowerController extends BaseController {
 	    // clear session data
       $request->session()->flush();
       return view('borrower.success')
-        ->with(compact('borrower', $borrower));
+        ->with('borrower', $borrower);
     }
 
     public function errorPage(Request $request)
     {
         $borrower = $request->session()->get('borrower');
         return view('borrower.error')
-          ->with(compact('borrower', $borrower))
+          ->with('borrower', $borrower)
 	  ;
     }
 
