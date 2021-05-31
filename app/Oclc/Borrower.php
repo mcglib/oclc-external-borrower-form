@@ -257,8 +257,7 @@ class Borrower {
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		return $data['categories'][$key]['wms_custom_data_3'];
     }
-
-	public function getBorrowerCustomData2($borrow_cat) {
+    public function getBorrowerCustomData2($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		$is_home_inst = $data['categories'][$key]['home_institution'];
