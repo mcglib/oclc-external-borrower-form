@@ -48,4 +48,10 @@
 	</td>
     </tr>
     @endif
+	@if (isset($borrower->current_barcode))
+    <tr>
+	<td>Current McGill ID Barcode:</td>
+	<td><strong>{{$borrower->current_barcode}}</strong></td>
+    </tr>
+    @endif
 </table>

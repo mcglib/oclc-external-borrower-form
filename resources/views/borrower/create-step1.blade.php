@@ -92,6 +92,13 @@
 				    </fieldset>
 			    </div>
 
+				<div id="currentBarcodeDivCheck" class="no-display">
+					<div class="form-group">
+					    <label for="current_barcode" class="control-label">Current McGill ID Barcode</label>
+					    {!! Form::input('text', 'current_barcode', $borrower->current_barcode ?? null, ['class'=> 'form-control']) !!}
+				    </div>
+				</div>
+
 				<div id="consentDivCheck">
 					<div class="form-group">
 						<label for="borrower_consent_text" class="control-label">Consent form</label><br />

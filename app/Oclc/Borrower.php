@@ -31,6 +31,7 @@ class Borrower {
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
+	public $current_barcode;
 	public $borrower_consent;
 
     private $id;
@@ -77,8 +78,10 @@ class Borrower {
       $this->addAddress($request);
       // set the expiry date
       $this->expiry_date = $this->setExpiryDate();
-      // Generate the barcode
+      // Generate the temporary barcode
       $this->barcode = $this->generateBarCode();
+	  // Store the current barcode if applicable
+	  $this->current_barcode = $request['current_barcode'] ?? null;
     }
 
 	public function create() {
@@ -374,6 +377,14 @@ class Borrower {
         );
 
         $notes[] = $consent;
+
+		if (isset($this->current_barcode)) {
+			$data = array(
+				"businessContext" => $this->institutionId,
+				"note" => "McGill ID barcode linked to user: ". $this->current_barcode
+			);
+			$notes[] = $data;
+		}
 
         return $notes;
     }
