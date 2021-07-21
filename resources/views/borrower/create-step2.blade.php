@@ -63,6 +63,13 @@
             </tr>
 		@endif
 
+		@if (isset($borrower->department))
+		    <tr>
+                <td>Department:</td>
+                <td><strong>{{$borrower->department}}</strong></td>
+            </tr>
+		@endif
+
 		@if (isset($borrower->borrower_consent))
 		    <tr>
                 <td>Consent given?:</td>

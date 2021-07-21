@@ -91,6 +91,13 @@ class BorrowerForm extends Form
                     'current_barcode.required' => 'Please enter your current barcode.'
                 ]
             ])
+            ->add('department', 'text', [
+                'label' => 'Department',
+                'rules' => 'max:100',
+                'error_messages' => [
+                    'department.required' => 'Please enter your department name.'
+                ]
+            ])
             ->add('home_institution', 'text', [
                 'attr' => ['class' => 'form-control field-input no-display'],
                 'label' => 'Please enter the name of your home institution',

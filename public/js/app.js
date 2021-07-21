@@ -32,23 +32,19 @@ $.fn.clear_address_values = function () {
 	$("input[name=province_state]").val("");
 	$("input[name=postal_code]").val("");
 	console.log("clear select opts");
-
 };
 $.fn.clear_home_inst_values = function () {
 	$("select[name=home_institution]").val("");
-
 };
 $.fn.clear_spouse_name_values = function () {
 	$("input[name=spouse_name]").val("");
-
 };
 $.fn.clear_telephone_no_values = function () {
 	$("input[name=telephone_no]").val("");
-
 };
 $.fn.clear_current_barcode_values = function () {
 	$("input[name=current_barcode]").val("");
-
+	$("input[name=department]").val("");
 };
 $.fn.update_fields_info = function ($value) {
 	switch($value) {

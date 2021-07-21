@@ -86,4 +86,10 @@ Hi,
 	<td><strong>{{$borrower->current_barcode}}</strong></td>
     </tr>
     @endif
+	@if (isset($borrower->department))
+    <tr>
+	<td>Department:</td>
+	<td><strong>{{$borrower->department}}</strong></td>
+    </tr>
+    @endif
 </table>

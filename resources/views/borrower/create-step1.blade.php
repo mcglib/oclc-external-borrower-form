@@ -97,6 +97,11 @@
 					    <label for="current_barcode" class="control-label">Current McGill ID Barcode</label>
 					    {!! Form::input('text', 'current_barcode', $borrower->current_barcode ?? null, ['class'=> 'form-control']) !!}
 				    </div>
+
+					<div class="form-group">
+					    <label for="department" class="control-label">Department</label>
+					    {!! Form::input('text', 'department', $borrower->department ?? null, ['class'=> 'form-control']) !!}
+				    </div>
 				</div>
 
 				<div id="consentDivCheck">
