@@ -37,7 +37,9 @@ class Borrower extends FormRequest
 			'province_state' => 'required_if:borrower_cat,value6,value7,value8|max:50',
 			'postal_code' => 'required_if:borrower_cat,value6,value7,value8|max:20',
 			'home_institution' => 'required_if:borrower_cat,value1,value10|max:120',
-			'borrower_consent' => 'required',
+			'current_barcode' => 'nullable|alpha_num',
+			'department' => 'nullable|max:100',
+			'borrower_consent' => 'required'
         ];
     }
 
@@ -72,6 +74,8 @@ class Borrower extends FormRequest
 			'city.max' => 'The city may not be greater than 50 characters',
 			'postal_code.max' => 'Your telephone number may not be greater than 20 characters',
 			'borrower_consent.required' => 'You must give consent before submitting the form',
+			'current_barcode.alpha_num' => 'The barcode must contain only alphanumeric characters.',
+			'department.max' => 'Your department name may not be greater than 100 characters'
 		];
     }
 }

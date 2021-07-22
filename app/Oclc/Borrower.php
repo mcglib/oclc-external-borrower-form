@@ -31,6 +31,7 @@ class Borrower {
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
+	public $current_barcode;
 	public $borrower_consent;
 
     private $id;
@@ -47,6 +48,7 @@ class Borrower {
     private $borrowerCategory = 'McGill community borrower';
     private $homeBranch = 262754; // Maybe 262754
     private $institutionId;
+	private $department;
 
     function __construct(array $request = []) {
       // Set the variables
@@ -77,8 +79,12 @@ class Borrower {
       $this->addAddress($request);
       // set the expiry date
       $this->expiry_date = $this->setExpiryDate();
-      // Generate the barcode
+      // Generate the temporary barcode
       $this->barcode = $this->generateBarCode();
+	  // Store the current barcode if applicable
+	  $this->current_barcode = $request['current_barcode'] ?? null;
+	  // Store the department if applicable
+	  $this->department = $request['department'] ?? null;
     }
 
 	public function create() {
@@ -375,6 +381,14 @@ class Borrower {
 
         $notes[] = $consent;
 
+		if (isset($this->current_barcode)) {
+			$data = array(
+				"businessContext" => $this->institutionId,
+				"note" => "McGill ID barcode linked to user: ". $this->current_barcode
+			);
+			$notes[] = $data;
+		}
+
         return $notes;
     }
 
@@ -383,6 +397,11 @@ class Borrower {
 		$custom_data_3 = $this->getBorrowerCustomData3($this->borrower_cat);
 		$custom_data_2 = $this->getBorrowerCustomData2($this->borrower_cat);
 		$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
+
+		// if department affiliation is provided, store in custom data 3
+		if (empty($custom_data_3) && !empty($this->department)) {
+			$custom_data_3 = $this->department;
+		}
 
 		$custom_data_1 = mb_convert_encoding($custom_data_1, "UTF-8");
 		$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");

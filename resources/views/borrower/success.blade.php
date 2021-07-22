@@ -69,6 +69,18 @@
 		<td><strong>{{$borrower->telephone_no}}</strong></td>
 	    </tr>
 	    @endif
+		@if (isset($borrower->current_barcode))
+		    <tr>
+			<td>Current McGill ID Barcode:</td>
+			<td><strong>{{$borrower->current_barcode}}</strong></td>
+		    </tr>
+	    @endif
+		@if (isset($borrower->department))
+		    <tr>
+			<td>Department:</td>
+			<td><strong>{{$borrower->department}}</strong></td>
+		    </tr>
+	    @endif
         </table>
         <div class="form-group row">
 		<label class="col-lg-3 col-form-label form-control-label"></label>
