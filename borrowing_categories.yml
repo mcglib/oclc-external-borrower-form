@@ -9,6 +9,7 @@ categories:
     need_address: false
     need_phone: false
     consortium_name: true
+    need_barcode: false
   - key: value2
     borrower_category: McG - Alumni
     label: McGill alumnus or alumna
@@ -19,6 +20,7 @@ categories:
     need_address: false
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value3
     borrower_category: McG - Local agreements
     label: McGill Community for Lifelong Learning student
@@ -29,6 +31,7 @@ categories:
     need_address: false
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value4
     borrower_category: McG - Local agreements
     label: McGill staff spouse
@@ -39,6 +42,7 @@ categories:
     need_address: false
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value5
     borrower_category: McG - Uni. community BUQ
     label: McGill PhD extension
@@ -49,6 +53,7 @@ categories:
     need_address: false
     need_phone: false
     consortium_name: false
+    need_barcode: false
   - key: value6
     borrower_category: McG - Local agreements
     label: Member of the public ($100 for 6 months)
@@ -59,6 +64,7 @@ categories:
     need_address: true
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value7
     borrower_category: McG - Local agreements
     label: Visiting scholar (with letter of invitation)
@@ -69,6 +75,7 @@ categories:
     need_address: true
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value8
     borrower_category: McG - Local agreements
     label: Osler/Rare Books/Archives reader
@@ -79,6 +86,7 @@ categories:
     need_address: true
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value9
     borrower_category: McG - Local agreements
     label: Friend of the Library membership
@@ -89,6 +97,7 @@ categories:
     need_address: false
     need_phone: true
     consortium_name: false
+    need_barcode: false
   - key: value10
     borrower_category: McG - Extern. agreements BUQ
     label: CÉGEP faculty member - ARC/Association pour la recherche au collégial
@@ -99,6 +108,7 @@ categories:
     need_address: false
     need_phone: false
     consortium_name: false
+    need_barcode: false
   - key: value11
     borrower_category: McG - Extern. agreements BUQ
     label: BAnQ
@@ -109,3 +119,15 @@ categories:
     need_address: false
     need_phone: false
     consortium_name: false
+    need_barcode: false
+  - key: value12
+    borrower_category: McG - Local agreements
+    label: Course lecturer extension
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: Course lecturer extension
+    home_institution: false
+    need_address: false
+    need_phone: true
+    consortium_name: false
+    need_barcode: true

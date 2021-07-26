@@ -34,17 +34,17 @@ class BorrowerForm extends Form
                     'email.required' => 'Please fill in your email address.'
                 ]
             ])
-	    ->add('borrower_cat', 'select', [
-	        'choices' => $borrower_categories,
-		'attr' => ['onchange' => 'admSelectCheck(this);'],
-	        'selected' => 'value1',
-	        'empty_value' => 'Please select the appropriate borrowing category',
+            ->add('borrower_cat', 'select', [
+                'choices' => $borrower_categories,
+                'attr' => ['onchange' => 'admSelectCheck(this);'],
+                'selected' => 'value1',
+                'empty_value' => 'Please select the appropriate borrowing category',
                 'label' => 'Requested borrowing category',
                 'rules' => 'required',
                 'error_messages' => [
-                   'borrower_cat.required' => 'The last name  field is mandatory.'
+                    'borrower_cat.required' => 'The last name  field is mandatory.'
                 ]
-	    ])
+            ])
             ->add('address1', 'text', [
                 'label' => 'Street address 1',
                 'error_messages' => [
@@ -69,28 +69,42 @@ class BorrowerForm extends Form
                     'postal_code.required' => 'The Postal code field is mandatory.'
                 ]
             ])
-	    ->add('telephone_no', 'number', [
-		 'attr' => ['class' => 'form-control field-input'],
-		 'label' => 'Telephone',
-                 'rules' => 'min:5',
-                 'error_messages' => [
-                    'telephone_no.required' => 'Please enter a proper telephone number.'
-                 ]
-	    ])
-	    ->add('spouse_name', 'text', [
-		 'attr' => ['class' => 'form-control field-input no-display'],
-		 'label' => 'If applying for faculty spouse borrowing card, please enter the name of your spouse',
-                 'error_messages' => [
-                    'spouse_name.arequired' => 'Please enter a proper telephon.'
-                 ]
-	   ])
-	    ->add('home_institution', 'text', [
-		 'attr' => ['class' => 'form-control field-input no-display'],
-		 'label' => 'Please enter the name of your home institution',
-                 'error_messages' => [
+            ->add('telephone_no', 'number', [
+            'attr' => ['class' => 'form-control field-input'],
+            'label' => 'Telephone',
+                    'rules' => 'min:5',
+                    'error_messages' => [
+                        'telephone_no.required' => 'Please enter a proper telephone number.'
+                    ]
+            ])
+            ->add('spouse_name', 'text', [
+                'attr' => ['class' => 'form-control field-input no-display'],
+                'label' => 'If applying for faculty spouse borrowing card, please enter the name of your spouse',
+                'error_messages' => [
+                    'spouse_name.required' => 'Please enter the name of your spouse.'
+                ]
+            ])
+            ->add('current_barcode', 'text', [
+                'label' => 'Current Barcode',
+                'rules' => 'alpha_num',
+                'error_messages' => [
+                    'current_barcode.required' => 'Please enter your current barcode.'
+                ]
+            ])
+            ->add('department', 'text', [
+                'label' => 'Department',
+                'rules' => 'max:100',
+                'error_messages' => [
+                    'department.required' => 'Please enter your department name.'
+                ]
+            ])
+            ->add('home_institution', 'text', [
+                'attr' => ['class' => 'form-control field-input no-display'],
+                'label' => 'Please enter the name of your home institution',
+                'error_messages' => [
                     'home_institution.required' => 'Please enter the name of your home institution.'
-                 ]
-	   ]);
+                ]
+            ]);
     }
     public function get_borrower_categories() {
       $borrowers = Yaml::parse(

@@ -56,13 +56,28 @@
 	    	</tr>
 	    @endif
 
+		@if (isset($borrower->current_barcode))
+		    <tr>
+                <td>Current McGill ID Barcode:</td>
+                <td><strong>{{$borrower->current_barcode}}</strong></td>
+            </tr>
+		@endif
+
+		@if (isset($borrower->department))
+		    <tr>
+                <td>Department:</td>
+                <td><strong>{{$borrower->department}}</strong></td>
+            </tr>
+		@endif
+
 		@if (isset($borrower->borrower_consent))
 		    <tr>
                 <td>Consent given?:</td>
                 <td><strong>{{$borrower->borrower_consent}}</strong></td>
             </tr>
 		@endif
-        </table>
+
+		</table>
         <div class="form-group row">
 		<label class="col-lg-4 col-form-label form-control-label"></label>
 		<div class="col-lg-8">
