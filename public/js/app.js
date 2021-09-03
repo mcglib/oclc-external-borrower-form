@@ -183,7 +183,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#homeInstDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
-			$('#mcgillIDDivCheck').remove('no-display').fadeIn('slow');
+			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
