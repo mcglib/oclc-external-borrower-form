@@ -54,7 +54,15 @@
 	<td><strong>{{$borrower->current_barcode}}</strong></td>
     </tr>
     @endif
-	@if (isset($borrower->department))
+    
+    @if (isset($borrower->mcgill_id))
+    <tr>
+	<td>McGill ID:</td>
+	<td><strong>{{$borrower->mcgill_id}}</strong></td>
+    </tr>
+    @endif
+
+    @if (isset($borrower->department))
     <tr>
 	<td>Department:</td>
 	<td><strong>{{$borrower->department}}</strong></td>
