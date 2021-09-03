@@ -98,6 +98,13 @@ class BorrowerForm extends Form
                     'department.required' => 'Please enter your department name.'
                 ]
             ])
+            ->add('mcgill_id', 'text', [
+                'label' => 'Employee ID',
+                'rules' => 'max:20',
+                'error_messages' => [
+                    'mcgill_id.required' => 'Please enter your current McGill ID.'
+                ]
+            ])
             ->add('home_institution', 'text', [
                 'attr' => ['class' => 'form-control field-input no-display'],
                 'label' => 'Please enter the name of your home institution',

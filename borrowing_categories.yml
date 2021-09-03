@@ -131,3 +131,14 @@ categories:
     need_phone: true
     consortium_name: false
     need_barcode: true
+  - key: value13
+    borrower_category: McG - Local agreements
+    label: Casual Staff
+    wms_custom_data_3:
+    wms_custom_data_2:
+    wms_custom_data_1: Casual Staff
+    home_institution: false
+    need_address: false
+    need_phone: true
+    consortium_name: false
+    need_barcode: true

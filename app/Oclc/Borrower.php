@@ -11,6 +11,10 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Storage;
 use Yaml;
 
+/**
+ * Borrower class that creates 
+ * the OCLC borrower account
+ */
 class Borrower {
     /**
      * The valid field.
@@ -27,12 +31,13 @@ class Borrower {
     public $address1;
     public $address2;
     public $home_institution;
-	public $consortium_name;
+    public $consortium_name;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
-	public $current_barcode;
-	public $borrower_consent;
+    public $current_barcode;
+    public $mcgill_id;
+    public $borrower_consent;
 
     private $id;
     private $circInfo = [];
@@ -48,8 +53,11 @@ class Borrower {
     private $borrowerCategory = 'McGill community borrower';
     private $homeBranch = 262754; // Maybe 262754
     private $institutionId;
-	private $department;
+    private $department;
 
+    /**
+     * @param array $request
+     */
     function __construct(array $request = []) {
       // Set the variables
       $this->data = $request;
@@ -63,6 +71,7 @@ class Borrower {
       $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
       $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
       $this->city = $request['city'] ?? null;
+      $this->mcgillid = $request['mcgillid'] ?? null;
       $this->address1 = $request['address1'] ?? null;
       $this->address2 = $request['address2'] ?? null;
       $this->postal_code = $request['postal_code'] ?? null;
@@ -109,9 +118,9 @@ class Borrower {
 
     }
 
-    public function error_msg() {
-    	return $this->error_msg;
-    }
+    	public function error_msg() {
+    		return $this->error_msg;
+    	}
 
 	public function getAuth($url) {
         $oclc_config = config('oclc.connections.development');
@@ -216,7 +225,7 @@ class Borrower {
 
     }
 
-	public function getBorrowerCategoryName($borrow_cat) {
+  public function getBorrowerCategoryName($borrow_cat) {
       $data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
       $key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 
@@ -245,7 +254,7 @@ class Borrower {
 			return $home_institution_name[$key];
 		}
 		return null;
-    }
+    	}
 
 	public function get_consortium_name($key = null) {
 		$borrowers = Yaml::parse(
@@ -256,14 +265,14 @@ class Borrower {
 			return $consortium_names[$key];
 		}
 		return null;
-    }
+    	}
 
-    public function getBorrowerCustomData3($borrow_cat) {
+    	public function getBorrowerCustomData3($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		return $data['categories'][$key]['wms_custom_data_3'];
-    }
-    public function getBorrowerCustomData2($borrow_cat) {
+    	}
+    	public function getBorrowerCustomData2($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		$is_home_inst = $data['categories'][$key]['home_institution'];
@@ -272,9 +281,9 @@ class Borrower {
 		} else {
 			return $data['categories'][$key]['wms_custom_data_2'];
 		}
-    }
+    	}
 
-    public function getBorrowerCustomData1($borrow_cat) {
+    	public function getBorrowerCustomData1($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		$is_consortium_name = $data['categories'][$key]['consortium_name'];
@@ -283,9 +292,9 @@ class Borrower {
 		} else {
 			return $data['categories'][$key]['wms_custom_data_1'];
 		}
-    }
+    	}
 
-    private function addAddress($request) {
+    	private function addAddress($request) {
 	    if (isset($request['postal_code'])) {
 	       	$locality = isset($request['address2']) ? $request['address2'] : "";
 	    	$this->addresses[] = [
@@ -297,30 +306,40 @@ class Borrower {
 				"primary" => false
 	       ];
 	    }
+    	}
 
-    }
-
-    //**** Accessors ***//
-    public function getFNameAttribute() {
-    	return $this->fname;
-    }
-    public function getRequestAttribute() {
-    	return $this->request;
-    }
-    public function getEmailAttribute() {
-    	return $this->email;
-    }
-    public function getTelephoneNoAttribute() {
-    	return $this->telephone_no;
-    }
-    public function getBarcodeAttribute() {
-    	return $this->barcode;
-    }
-    public function getLNameAttribute() {
-    	return $this->lname;
-    }
-
-    public function generateBarcode() {
+	//**** Accessors ***//
+	public function getFNameAttribute() {
+		return $this->fname;
+	}
+	public function getRequestAttribute() {
+		return $this->request;
+	}
+	public function getEmailAttribute() {
+		return $this->email;
+	}
+	/**
+	 * @return String
+	 */
+	public function getTelephoneNoAttribute() {
+		return $this->telephone_no;
+	}
+	/**
+	 * @return String
+	 */
+	public function getBarcodeAttribute() {
+		return $this->barcode;
+	}
+	/**
+	 * @return String
+	 */
+	public function getLNameAttribute() {
+		return $this->lname;
+	}
+    	/**
+    	 * @return String
+    	 */
+    	public function generateBarcode() {
 		if (Storage::disk('local')->exists('counter')) {
 			$curr_val = (int)Storage::disk('local')->get('counter');
 			$curr_val++;
@@ -337,7 +356,7 @@ class Borrower {
 		//$str_val = substr_replace( $str_val, "-", 3, 0 );
 		return "EXT".$str_val;
 
-    }
+    	}
 
 	private function getAddresses() {
 	    if($this->requiresAddress($this->borrower_cat)) {
@@ -355,17 +374,21 @@ class Borrower {
 	    }
 	    return null;
 
-    }
+    	}
 
-    private function requiresAddress($borrow_cat) {
+    	/**
+    	 * @param mixed $borrow_cat
+    	 * 
+    	 * @return  array
+    	 */
+    	private function requiresAddress($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
 		return $data['categories'][$key]['need_address'];
-    }
+    	}
 
 	private function getNotes() {
 		$notes = array();
-
 		if (isset($this->spouse_name)) {
 			$data = array(
 				"businessContext" => $this->institutionId,
@@ -375,11 +398,10 @@ class Borrower {
 		}
 
 		$consent = array(
-            "businessContext" => $this->institutionId,
-            "note" => "Consent form signed on " . date('Y-m-d')
-        );
-
-        $notes[] = $consent;
+            		"businessContext" => $this->institutionId,
+            		"note" => "Consent form signed on " . date('Y-m-d')
+        	);
+        	$notes[] = $consent;
 
 		if (isset($this->current_barcode)) {
 			$data = array(
@@ -388,9 +410,15 @@ class Borrower {
 			);
 			$notes[] = $data;
 		}
-
-        return $notes;
-    }
+		if (isset($this->mcgill_id)) {
+			$data = array(
+				"businessContext" => $this->institutionId,
+				"note" => "McGill ID ". $this->mcgill_id ." linked to user: ". $this->current_barcode
+			);
+			$notes[] = $data;
+		}
+        	return $notes;
+    	}
 
 	private function getCustomData() {
 		// Save data depending on the borrower category
@@ -437,21 +465,21 @@ class Borrower {
 		}
 		return $data;
 
-    }
+    	}
 
 	private function getCircInfo() {
-        return array (
+		return array (
 			'barcode' => $this->barcode,
 			'borrowerCategory' => $this->getBorrowerCategoryName($this->borrower_cat),
 			'homeBranch' => $this->homeBranch,
 			'isVerified' => false,
-	      	"isCircBlocked" =>  true,
-            "isCollectionExempt" =>  false,
-            "isFineExempt" => false,
+			"isCircBlocked" =>  true,
+			"isCollectionExempt" =>  false,
+			"isFineExempt" => false,
 		);
-    }
+    	}
 
-    private function getData() {
+    	private function getData() {
 		$data = array (
 			'schemas' => array (
 				0 => 'urn:ietf:params:scim:schemas:core:2.0:User',
@@ -500,7 +528,7 @@ class Borrower {
 			),
 		);
 		return $data;
-    }
+    	}
 
 }
 
