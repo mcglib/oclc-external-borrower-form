@@ -1,3 +1,5 @@
+1.1.9.1
+- Fixing the note field info for McGill ID.
 1.1.9
 - Added a new patron value "casual staff" to borrower form
 - Abit of code tidyup
