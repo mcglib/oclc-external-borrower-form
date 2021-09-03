@@ -59,7 +59,7 @@
 		@if (isset($borrower->mcgill_id))
 		<tr>
 			<td>Current McGill ID:</td>
-			<td><strong>{$borrower->mcgill_id}</strong></td>
+			<td><strong>{{$borrower->mcgill_id}}</strong></td>
 		</tr>
 		@endif
 
