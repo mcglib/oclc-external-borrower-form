@@ -71,7 +71,7 @@ class Borrower {
       $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
       $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
       $this->city = $request['city'] ?? null;
-      $this->mcgillid = $request['mcgillid'] ?? null;
+      $this->mcgill_id = $request['mcgill_id'] ?? null;
       $this->address1 = $request['address1'] ?? null;
       $this->address2 = $request['address2'] ?? null;
       $this->postal_code = $request['postal_code'] ?? null;
@@ -90,10 +90,10 @@ class Borrower {
       $this->expiry_date = $this->setExpiryDate();
       // Generate the temporary barcode
       $this->barcode = $this->generateBarCode();
-	  // Store the current barcode if applicable
-	  $this->current_barcode = $request['current_barcode'] ?? null;
-	  // Store the department if applicable
-	  $this->department = $request['department'] ?? null;
+      // Store the current barcode if applicable
+      $this->current_barcode = $request['current_barcode'] ?? null;
+      // Store the department if applicable
+      $this->department = $request['department'] ?? null;
     }
 
 	public function create() {
