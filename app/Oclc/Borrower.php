@@ -38,6 +38,7 @@ class Borrower {
     public $current_barcode;
     public $mcgill_id;
     public $borrower_consent;
+    public $department;
 
     private $id;
     private $circInfo = [];
@@ -53,7 +54,6 @@ class Borrower {
     private $borrowerCategory = 'McGill community borrower';
     private $homeBranch = 262754; // Maybe 262754
     private $institutionId;
-    private $department;
 
     /**
      * @param array $request
