@@ -1,3 +1,6 @@
+1.1.9
+- Added a new patron value "casual staff" to borrower form
+- Abit of code tidyup
 1.1.8
 - Updated varios node_module plugins
 - Upgrading to laravel 7
