@@ -413,7 +413,7 @@ class Borrower {
 		if (isset($this->mcgill_id)) {
 			$data = array(
 				"businessContext" => $this->institutionId,
-				"note" => "McGill ID ". $this->mcgill_id ." linked to user: ". $this->current_barcode
+				"note" => "McGill ID linked to user: ". $this->mcgill_id
 			);
 			$notes[] = $data;
 		}
