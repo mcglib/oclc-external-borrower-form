@@ -103,6 +103,17 @@
 					    {!! Form::input('text', 'department', $borrower->department ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				</div>
+				<div id="mcgillIdDivCheck" class="no-display">
+					<div class="form-group">
+					    <label for="mcgill_id" class="control-label">McGill ID</label>
+					    {!! Form::input('text', 'mcgill_id', $borrower->mcgill_id ?? null, ['class'=> 'form-control']) !!}
+				    </div>
+
+					<div class="form-group">
+					    <label for="department" class="control-label">Department</label>
+					    {!! Form::input('text', 'department', $borrower->department ?? null, ['class'=> 'form-control']) !!}
+				    </div>
+				</div>
 
 				<div id="consentDivCheck">
 					<div class="form-group">

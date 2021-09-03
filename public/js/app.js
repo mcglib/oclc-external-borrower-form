@@ -178,6 +178,17 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_address_values();
 			$.fn.clear_telephone_no_values();
 			break;
+		case 'value13':
+			$('#spouseDivCheck').add('no-display').hide();
+			$('#homeInstDivCheck').add('no-display').hide();
+			$('#addressDivCheck').add('no-display').hide();
+			$('#telephoneDivCheck').add('no-display').hide();
+			$('#mcgillIDDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.clear_home_inst_values();
+			$.fn.clear_spouse_name_values();
+			$.fn.clear_address_values();
+			$.fn.clear_telephone_no_values();
+			break;
 		default:
 			$('#homeInstDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
