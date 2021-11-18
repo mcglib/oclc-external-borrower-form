@@ -65,17 +65,17 @@ categories:
   #   need_phone: true
   #   consortium_name: false
   #   need_barcode: false
-  - key: value7
-    borrower_category: McG - Local agreements
-    label: Visiting scholar (with letter of invitation)
-    wms_custom_data_3:
-    wms_custom_data_2:
-    wms_custom_data_1: Visiting scholar
-    home_institution: false
-    need_address: true
-    need_phone: true
-    consortium_name: false
-    need_barcode: false
+  # - key: value7
+  #   borrower_category: McG - Local agreements
+  #   label: Visiting scholar (with letter of invitation)
+  #   wms_custom_data_3:
+  #   wms_custom_data_2:
+  #   wms_custom_data_1: Visiting scholar
+  #   home_institution: false
+  #   need_address: true
+  #   need_phone: true
+  #   consortium_name: false
+  #   need_barcode: false
   - key: value8
     borrower_category: McG - Local agreements
     label: Osler/Rare Books/Archives reader
