@@ -150,7 +150,7 @@ class BorrowerController extends BaseController {
     public function get_home_institutions() {
       $borrowers = Yaml::parse(
 		    file_get_contents(base_path().'/home_institutions.yml'));
-      $keys = $borrowers['institutions','cegeps'];
+      $keys = $borrowers['institutions'],'cegeps';
       return array_keys($keys);
     }
 
