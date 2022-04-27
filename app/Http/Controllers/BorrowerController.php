@@ -150,8 +150,10 @@ class BorrowerController extends BaseController {
     public function get_home_institutions() {
       $borrowers = Yaml::parse(
 		    file_get_contents(base_path().'/home_institutions.yml'));
-      $keys = $borrowers['institutions'],'cegeps';
-      return array_keys($keys);
+        $keys = array_column($borrowers['institutions'],'cegeps');
+        return $keys;
+      #  $keys = $borrowers['institutions'],'cegeps';
+      #return array_keys($keys);
     }
 
     public function verify_real_email($error_email, $borrower) {
