@@ -142,7 +142,7 @@ categories:
     need_phone: true
     consortium_name: false
     need_barcode: true
-  - key: value1
+  - key: value14
     borrower_category: McG - Extern. agreements BUQ
     label: Graduate student at a Canadian University 
     wms_custom_data_3:
