@@ -59,6 +59,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_address_values();
 			$.fn.clear_spouse_name_values();
@@ -72,6 +73,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#homeInstDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
@@ -83,6 +85,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value3':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -95,6 +98,7 @@ $.fn.update_fields_info = function ($value) {
 			break;
 		case 'value4':
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#spouseDivCheck').remove('no-display').fadeIn('slow');
@@ -108,6 +112,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value5':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -122,6 +127,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value6':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -134,6 +140,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value7':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -146,6 +153,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value8':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -158,6 +166,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value9':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -171,6 +180,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value10':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -184,6 +194,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value11':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -198,6 +209,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value12':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').add('no-display').hide();
@@ -212,6 +224,7 @@ $.fn.update_fields_info = function ($value) {
 		case 'value13':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -229,7 +242,7 @@ $.fn.update_fields_info = function ($value) {
 				$('#telephoneDivCheck').add('no-display').hide();
 				$('#currentBarcodeDivCheck').add('no-display').hide();
 				$('#homeInstDivCheck').add('no-display').hide();
-				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow');
+				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow'); 
 				$.fn.clear_address_values();
 				$.fn.clear_home_inst_values();
 				$.fn.clear_spouse_name_values();
@@ -239,6 +252,7 @@ $.fn.update_fields_info = function ($value) {
 				break;
 		default:
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
