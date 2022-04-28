@@ -111,6 +111,13 @@ class BorrowerForm extends Form
                 'error_messages' => [
                     'home_institution.required' => 'Please enter the name of your home institution.'
                 ]
+            ])
+            ->add('only_institution', 'text', [
+                'attr' => ['class' => 'form-control field-input no-display'],
+                'label' => 'Please enter the name of your institution',
+                'error_messages' => [
+                    'only_institution.required' => 'Please enter the name of your institution.'
+                ]
             ]);
     }
     public function get_borrower_categories() {

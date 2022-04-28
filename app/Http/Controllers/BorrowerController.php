@@ -33,6 +33,7 @@ class BorrowerController extends BaseController {
 
       $borrower_categories = $this->get_borrower_categories();
       $home_institutions = $this->get_home_institutions();
+      $only_institutions = $this->get_only_institutions();
       $borrower = $request->session()->get('borrower');
 
       // clear session data
@@ -45,6 +46,7 @@ class BorrowerController extends BaseController {
       return view('borrower.create-step1')
         ->with('borrower_categories', $borrower_categories)
         ->with('home_institutions', $home_institutions)
+        ->with('only_institutions', $only_institutions)
         ->with('borrower', $borrower)
       ;
 
@@ -74,9 +76,11 @@ class BorrowerController extends BaseController {
     {
         $borrower = $request->session()->get('borrower');
         $home_institutions = $this->get_home_institutions();
+        $only_institutions = $this->get_only_institutions();
         return view('borrower.create-step2')
           ->with('borrower', $borrower)
           ->with('home_institutions', $home_institutions)
+          ->with('only_institutions', $only_institutions)
         ;
     }
 
@@ -150,8 +154,15 @@ class BorrowerController extends BaseController {
     public function get_home_institutions() {
       $borrowers = Yaml::parse(
 		    file_get_contents(base_path().'/home_institutions.yml'));
-        $keys = $borrowers['institutions'],$borrowers['cegeps'];
-        return array_keys($keys);
+      $keys = $borrowers['institutions'];
+      return array_keys($keys);
+    }
+
+    public function get_only_institutions() {
+      $borrowers = Yaml::parse(
+		    file_get_contents(base_path().'/home_institutions.yml'));
+      $keys = $borrowers['only_institutions'];
+      return array_keys($keys);
     }
 
     public function verify_real_email($error_email, $borrower) {

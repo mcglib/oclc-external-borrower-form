@@ -8,6 +8,84 @@ institutions:
   Cape Breton University: 'CAUL-CBUA'
   Carleton University: OCUL
   Centre de recherche informatique de Montréal (CRIM): 'Other institutions'
+  Cégep André-Laurendeau: 'ARC / Cégep'
+  Cégep de Saint-Laurent: 'ARC / Cégep'
+  Cégep du Vieux-Montréal: 'ARC / Cégep'
+  Cégep Gérald-Godin: 'ARC / Cégep'
+  Cégep John Abbott College: 'ARC / Cégep'
+  Cégep Marie-Victorin: 'ARC / Cégep'
+  Cégep Vanier: 'ARC / Cégep'
+  Collège Ahunstic: 'ARC / Cégep'
+  Collège de Bois-de-Boulogne: 'ARC / Cégep'
+  Collège de Maisonneuve: 'ARC / Cégep'
+  Collège de Rosemont: 'ARC / Cégep'
+  Collège Montmorency: 'ARC / Cégep'
+  Champlain College: 'ARC / Cégep'
+  Dawson College: 'ARC / Cégep'
+  Concordia University of Edmonton: COPPUL
+  Dalhousie University: 'CAUL-CBUA'
+  Holland College: 'CAUL-CBUA'
+  Kwantlen Polytechnic University: COPPUL
+  Lakehead University: OCUL
+  Laurentian University: OCUL
+  MacEwan University: COPPUL
+  McMaster University: OCUL
+  Memorial University of Newfoundland: 'CAUL-CBUA'
+  Montreal School of Theology: 'Other institutions'
+  Mount Allison University: 'CAUL-CBUA'
+  Mount Royal University: COPPUL
+  Mount Saint Vincent University: 'CAUL-CBUA'
+  Nipissing University: OCUL
+  NSCAD University (Nova Scotia College of Art & Design): 'CAUL-CBUA'
+  OCAD University (Ontario Collge of Art & Design): OCUL
+  Ontario Tech University (formerly UOIT): OCUL
+  Queen's University: OCUL
+  Royal Military College of Canada: OCUL
+  Royal Roads University: COPPUL
+  Ryerson University: OCUL
+  Saint Mary’s University: 'CAUL-CBUA'
+  Simon Fraser University: COPPUL
+  St. Francis Xavier University: 'CAUL-CBUA'
+  Thompson Rivers University: COPPUL
+  Trent University: OCUL
+  Trinity Western University: COPPUL
+  Université de Moncton: 'CAUL-CBUA'
+  Université Sainte-Anne: 'CAUL-CBUA'
+  University of Alberta: COPPUL
+  University of British Columbia: COPPUL
+  University of Calgary: COPPUL
+  University of Guelph: OCUL
+  University of King’s College: 'CAUL-CBUA'
+  University of Lethbridge: COPPUL
+  University of Manitoba: COPPUL
+  University of New Brunswick: 'CAUL-CBUA'
+  University of Northern British Columbia: COPPUL
+  University of Ottawa: OCUL
+  University of Prince Edward Island: 'CAUL-CBUA'
+  University of Regina: COPPUL
+  University of Saskatchewan: COPPUL
+  University of the Fraser Valley: COPPUL
+  University of Toronto: OCUL
+  University of Victoria: COPPUL
+  University of Waterloo: OCUL
+  University of Windsor: OCUL
+  University of Winnipeg: COPPUL
+  Vancouver Island University: COPPUL
+  Western University: OCUL
+  Wilfrid Laurier University: OCUL
+  York University: OCUL
+  Other: 'ARC / Cégep'
+
+only_institutions:
+  Acadia University: 'CAUL-CBUA'
+  Atlantic School of Theology: 'CAUL-CBUA'
+  Algoma University: OCUL
+  Athabasca University: COPPUL
+  Brandon University: COPPUL
+  Brock University: OCUL
+  Cape Breton University: 'CAUL-CBUA'
+  Carleton University: OCUL
+  Centre de recherche informatique de Montréal (CRIM): 'Other institutions'
   Concordia University of Edmonton: COPPUL
   Dalhousie University: 'CAUL-CBUA'
   Holland College: 'CAUL-CBUA'
@@ -61,19 +139,3 @@ institutions:
   Wilfrid Laurier University: OCUL
   York University: OCUL
   
-cegeps: 
-  Cégep André-Laurendeau: 'ARC / Cégep'
-  Cégep de Saint-Laurent: 'ARC / Cégep'
-  Cégep du Vieux-Montréal: 'ARC / Cégep'
-  Cégep Gérald-Godin: 'ARC / Cégep'
-  Cégep John Abbott College: 'ARC / Cégep'
-  Cégep Marie-Victorin: 'ARC / Cégep'
-  Cégep Vanier: 'ARC / Cégep'
-  Collège Ahunstic: 'ARC / Cégep'
-  Collège de Bois-de-Boulogne: 'ARC / Cégep'
-  Collège de Maisonneuve: 'ARC / Cégep'
-  Collège de Rosemont: 'ARC / Cégep'
-  Collège Montmorency: 'ARC / Cégep'
-  Champlain College: 'ARC / Cégep'
-  Dawson College: 'ARC / Cégep'
-  Other: 'ARC / Cégep'
