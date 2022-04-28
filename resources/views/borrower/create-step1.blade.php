@@ -58,8 +58,7 @@
 				<div class="form-group">
 				    <label for="only_institution" class="control-label">Please enter the name of your home institution<span class="required">*</span></label>
 				    {!! Form::select('only_institution', array_merge(['' => 'Please select an institution'], $only_institutions), $borrower->only_institution ?? null, ['class' => 'form-control']) !!}
-        		        </div>		
-
+        		        </div>	
 			    </div>
 
 
