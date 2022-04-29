@@ -4,8 +4,9 @@
 - Clean up of text from uppercase to lowercase
 - Change to different patron type
 
-1.1.9.1
+1.1.9.1 - [2021/12/31]
 - fixing the note field info for mcgill id.
+
 1.1.9
 - Added a new patron value "casual staff" to borrower form
 - Abit of code tidyup
