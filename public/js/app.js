@@ -36,6 +36,9 @@ $.fn.clear_address_values = function () {
 $.fn.clear_home_inst_values = function () {
 	$("select[name=home_institution]").val("");
 };
+$.fn.clear_only_inst_values = function () {
+	$("select[name=only_institution]").val("");
+};
 $.fn.clear_spouse_name_values = function () {
 	$("input[name=spouse_name]").val("");
 };
@@ -56,28 +59,33 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_address_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value2':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value3':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -86,9 +94,11 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value4':
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#spouseDivCheck').remove('no-display').fadeIn('slow');
@@ -97,10 +107,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_home_inst_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value5':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -110,10 +122,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value6':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -121,10 +135,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value7':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -132,10 +148,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_home_inst_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value8':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -143,10 +161,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value9':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
@@ -155,10 +175,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_home_inst_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value10':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -167,10 +189,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value11':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
@@ -180,10 +204,12 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value12':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').add('no-display').hide();
@@ -193,22 +219,40 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_address_values();
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_mcgill_id_values();
+			$.fn.clear_only_inst_values();
 			break;
 		case 'value13':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
 			$.fn.clear_home_inst_values();
+			$.fn.clear_only_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
 			break;
+		case 'value14':
+				$('#spouseDivCheck').add('no-display').hide();
+				$('#addressDivCheck').add('no-display').hide();
+				$('#telephoneDivCheck').add('no-display').hide();
+				$('#currentBarcodeDivCheck').add('no-display').hide();
+				$('#homeInstDivCheck').add('no-display').hide();
+				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow'); 
+				$.fn.clear_address_values();
+				$.fn.clear_home_inst_values();
+				$.fn.clear_spouse_name_values();
+				$.fn.clear_telephone_no_values();
+				$.fn.clear_current_barcode_values();
+				$.fn.clear_mcgill_id_values();
+				break;
 		default:
 			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#addressDivCheck').add('no-display').hide();
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
