@@ -96,11 +96,11 @@ class Borrower {
       
 	  // Store the department if applicable
 	  if(!empty($request['department_mcgill'])){
-		$this->department = $request['department_mcgill'] ?? null;
+		$this->department = $request['department_mcgill'];
 	  }
 
 	  if(!empty($request['department'])){
-		$this->department = $request['department'] ?? null;
+		$this->department = $request['department'];
 	  }
 
       #$this->department = $request['department'] ?? null;
