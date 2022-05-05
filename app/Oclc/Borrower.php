@@ -39,6 +39,7 @@ class Borrower {
     public $mcgill_id;
     public $borrower_consent;
     public $department;
+	
 
     private $id;
     private $circInfo = [];
@@ -92,8 +93,17 @@ class Borrower {
       $this->barcode = $this->generateBarCode();
       // Store the current barcode if applicable
       $this->current_barcode = $request['current_barcode'] ?? null;
-      // Store the department if applicable
-      $this->department = $request['department'] ?? null;
+      
+	  // Store the department if applicable
+	  if(!empty($request['department_mcgill'])){
+		$this->department = $request['department_mcgill'] ?? null;
+	  }
+
+	  if(!empty($request['department'])){
+		$this->department = $request['department'] ?? null;
+	  }
+
+      #$this->department = $request['department'] ?? null;
     }
 
 	public function create() {
