@@ -95,15 +95,10 @@ class Borrower {
       $this->current_barcode = $request['current_barcode'] ?? null;
       
 	  // Store the department if applicable
-	  if(!empty($request['department_mcgill'])){
-		$this->department = $request['department_mcgill'];
-	  }
+      $this->department = $request['department'] ?? null;
 
-	  if(!empty($request['department'])){
-		$this->department = $request['department'];
-	  }
+	  $this->department = $request['department_mcgill'] ?? null;
 
-      #$this->department = $request['department'] ?? null;
     }
 
 	public function create() {
@@ -440,6 +435,7 @@ class Borrower {
 		if (empty($custom_data_3) && !empty($this->department)) {
 			$custom_data_3 = $this->department;
 		}
+		
 
 		$custom_data_1 = mb_convert_encoding($custom_data_1, "UTF-8");
 		$custom_data_2 = mb_convert_encoding($custom_data_2, "UTF-8");
