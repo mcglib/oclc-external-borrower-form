@@ -117,7 +117,7 @@
 
 					<div class="form-group">
 					    <label for="department" class="control-label">Department</label>
-					    {!! Form::input('text', 'department_mcgill', $borrower->department ?? null, ['class'=> 'form-control']) !!}
+					    {!! Form::input('text', 'department', $borrower->department ?? null, ['class'=> 'form-control']) !!}
 				    </div>
 				</div>
 
