@@ -39,6 +39,7 @@ class Borrower {
     public $mcgill_id;
     public $borrower_consent;
     public $department;
+	public $department_mcgill;
 	
 
     private $id;
@@ -96,6 +97,7 @@ class Borrower {
       
 	  // Store the department if applicable
       $this->department = $request['department'] ?? null;
+	  $this->department_mcgill = $request['department_mcgill'] ?? null;
 
 
     }
@@ -433,6 +435,9 @@ class Borrower {
 		// if department affiliation is provided, store in custom data 3
 		if (empty($custom_data_3) && !empty($this->department)) {
 			$custom_data_3 = $this->department;
+		}
+		if (empty($custom_data_3) && !empty($this->department_mcgill)) {
+			$custom_data_3 = $this->department_mcgill;
 		}
 		
 
