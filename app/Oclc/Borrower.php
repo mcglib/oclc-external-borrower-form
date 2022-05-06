@@ -96,7 +96,15 @@ class Borrower {
       $this->current_barcode = $request['current_barcode'] ?? null;
       
 	  // Store the department if applicable
-      $this->department = $request['department'] ?? null;
+	  if (!empty($request['department_mcgill'])){
+		$this->department = $request['department_mcgill'] ;
+	  }
+	  if (!empty($request['department'])){
+		$this->department = $request['department'] ;
+	  }
+	  
+
+      #$this->department = $request['department'] ?? null;
 
 
     }
