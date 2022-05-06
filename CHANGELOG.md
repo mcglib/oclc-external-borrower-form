@@ -1,3 +1,10 @@
+1.1.10.2 - [2022/05/06]
+-sorted borrower category
+-changed MCLL category
+-improved lecture course extension to have department value
+1.1.10.1
+-added date to 1.1.9.1 version
+
 1.1.10 - [2022/04/29]
 - Fixing the note field info for McGill ID.
 - Added a new select field for Graduate student at university
