@@ -40,8 +40,6 @@ class Borrower {
     public $borrower_consent;
     public $department;
 	
-	
-
     private $id;
     private $circInfo = [];
     private $defaultType = 'home';
