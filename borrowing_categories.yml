@@ -22,7 +22,7 @@ categories:
     consortium_name: false
     need_barcode: false
   - key: value3
-    borrower_category: McG - Local agreements
+    borrower_category: McG - Uni. community BUQ
     label: McGill Community for Lifelong Learning student
     wms_custom_data_3:
     wms_custom_data_2:
@@ -136,7 +136,7 @@ categories:
     label: Casual staff
     wms_custom_data_3:
     wms_custom_data_2:
-    wms_custom_data_1: Casual Staff
+    wms_custom_data_1: Casual staff
     home_institution: false
     need_address: false
     need_phone: true
