@@ -490,8 +490,16 @@ class Borrower {
 			"isFineExempt" => false,
 		);
     	}
+		/**
+		 * function getIllInfo - integrating with OCLC
+		 * 
+		 * array -(
+		 * 	'illId = 'temp barcode'
+		 * 	'illPatronType = 'borrower category'
+		 * )
+		 * 
+		 */
 		private function getIllInfo() {
-			# integtting with OCLC 
 			return array (
 				'illId' => $this->barcode,
 				'illPatronType' => $this->getBorrowerCategoryName($this->borrower_cat),
