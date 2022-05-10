@@ -38,6 +38,13 @@
 	      'homeBranch' => 'asdasd',
 	    ),
 	  ),
+	  "urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101" =>  array (
+		'illInfo' => array(
+			'illId' => 'asdasd',
+			'illPatronType' => 'asdasd',
+			'illPickupLocation' => 'asdasd',
+		),
+	  ),	
 	  'urn:mace:oclc.org:eidm:schema:persona:persona:20180305' =>  array (
 	    'institutionId' => '199007',
 	  ),
