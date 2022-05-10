@@ -491,6 +491,7 @@ class Borrower {
 		);
     	}
 		private function getIllInfo() {
+			# integtting with OCLC 
 			return array (
 				'illId' => $this->barcode,
 				'illPatronType' => $this->getBorrowerCategoryName($this->borrower_cat),
