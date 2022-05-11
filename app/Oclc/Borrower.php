@@ -503,7 +503,7 @@ class Borrower {
 			return array (
 				'illId' => $this->barcode,
 				'illPatronType' => $this->getBorrowerCategoryName($this->borrower_cat),
-				'illPickupLocation' => ,
+				'illPickupLocation' => '',
 				"isBlocked" =>  true,
 				"isApproved" => false,
 			);
