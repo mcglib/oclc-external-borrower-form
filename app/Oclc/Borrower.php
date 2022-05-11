@@ -490,6 +490,24 @@ class Borrower {
 			"isFineExempt" => false,
 		);
     	}
+		/**
+		 * function getIllInfo - integrating with OCLC
+		 * 
+		 * array -(
+		 * 	'illId = 'temp barcode'
+		 * 	'illPatronType = 'borrower category'
+		 * )
+		 * 
+		 */
+		private function getIllInfo() {
+			return array (
+				'illId' => $this->barcode,
+				'illPatronType' => $this->getBorrowerCategoryName($this->borrower_cat),
+				'illPickupLocation' => ,
+				"isBlocked" =>  true,
+				"isApproved" => false,
+			);
+			}	
 
     	private function getData() {
 		$data = array (
@@ -528,6 +546,9 @@ class Borrower {
 			'urn:mace:oclc.org:eidm:schema:persona:wmscircpatroninfo:20180101' =>  array (
 				'circulationInfo' =>  $this->getCircInfo()
 				),
+			"urn:mace:oclc.org:eidm:schema:persona:wsillinfo:20180101" =>  array (
+					'illInfo' =>  $this->getIllInfo()
+					),	
 			'urn:mace:oclc.org:eidm:schema:persona:additionalinfo:20180501' =>  array (
 				'oclcKeyValuePairs' =>  $this->getCustomData()
 				),
