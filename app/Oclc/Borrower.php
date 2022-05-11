@@ -500,10 +500,19 @@ class Borrower {
 		 * 
 		 */
 		private function getIllInfo() {
+			// Check if custom data 1 != NA 
+        	// if its not NA -> patrontype == customdata1
+        	// if N/A -> patrontype == $this->getBorrowerCategoryName($this->borrower_cat)
+        	// Use  alumni as test for n/a and others for patron_type.
+
+       		 // Get the custom data 1 to determine the patrontype
+        	$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
+        	$patron_type = (strtolower($custom_data_1) == 'n/a') ? $this->getBorrowerCategoryName($this->borrower_cat) : $custom_data_1;
+
 			return array (
 				'illId' => $this->barcode,
-				'illPatronType' => $this->getBorrowerCategoryName($this->borrower_cat),
-				'illPickupLocation' => ,
+				'illPatronType' => $patron_type,
+				'illPickupLocation' => '',
 				"isBlocked" =>  true,
 				"isApproved" => false,
 			);

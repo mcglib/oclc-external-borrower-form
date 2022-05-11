@@ -1,3 +1,6 @@
+1.1.10.4 - [2022/05/11]
+-changed patron type to custom data 1
+
 1.1.10.3 - [2022/05/11]
 -integrated with OCLC (TIPASA)
 
