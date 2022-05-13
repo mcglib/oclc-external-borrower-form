@@ -1,3 +1,6 @@
+1.1.10.6 [2022/05/13]
+-changed patron type for alumni to McG-Alumni
+
 1.1.10.5 - [2022/05/13]
 -Added insitutions and patron type for graduate student and Alumni value
 
