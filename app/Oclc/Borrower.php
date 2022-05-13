@@ -31,6 +31,7 @@ class Borrower {
     public $address1;
     public $address2;
     public $home_institution;
+	public $only_institution;
     public $consortium_name;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
@@ -69,6 +70,7 @@ class Borrower {
       $this->telephone_no = $request['telephone_no'] ?? null;
       $this->spouse_name = $request['spouse_name'] ?? null;
       $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
+	  $this->only_institution = $this->get_only_institution($request['only_institution']) ?? null;
       $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
       $this->city = $request['city'] ?? null;
       $this->mcgill_id = $request['mcgill_id'] ?? null;
@@ -266,6 +268,17 @@ class Borrower {
 		}
 		return null;
     	}
+	
+	public function get_only_institution($key = null) {
+		$borrowers = Yaml::parse(
+			file_get_contents(base_path().'/home_institutions.yml'));
+		$keys = $borrowers['only_institutions'];
+		$only_institution_name = array_keys($keys);
+		if (!is_null($key)) {
+				return $only_institution_name[$key];
+			}
+		return null;
+			}	
 
 	public function get_consortium_name($key = null) {
 		$borrowers = Yaml::parse(
@@ -508,6 +521,12 @@ class Borrower {
        		 // Get the custom data 1 to determine the patrontype
         	$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
         	$patron_type = (strtolower($custom_data_1) == 'n/a') ? $this->getBorrowerCategoryName($this->borrower_cat) : $custom_data_1;
+
+			if($this->borrower_cat = "Mcg -Alumni"){
+				$patron_type='Alumni';
+				$custom_data_1 = 'n/a';
+			}
+
 
 			return array (
 				'illId' => $this->barcode,
