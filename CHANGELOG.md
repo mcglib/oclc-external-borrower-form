@@ -1,3 +1,6 @@
+1.1.10.5 - [2022/05/13]
+-Added insitutions and patron type for graduate student and Alumni value
+
 1.1.10.4 - [2022/05/11]
 -changed patron type to custom data 1
 
