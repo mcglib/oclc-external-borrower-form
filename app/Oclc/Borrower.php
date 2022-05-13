@@ -533,7 +533,7 @@ class Borrower {
         	$custom_data_1 = $this->getBorrowerCustomData1($this->borrower_cat);
         	$patron_type = (strtolower($custom_data_1) == 'n/a') ? $this->getBorrowerCategoryName($this->borrower_cat) : $custom_data_1;
 
-			if($this->borrower_cat = "Mcg -Alumni"){
+			if($this->borrower_cat == "value2"){
 				$patron_type='Alumni';
 				$custom_data_1 = 'n/a';
 			}
