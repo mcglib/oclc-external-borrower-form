@@ -34,6 +34,12 @@
 			<td><strong>{{ $borrower->home_institution }}</strong></td>
 		</tr>
 		@endif
+		@if (isset($borrower->home_institution))
+		<tr>
+			<td>Home institution name:</td>
+			<td><strong>{{ $borrower->only_institution }}</strong></td>
+		</tr>
+		@endif
 		@if (isset($borrower->postal_code))
 		<tr>
 			<td>Address:</td>
