@@ -72,6 +72,7 @@ class Borrower {
       $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
 	  $this->only_institution = $this->get_only_institution($request['only_institution']) ?? null;
       $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
+      $this->consortium_name = $this->only_consortium_name($request['only_institution']) ?? null;
       $this->city = $request['city'] ?? null;
       $this->mcgill_id = $request['mcgill_id'] ?? null;
       $this->address1 = $request['address1'] ?? null;
@@ -290,6 +291,16 @@ class Borrower {
 		}
 		return null;
     	}
+	public function only_consortium_name($key = null) {
+		$borrowers = Yaml::parse(
+			file_get_contents(base_path().'/home_institutions.yml'));
+		$keys = $borrowers['only_institutions'];
+		$only_consortium_names = array_values($keys);
+		if (!is_null($key)) {
+			return $only_consortium_names[$key];
+			}
+		return null;
+			}	
 
     	public function getBorrowerCustomData3($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
