@@ -9,7 +9,8 @@ categories:
     only_institution : false
     need_address: false
     need_phone: false
-    consortium_name: true
+    consortium_home_name: true
+    consortium_name: false
     need_barcode: false
   - key: value2
     borrower_category: McG - Alumni
@@ -154,4 +155,5 @@ categories:
     need_address: false
     need_phone: false
     consortium_name: true
+    consortium_home_name: false
     need_barcode: false
