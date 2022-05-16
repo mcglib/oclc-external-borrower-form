@@ -33,7 +33,7 @@ class Borrower {
     public $home_institution;
 	public $only_institution;
     public $consortium_name;
-	public $consortium_home_name
+	public $consortium_home_name;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
