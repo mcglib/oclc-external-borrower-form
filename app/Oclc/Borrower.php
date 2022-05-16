@@ -322,12 +322,29 @@ class Borrower {
     	public function getBorrowerCustomData1($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-		$is_consortium_name = $data['categories'][$key]['consortium_name'];
-		if ($is_consortium_name) {
-			return $this->consortium_name;
-		} else {
-			return $data['categories'][$key]['wms_custom_data_1'];
-		}
+		
+		
+			$is_consortium_name = $data['categories'][$key]['consortium_name'];
+		   if ($is_consortium_name) {
+				return $this->consortium_name;
+	     	} else {
+				return $data['categories'][$key]['wms_custom_data_1'];
+		
+		   } 
+
+		   $is_consortium_home_name = $data['categories'][$key]['consortium_home_name'];
+		   if ($is_consortium_home_name) {
+				return $this->consortium_home_name;
+	     	} else {
+				return $data['categories'][$key]['wms_custom_data_1'];
+		
+		   } 
+
+
+
+
+
+
     	}
 
     	private function addAddress($request) {

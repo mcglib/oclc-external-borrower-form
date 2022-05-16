@@ -21,6 +21,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value3
@@ -32,6 +33,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value4
@@ -43,6 +45,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value5
@@ -54,6 +57,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: false
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value6
@@ -65,6 +69,7 @@ categories:
     home_institution: false
     need_address: true
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   # - key: value7
@@ -87,6 +92,7 @@ categories:
     home_institution: false
     need_address: true
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value9
@@ -98,6 +104,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   #- key: value10
@@ -120,6 +127,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: false
+    consortium_home_name: false
     consortium_name: false
     need_barcode: false
   - key: value12
@@ -131,6 +139,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: true
   - key: value13
@@ -142,6 +151,7 @@ categories:
     home_institution: false
     need_address: false
     need_phone: true
+    consortium_home_name: false
     consortium_name: false
     need_barcode: true
   - key: value14
