@@ -1,3 +1,6 @@
+1.1.10.7 - [2022/05/17]
+-improved patron type for faculty member 
+
 1.1.10.6 [2022/05/13]
 -changed patron type for alumni to McG-Alumni
 
