@@ -33,6 +33,7 @@ class Borrower {
     public $home_institution;
 	public $only_institution;
     public $consortium_name;
+	public $consortium_home_name;
     public $postal_code, $spouse_name, $province_state;
     public $expiry_date;
     public $barcode;
@@ -71,7 +72,7 @@ class Borrower {
       $this->spouse_name = $request['spouse_name'] ?? null;
       $this->home_institution = $this->get_home_institution($request['home_institution']) ?? null;
 	  $this->only_institution = $this->get_only_institution($request['only_institution']) ?? null;
-      $this->consortium_name = $this->get_consortium_name($request['home_institution']) ?? null;
+      $this->consortium_home_name = $this->get_consortium_name($request['home_institution']) ?? null;
       $this->consortium_name = $this->only_consortium_name($request['only_institution']) ?? null;
       $this->city = $request['city'] ?? null;
       $this->mcgill_id = $request['mcgill_id'] ?? null;
@@ -321,12 +322,21 @@ class Borrower {
     	public function getBorrowerCustomData1($borrow_cat) {
 		$data = Yaml::parse(file_get_contents(base_path().'/borrowing_categories.yml'));
 		$key = array_search($borrow_cat, array_column($data['categories'], 'key'));
-		$is_consortium_name = $data['categories'][$key]['consortium_name'];
-		if ($is_consortium_name) {
-			return $this->consortium_name;
-		} else {
-			return $data['categories'][$key]['wms_custom_data_1'];
-		}
+		
+		
+			$is_consortium_name = $data['categories'][$key]['consortium_name'];
+			$is_consortium_home_name = $data['categories'][$key]['consortium_home_name'];
+		   if ($is_consortium_home_name) {
+				return $this->consortium_home_name;
+				#print_r($this->consortium_home_name);
+	     	} elseif ($is_consortium_name){
+				return $this->consortium_name;
+				#print_r($this->consortium_name);
+	     	} else {
+				return $data['categories'][$key]['wms_custom_data_1'];
+				#print_r($data['categories'][$key]['wms_custom_data_1']);
+		   } 
+
     	}
 
     	private function addAddress($request) {
