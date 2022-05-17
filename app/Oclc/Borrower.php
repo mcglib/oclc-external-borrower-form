@@ -328,10 +328,10 @@ class Borrower {
 			$is_consortium_home_name = $data['categories'][$key]['consortium_home_name'];
 		   if ($is_consortium_home_name) {
 				#return $this->consortium_home_name;
-				print_r($consortium_home_name);
+				print_r($this->consortium_home_name);
 	     	} elseif ($is_consortium_name){
 				#return $this->consortium_name;
-				print_r($consortium_name);
+				print_r($this->consortium_name);
 	     	} else {
 				#return $data['categories'][$key]['wms_custom_data_1'];
 				print_r($data['categories'][$key]['wms_custom_data_1']);
