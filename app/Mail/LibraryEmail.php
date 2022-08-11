@@ -24,9 +24,9 @@ class LibraryEmail extends Mailable
     public function __construct(Borrower $borrower)
     {
         //
-	    $this->borrower = $borrower;
-	    $this->url = "https:";
-	    $this->timestamp = Carbon::now();
+        $this->borrower = $borrower;
+        $this->url = "https:";
+        $this->timestamp = Carbon::now();
     }
 
     /**
@@ -36,10 +36,10 @@ class LibraryEmail extends Mailable
      */
     public function build()
     {
-          $subject = $_ENV['MAIL_ERROR_SUBJECT'] ?? 'External borrowers: Error creating patron record';
-	  return $this->view('emails.library')
-		      ->text('emails.library_plain')
-		      ->subject($subject)
-		      ->with("borrower", $this->borrower);
+        $subject = $_ENV['MAIL_ERROR_SUBJECT'] ?? 'External borrowers: Error creating patron record';
+        return $this->view('emails.library')
+            ->text('emails.library_plain')
+            ->subject($subject)
+            ->with("borrower", $this->borrower);
     }
 }
