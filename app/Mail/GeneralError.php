@@ -22,11 +22,10 @@ class GeneralError extends Mailable
     public function __construct(Borrower $borrower, $error_msg)
     {
         //
-	$this->borrower = $borrower;
+        $this->borrower = $borrower;
         $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrowing-card";
-	$this->timestamp = Carbon::now();
-	$this->error_msg = $error_msg;
-
+        $this->timestamp = Carbon::now();
+        $this->error_msg = $error_msg;
     }
 
     /**
@@ -37,9 +36,9 @@ class GeneralError extends Mailable
     public function build()
     {
         $subject = $_ENV['MAIL_ERROR_SUBJECT'] ?? 'External borrowers: Error creating patron record';
-	 
-	 return $this->view('emails.general_error')
-		      ->subject($subject)
-	              ->text('emails.general_error_plain');
+
+        return $this->view('emails.general_error')
+            ->subject($subject)
+            ->text('emails.general_error_plain');
     }
 }
