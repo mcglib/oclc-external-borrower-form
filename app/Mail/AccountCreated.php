@@ -21,10 +21,10 @@ class AccountCreated extends Mailable
      */
     public function __construct(Borrower $borrower)
     {
-	    //
-	$this->borrower = $borrower;
+        //
+        $this->borrower = $borrower;
         $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrowing-card";
-	$this->timestamp = Carbon::now();
+        $this->timestamp = Carbon::now();
     }
 
     /**
@@ -35,9 +35,9 @@ class AccountCreated extends Mailable
     public function build()
     {
         $subject = $_ENV['MAIL_SUBJECT'] ?? 'McGill Library Borrowing Card Application: Account created';
-	 
-	  return $this->view('emails.borrower')
-		      ->subject($subject)
-		      ->text('emails.borrower_plain');
+
+        return $this->view('emails.borrower')
+            ->subject($subject)
+            ->text('emails.borrower_plain');
     }
 }

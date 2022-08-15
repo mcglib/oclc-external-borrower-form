@@ -22,10 +22,9 @@ class OclcError extends Mailable
     public function __construct(Borrower $borrower)
     {
         //
-	$this->borrower = $borrower;
+        $this->borrower = $borrower;
         $this->url = $_ENV['APP_URL'] ?? "https://cml.library.mcgill.ca/borrowing-card";
-	$this->timestamp = Carbon::now();
-
+        $this->timestamp = Carbon::now();
     }
 
     /**
@@ -36,9 +35,9 @@ class OclcError extends Mailable
     public function build()
     {
         $subject = $_ENV['MAIL_ERROR_SUBJECT'] ?? 'External borrowers: Error creating patron record';
-	 
-	 return $this->view('emails.oclc_error')
-		      ->subject($subject)
-	              ->text('emails.oclc_error_plain');
+
+        return $this->view('emails.oclc_error')
+            ->subject($subject)
+            ->text('emails.oclc_error_plain');
     }
 }
