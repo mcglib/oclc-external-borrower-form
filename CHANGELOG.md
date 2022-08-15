@@ -1,5 +1,12 @@
+# CHANGELOG
+
+1.1.11 - [2022/08/15]
+
+- ADGEN-1114 borrower form: Move email verification after api call
+- Code cleanup to keep same styling
+
 1.1.10.7 - [2022/05/17]
--improved patron type for faculty member 
+-improved patron type for faculty member
 
 1.1.10.6 [2022/05/13]
 -changed patron type for alumni to McG-Alumni
@@ -21,15 +28,18 @@
 -added date to 1.1.9.1 version
 
 1.1.10 - [2022/04/29]
+
 - Fixing the note field info for McGill ID.
 - Added a new select field for Graduate student at university
 - Clean up of text from uppercase to lowercase
 - Change to different patron type
 
 1.1.9.1 - [2021/12/31]
+
 - fixing the note field info for mcgill id.
 
 1.1.9
+
 - Added a new patron value "casual staff" to borrower form
 - Abit of code tidyup
 1.1.8
@@ -111,7 +121,7 @@
 - Tweaks to the UI
 1.0.7
 - Working email
-- Tested the expiry dates 
+- Tested the expiry dates
 - tested adding a note field
 1.0.6
 - Added mailing capabilities
