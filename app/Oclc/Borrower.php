@@ -10,11 +10,12 @@ use GuzzleHttp\Client;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Storage;
 use Yaml;
 
 /**
- * Borrower class that creates 
+ * Borrower class that creates
  * the OCLC borrower account
  */
 class Borrower
@@ -227,17 +228,28 @@ class Borrower
 				"body" => $body,
 				"status" => $log->status
 			);
-		} catch (RequestException $error) {
-
-			$log->status = $error->getResponse()->getStatusCode();
+		} catch (RequestException | ConnectException $error) {
+			if ($error->hasResponse()) {
+				$log->status = $error->getResponse()->getStatusCode();
+			} else {
+				$log->status = 'N/A';
+			}
 
 			ob_start();
-			echo (string)$error->getResponse()->getBody();
+			if ($error->hasResponse()) {
+				echo (string)$error->getResponse()->getBody();
+			} else {
+				echo "No error response body found.";
+			}
 			$body = ob_get_clean();
 
 			$log->response = $body;
 			$log->received_on = Carbon::now();
-			$log->error_msg = $error->getResponse()->getBody()->getContents();
+			if ($error->hasResponse()) {
+				$log->error_msg = $error->getResponse()->getBody()->getContents();
+			} else {
+				$log->error_msg = "No error message found.";
+			}
 			$log->save();
 
 			return array(
@@ -456,7 +468,7 @@ class Borrower
 
 	/**
 	 * @param mixed $borrow_cat
-	 * 
+	 *
 	 * @return  array
 	 */
 	private function requiresAddress($borrow_cat)
@@ -562,16 +574,16 @@ class Borrower
 	}
 	/**
 	 * function getIllInfo - integrating with OCLC
-	 * 
+	 *
 	 * array -(
 	 * 	'illId = 'temp barcode'
 	 * 	'illPatronType = 'borrower category'
 	 * )
-	 * 
+	 *
 	 */
 	private function getIllInfo()
 	{
-		// Check if custom data 1 != NA 
+		// Check if custom data 1 != NA
 		// if its not NA -> patrontype == customdata1
 		// if N/A -> patrontype == $this->getBorrowerCategoryName($this->borrower_cat)
 		// Use  alumni as test for n/a and others for patron_type.
