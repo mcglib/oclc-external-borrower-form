@@ -246,7 +246,9 @@ class Borrower
 			$log->response = $body;
 			$log->received_on = Carbon::now();
 			if ($error->hasResponse()) {
-				$log->error_msg = $error->getMessage();
+				// reset stream to beginning
+				$error->getResponse()->getBody()->rewind();
+				$log->error_msg = $error->getResponse()->getBody()->getContents();
 			} else {
 				$log->error_msg = "No error message found.";
 			}
