@@ -6,7 +6,7 @@ categories:
     wms_custom_data_2:
     wms_custom_data_1:
     home_institution: true
-    only_institution : false
+    only_institution: false
     need_address: false
     need_phone: false
     consortium_home_name: true
@@ -120,7 +120,7 @@ categories:
   #  need_barcode: false
   - key: value11
     borrower_category: McG - Extern. agreements BUQ
-    label: BAnQ
+    label: BAnQ-sponsored researcher
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1: BANQ
@@ -156,7 +156,7 @@ categories:
     need_barcode: true
   - key: value14
     borrower_category: McG - Extern. agreements BUQ
-    label: Graduate student at a Canadian University 
+    label: Graduate student at a Canadian University
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1:
