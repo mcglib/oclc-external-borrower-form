@@ -74,7 +74,7 @@ categories:
     need_barcode: false
   - key: value7
     borrower_category: McG - Local agreements
-    label: Member of the public ($200 for 6 months)
+    label: Member of the public ($200 for 12 months)
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1: Personal (paid)
