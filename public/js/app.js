@@ -285,7 +285,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
-			$('#otherValueEmail').remove('no-display').fadeIn('slow');
+			$('#otherValueEmail').remove('no-display');
 			
 	}
 
