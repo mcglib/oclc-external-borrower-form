@@ -62,7 +62,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_address_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_telephone_no_values();
@@ -78,7 +78,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#homeOnlyDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#AlumniValueEmail').remove('no-display').fadeIn('slow');
-			$('#otherValueEmail').add('no-display').hide();
+			$('#otherValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
@@ -94,7 +94,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
@@ -110,7 +110,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#spouseDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_address_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_current_barcode_values();
@@ -125,7 +125,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
@@ -142,7 +142,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
@@ -157,7 +157,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_home_inst_values();
 			$.fn.clear_current_barcode_values();
@@ -172,7 +172,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').remove('no-display').fadeIn('slow');
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_current_barcode_values();
@@ -187,7 +187,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_address_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_home_inst_values();
@@ -203,7 +203,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
 			$.fn.clear_telephone_no_values();
@@ -219,7 +219,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
@@ -237,7 +237,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#mcgillIdDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_spouse_name_values();
 			$.fn.clear_address_values();
@@ -254,7 +254,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow');
-			$('#AlumniValueEmail').add('no-display').hide();
+			$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 			$.fn.clear_home_inst_values();
 			$.fn.clear_only_inst_values();
 			$.fn.clear_spouse_name_values();
@@ -270,7 +270,7 @@ $.fn.update_fields_info = function ($value) {
 				$('#homeInstDivCheck').add('no-display').hide();
 				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow'); 
 				$('#otherValueEmail').remove('no-display').fadeIn('slow');
-				$('#AlumniValueEmail').add('no-display').hide();
+				$('#AlumniValueEmail').add('no-display').hide().find('input, select, textarea').prop('disabled', true);;
 				$.fn.clear_address_values();
 				$.fn.clear_home_inst_values();
 				$.fn.clear_spouse_name_values();
