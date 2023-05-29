@@ -39,7 +39,7 @@
 				<div id="AlumniValueEmail" class="no-display">	
 			    <div class="form-group">
 
-				    <label for="email" class="control-label required">Mcgill Alumni Email address <span class="required">*</span></label>
+				    <label for="email" class="control-label required">McGill alumni email address <span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 				</div>
