@@ -29,12 +29,20 @@
 			      {!! Form::input('text', 'lname', $borrower->lname ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 
+				<div id="otherValueEmail" class="no-display">	
 			    <div class="form-group">
 
 				    <label for="email" class="control-label required">Email address <span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
+				</div>
+				<div id="AlumniValueEmail" class="no-display">	
+			    <div class="form-group">
 
+				    <label for="email" class="control-label required">McGill alumni email address <span class="required">*</span></label>
+			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
+        		    </div>
+				</div>
 			    <div class="form-group">
 
 				    <label for="borrower_cat" class="control-label required">Requested borrowing category<span class="required">*</span></label>
