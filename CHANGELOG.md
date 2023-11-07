@@ -1,5 +1,10 @@
 # CHANGELOG
 
+1.1.12 - [2023/11/07]
+
+- ADILS-1467 - Fixed bug with McGill PhD Extension category on js changes
+- ADILS-1467- Add new category - PhD Research Card
+
 1.1.11 - [2022/08/15]
 
 - ADGEN-1114 borrower form: Move email verification after api call
