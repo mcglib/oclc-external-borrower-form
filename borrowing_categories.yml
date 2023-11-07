@@ -179,3 +179,15 @@ categories:
     consortium_name: true
     consortium_home_name: false
     need_barcode: false
+  - key: value15
+    borrower_category: McG - Uni. community BUQ
+    label: McGill PhD Research Card
+    wms_custom_data_3:
+    wms_custom_data_2: PhD extension
+    wms_custom_data_1: Graduate
+    home_institution: false
+    need_address: false
+    need_phone: false
+    consortium_home_name: false
+    consortium_name: false
+    need_barcode: false
