@@ -29,14 +29,14 @@
 			      {!! Form::input('text', 'lname', $borrower->lname ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 
-				<div id="otherValueEmail" class="no-display">	
+				<div id="otherValueEmail" class="no-display">
 			    <div class="form-group">
 
 				    <label for="email" class="control-label required">Email address <span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 				</div>
-				<div id="AlumniValueEmail" class="no-display">	
+				<div id="AlumniValueEmail" class="no-display">
 			    <div class="form-group">
 
 				    <label for="email" class="control-label required">McGill alumni email address <span class="required">*</span></label>
@@ -46,7 +46,7 @@
 			    <div class="form-group">
 
 				    <label for="borrower_cat" class="control-label required">Requested borrowing category<span class="required">*</span></label>
-				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], array_sort($borrower_categories)), $borrower->borrower_cat ?? null, ['class' => 'form-control']) !!}
+				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], array_sort($borrower_categories)), $borrower->borrower_cat ?? null, ['class' => 'form-control form-select']) !!}
         		    </div>
 
 			    <div id="spouseDivCheck" class="no-display">
@@ -60,14 +60,14 @@
 				<div class="form-group">
 				    <label for="home_institution" class="control-label">Please enter the name of your home institution<span class="required">*</span></label>
 				    {!! Form::select('home_institution', array_merge(['' => 'Please select an institution'], $home_institutions), $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
-        		        </div>	
-						
+        		        </div>
+
 			    </div>
 				<div id="homeOnlyDivCheck" class="no-display">
 				<div class="form-group">
 				    <label for="only_institution" class="control-label">Please enter the name of home institution<span class="required">*</span></label>
 				    {!! Form::select('only_institution', array_merge(['' => 'Please select an institution'], $only_institutions), $borrower->only_institution ?? null, ['class' => 'form-control']) !!}
-        		        </div>	
+        		        </div>
 			    </div>
 
 
