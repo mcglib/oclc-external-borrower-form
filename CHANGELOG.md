@@ -1,4 +1,12 @@
 # CHANGELOG
+1.1.13 - [2024/02/13]
+
+- ADILS-1483 -  Fixed vulnerability mentioned in ADILS-1483
+
+1.1.12 - [2023/11/07]
+
+- ADILS-1467 - Fixed bug with McGill PhD Extension category on js changes
+- ADILS-1467- Add new category - PhD Research Card
 
 1.1.11 - [2022/08/15]
 
