@@ -124,6 +124,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
 			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
 			$.fn.clear_home_inst_values();
@@ -131,7 +132,6 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_address_values();
 			$.fn.clear_telephone_no_values();
 			$.fn.clear_current_barcode_values();
-			$.fn.clear_mcgill_id_values();
 			$.fn.clear_only_inst_values();
 			break;
 		case 'value6':
@@ -268,7 +268,7 @@ $.fn.update_fields_info = function ($value) {
 				$('#telephoneDivCheck').add('no-display').hide();
 				$('#currentBarcodeDivCheck').add('no-display').hide();
 				$('#homeInstDivCheck').add('no-display').hide();
-				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow'); 
+				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow');
 				$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
 				$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
 				$.fn.clear_address_values();
@@ -278,6 +278,23 @@ $.fn.update_fields_info = function ($value) {
 				$.fn.clear_current_barcode_values();
 				$.fn.clear_mcgill_id_values();
 				break;
+		case 'value15':
+			$('#spouseDivCheck').add('no-display').hide();
+			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').add('no-display').hide();
+			$('#addressDivCheck').add('no-display').hide();
+			$('#telephoneDivCheck').add('no-display').hide();
+			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
+			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
+			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
+			$.fn.clear_home_inst_values();
+			$.fn.clear_spouse_name_values();
+			$.fn.clear_address_values();
+			$.fn.clear_telephone_no_values();
+			$.fn.clear_current_barcode_values();
+			$.fn.clear_only_inst_values();
+			break;
 		default:
 			$('#homeInstDivCheck').add('no-display').hide();
 			$('#homeOnlyDivCheck').add('no-display').hide();
@@ -286,7 +303,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#otherValueEmail').remove('no-display').show();
-			
+
 	}
 
 };
