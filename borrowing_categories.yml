@@ -1,6 +1,6 @@
 categories:
   - key: value1
-    borrower_category: McG - Extern. agreements BUQ
+    borrower_category: McG - Local agreements
     label: Faculty member at a Canadian University or CÉGEP (ARC)
     wms_custom_data_3:
     wms_custom_data_2:
@@ -8,7 +8,7 @@ categories:
     home_institution: true
     only_institution: false
     need_address: false
-    need_phone: false
+    need_phone: true
     consortium_home_name: true
     consortium_name: false
     need_barcode: false
@@ -131,14 +131,14 @@ categories:
   #  consortium_name: false
   #  need_barcode: false
   - key: value11
-    borrower_category: McG - Extern. agreements BUQ
+    borrower_category: McG - Local agreements
     label: BAnQ-sponsored researcher
     wms_custom_data_3:
     wms_custom_data_2:
     wms_custom_data_1: BANQ
     home_institution: false
     need_address: false
-    need_phone: false
+    need_phone: true
     consortium_home_name: false
     consortium_name: false
     need_barcode: false
