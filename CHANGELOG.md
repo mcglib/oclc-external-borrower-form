@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.14 - [2024/05/30]
+
+- ADOML-173 - Updated the logo
+
 1.1.14 - [2024/04/25]
 
 - ADILS-1493 - Updated Banq and Faculty member at a Canadian University or Cégep (ARC)
