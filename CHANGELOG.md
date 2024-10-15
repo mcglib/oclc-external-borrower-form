@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.12 - [2024/10/15]
+
+- ADGEN-1114 Issue with API call. Disable the form
+
 1.1.11 - [2022/08/15]
 
 - ADGEN-1114 borrower form: Move email verification after api call
