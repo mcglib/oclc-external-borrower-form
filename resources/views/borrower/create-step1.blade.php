@@ -7,16 +7,21 @@
 		    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
 		</div>
 		<div class="card-body">
-		     @if (count($errors) > 0)
-			     <div class="alert alert-danger">
-				 <ul>
-				 @foreach ($errors->all() as $error)
-				  <li>{{ $error }}</li>
-				 @endforeach
-				 </ul>
-			     </div>
-			     @endif
-		   <form action="create-step1" method="post">
+		    @if (count($errors) > 0)
+				<div class="alert alert-danger">
+				 	<ul>
+					 @foreach ($errors->all() as $error)
+				 		 <li>{{ $error }}</li>
+				 	@endforeach
+				 	</ul>
+			    </div>
+			@endif
+			<div class="alert alert-danger">
+				<p>WARNING: McGill Library Borrowing Card Application Form is currently unavailable due to an update. <br />
+				Please contact your library for further information. <a href="http://www.mcgill.ca/library/branches">http://www.mcgill.ca/library/branches</a>
+				</p>
+			</div>
+		   <form action="create-step1" method="post" class="hidden" style="display: none;">
 		    	@csrf
 			    <div class="form-group">
 				    <label for="fname" class="control-label required">First name <span class="required">*</span></label>
@@ -29,14 +34,14 @@
 			      {!! Form::input('text', 'lname', $borrower->lname ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 
-				<div id="otherValueEmail" class="no-display">	
+				<div id="otherValueEmail" class="no-display">
 			    <div class="form-group">
 
 				    <label for="email" class="control-label required">Email address <span class="required">*</span></label>
 			      	    {!! Form::input('email', 'email', $borrower->email ?? null, ['class'=> 'form-control', 'required' => 'required']) !!}
         		    </div>
 				</div>
-				<div id="AlumniValueEmail" class="no-display">	
+				<div id="AlumniValueEmail" class="no-display">
 			    <div class="form-group">
 
 				    <label for="email" class="control-label required">McGill alumni email address <span class="required">*</span></label>
@@ -60,14 +65,14 @@
 				<div class="form-group">
 				    <label for="home_institution" class="control-label">Please enter the name of your home institution<span class="required">*</span></label>
 				    {!! Form::select('home_institution', array_merge(['' => 'Please select an institution'], $home_institutions), $borrower->home_institution ?? null, ['class' => 'form-control']) !!}
-        		        </div>	
-						
+        		        </div>
+
 			    </div>
 				<div id="homeOnlyDivCheck" class="no-display">
 				<div class="form-group">
 				    <label for="only_institution" class="control-label">Please enter the name of home institution<span class="required">*</span></label>
 				    {!! Form::select('only_institution', array_merge(['' => 'Please select an institution'], $only_institutions), $borrower->only_institution ?? null, ['class' => 'form-control']) !!}
-        		        </div>	
+        		        </div>
 			    </div>
 
 
