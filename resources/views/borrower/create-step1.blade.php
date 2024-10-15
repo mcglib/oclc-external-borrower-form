@@ -7,16 +7,21 @@
 		    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
 		</div>
 		<div class="card-body">
-		     @if (count($errors) > 0)
-			     <div class="alert alert-danger">
-				 <ul>
-				 @foreach ($errors->all() as $error)
-				  <li>{{ $error }}</li>
-				 @endforeach
-				 </ul>
-			     </div>
-			     @endif
-		   <form action="create-step1" method="post">
+		    @if (count($errors) > 0)
+				<div class="alert alert-danger">
+				 	<ul>
+					 @foreach ($errors->all() as $error)
+				 		 <li>{{ $error }}</li>
+				 	@endforeach
+				 	</ul>
+			    </div>
+			@endif
+			<div class="alert alert-danger">
+				<p>WARNING: McGill Library Borrowing Card Application Form is currently unavailable due to an update. <br />
+				Please contact your library for further information. <a href="http://www.mcgill.ca/library/branches">http://www.mcgill.ca/library/branches</a>
+				</p>
+			</div>
+		   <form action="create-step1" method="post" class="hidden" style="display: none;">
 		    	@csrf
 			    <div class="form-group">
 				    <label for="fname" class="control-label required">First name <span class="required">*</span></label>
