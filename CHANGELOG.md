@@ -1,8 +1,26 @@
 # CHANGELOG
 
-1.1.12 - [2024/10/15]
+1.1.14 - [2024/05/30]
 
-- ADGEN-1114 Issue with API call. Disable the form
+- ADOML-173 - Updated the logo
+
+1.1.14 - [2024/04/25]
+
+- ADILS-1493 - Updated Banq and Faculty member at a Canadian University or Cégep (ARC)
+
+1.1.13 - [2024/02/13]
+
+- ADILS-1483 -  Fixed vulnerability mentioned in ADILS-1483
+
+1.1.12 - [2023/11/07]
+
+- ADILS-1467 - Fixed bug with McGill PhD Extension category on js changes
+- ADILS-1467- Add new category - PhD Research Card
+
+1.1.12 - [2023/11/07]
+
+- ADILS-1467 - Fixed bug with McGill PhD Extension category on js changes
+- ADILS-1467- Add new category - PhD Research Card
 
 1.1.11 - [2022/08/15]
 

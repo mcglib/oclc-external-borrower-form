@@ -39,7 +39,7 @@ class Borrower extends FormRequest
 			'home_institution' => 'required_if:borrower_cat,value1,value10|max:120',
 			'only_institution' => 'required_if:borrower_cat,value14|max:120',
 			'current_barcode' => 'nullable|alpha_num',
-			'mcgill_id' => 'required_if:borrower_cat,value13|max:20',
+			'mcgill_id' => 'required_if:borrower_cat,value5,value13,value15|max:20',
 			'department' => 'nullable|max:100',
 			'department_mcgill' => 'nullable|max:100',
 			'borrower_consent' => 'required'
