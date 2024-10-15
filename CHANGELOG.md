@@ -1,5 +1,10 @@
 # CHANGELOG
 
+1.1.15 - [2024/10/15]
+
+- ADILS-1555 Issue with API call. Disable the form
+
+
 1.1.14 - [2024/05/30]
 
 - ADOML-173 - Updated the logo
