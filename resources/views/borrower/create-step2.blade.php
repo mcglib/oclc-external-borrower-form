@@ -2,7 +2,12 @@
 
 @section('content')
 <h3>Review Submission</h3>
-<form action="store" method="post" id="store-form">
+<div class="alert alert-danger">
+				<p>WARNING: McGill Library Borrowing Card Application Form is currently unavailable due to an update. <br />
+				Please contact your library for further information. <a href="http://www.mcgill.ca/library/branches">http://www.mcgill.ca/library/branches</a>
+				</p>
+</div>
+<form action="store" method="post" id="store-form"  class="hidden" style="display: none;">
 	@csrf
 	<table class="table">
 		<tr>
