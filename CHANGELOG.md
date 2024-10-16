@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.16 - [2024/10/16]
+
+- ADILS-1555 Issue with API call. Re-enabled the form
+
 1.1.15 - [2024/10/15]
 
 - ADILS-1555 Issue with API call. Disable the form

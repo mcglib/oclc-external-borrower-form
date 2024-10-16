@@ -16,12 +16,8 @@
 				 	</ul>
 			    </div>
 			@endif
-			<div class="alert alert-danger">
-				<p>WARNING: McGill Library Borrowing Card Application Form is currently unavailable due to an update. <br />
-				Please contact your library for further information. <a href="http://www.mcgill.ca/library/branches">http://www.mcgill.ca/library/branches</a>
-				</p>
-			</div>
-		   <form action="create-step1" method="post" class="hidden" style="display: none;">
+
+		   <form action="create-step1" method="post">
 		    	@csrf
 			    <div class="form-group">
 				    <label for="fname" class="control-label required">First name <span class="required">*</span></label>
