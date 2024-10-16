@@ -51,7 +51,7 @@
 			    <div class="form-group">
 
 				    <label for="borrower_cat" class="control-label required">Requested borrowing category<span class="required">*</span></label>
-				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], array_sort($borrower_categories)), $borrower->borrower_cat ?? null, ['class' => 'form-control']) !!}
+				    {!! Form::select('borrower_cat', array_merge(['' => 'Please select a category'], array_sort($borrower_categories)), $borrower->borrower_cat ?? null, ['class' => 'form-control form-select']) !!}
         		    </div>
 
 			    <div id="spouseDivCheck" class="no-display">

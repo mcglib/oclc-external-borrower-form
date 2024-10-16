@@ -16,3 +16,4 @@ app/.DS_Store
 app/Http/.DS_Store
 app/Http/Controllers/.DS_Store
 config/.DS_Store
+.DS_Store
