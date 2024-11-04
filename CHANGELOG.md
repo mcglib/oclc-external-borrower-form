@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.17 - [2024/11/04]
+
+- ADILS-1558 security update - http-proxy-middleware | external-borrower-form
+
 1.1.16 - [2024/10/16]
 
 - ADILS-1555 Issue with API call. Re-enabled the form
