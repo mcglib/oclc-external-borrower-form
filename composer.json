@@ -12,7 +12,6 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "doctrine/dbal": "^2.10.0",
         "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
         "kris/laravel-form-builder": "^1.40",
         "laravel/framework": "^8.0",
