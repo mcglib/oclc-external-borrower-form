@@ -1,8 +1,9 @@
 # CHANGELOG
 
-1.1.17 - [2024/11/04]
+1.1.17 - [2024/11/18]
 
 - ADILS-1558 security update - http-proxy-middleware | external-borrower-form
+- Downgrade to Laravel 8.
 
 1.1.16 - [2024/10/16]
 
