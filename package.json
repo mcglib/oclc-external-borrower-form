@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "acorn": "^6.0.5",
-        "elliptic": "^6.0.0",
+        "elliptic": "^6.5.4",
         "http-proxy": "^1.16.2",
         "js-yaml": "^3.12.0",
         "mixin-deep": "^1.2.0",
