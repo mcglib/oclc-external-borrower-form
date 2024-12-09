@@ -1,5 +1,10 @@
 # CHANGELOG
 
+1.1.18 - [2024/12/11]
+
+- ADILS-1573 | OCLC api changes | Review trailing slash support
+
+
 1.1.17 - [2024/11/18]
 
 - ADILS-1558 security update - http-proxy-middleware | external-borrower-form
