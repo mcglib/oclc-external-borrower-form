@@ -1,5 +1,11 @@
 # CHANGELOG
 
+1.1.19 - [2024/12/11]
+
+- ADILS-1573 | Found another training slash
+
+
+
 1.1.18 - [2024/12/11]
 
 - ADILS-1573 | OCLC api changes | Review trailing slash support

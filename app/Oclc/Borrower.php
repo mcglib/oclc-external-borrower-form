@@ -120,7 +120,7 @@ class Borrower
 	{
 
 
-		$url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users/';
+		$url = 'https://' . $this->institutionId . $this->serviceUrl . '/Users';
 		$this->getAuth($url);
 
 		// Send the request to create a record
