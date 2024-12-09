@@ -44,7 +44,7 @@ return [
 	    'ppid' => env('OCLC_PPID', ''),
 	    'pdns' => env('OCLC_PDNS', ''),
 	    'home_branch' => env('OCLC_HOMEBRANCH', ''),
-	    'url' => 'https://'.env('OCLC_REG_ID', '').'.share.worldcat.org/idaas/'
+	    'url' => 'https://'.env('OCLC_REG_ID', '').'.share.worldcat.org/idaas'
         ],
 
         'production' => [
@@ -56,7 +56,7 @@ return [
 	    'ppid' => env('OCLC_PPID', ''),
 	    'pdns' => env('OCLC_PDNS', ''),
 	    'home_branch' => env('OCLC_HOMEBRANCH', ''),
-	    'url' => 'https://'.env('OCLC_REG_ID').'.share.worldcat.org/idaas/'
+	    'url' => 'https://'.env('OCLC_REG_ID').'.share.worldcat.org/idaas'
         ],
     ],
 
