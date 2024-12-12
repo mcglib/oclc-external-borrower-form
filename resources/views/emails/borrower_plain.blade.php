@@ -1,6 +1,6 @@
 Dear {{ $borrower->fname}} {{ $borrower->lname}},
 
-This is a confirmation that a library account has been created for you. Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by {{ substr($borrower->expiry_date, 0, 10) }}
+This is a confirmation that a library account has been created for you. Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Libraries Borrowing Card by {{ substr($borrower->expiry_date, 0, 10) }}
 {{$borrower->barcode }}
 
 ---------Account details-----
@@ -29,5 +29,5 @@ Telephone: {{$borrower->telephone_no}}
 
 
 Thank you
-McGill Library
+McGill Libraries
 
