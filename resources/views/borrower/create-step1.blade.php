@@ -4,7 +4,7 @@
  <div class="col-md-12">
 	    <div class="card card-outline-secondary">
 		<div class="card-header">
-		    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
+		    <h3 class="mb-0">McGill Libraries Borrowing Card Application Form</h3>
 		</div>
 		<div class="card-body">
 		    @if (count($errors) > 0)

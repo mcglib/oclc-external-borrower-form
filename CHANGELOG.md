@@ -1,9 +1,14 @@
 # CHANGELOG
 
+1.1.20 - [2024/12/12]
+
+- ADILS-1573 | Renaming McGill Library -> McGill Libraries
+- ADILS-1573 - Added a check so that the McGill ID is required where needed.
+
+
 1.1.19 - [2024/12/11]
 
 - ADILS-1573 | Found another training slash
-
 
 
 1.1.18 - [2024/12/11]

@@ -3,7 +3,7 @@
         <div class="row">
 	  <div class="col-md-12 col-sm-12 text-center">
 		<p style="">
-		<strong><a href="http://www.mcgill.ca/library/">McGill Library</a></strong> • <strong>Questions? <a href="http://www.mcgill.ca/library/contact/askus/">Ask us!</a></strong></p>
+		<strong><a href="http://www.mcgill.ca/library/">McGill Libraries</a></strong> • <strong>Questions? <a href="http://www.mcgill.ca/library/contact/askus/">Ask us!</a></strong></p>
 </div>
         </div>
       </div>
