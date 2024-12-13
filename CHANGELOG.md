@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.21 - [2024/12/13]
+
+- ADILS-1573 | Fix the js so that the required asterix is show
+
 1.1.20 - [2024/12/12]
 
 - ADILS-1573 | Renaming McGill Library -> McGill Libraries
