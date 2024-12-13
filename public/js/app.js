@@ -69,14 +69,14 @@ $.fn.set_field_required = function (name_of_field) {
 
 	// Attempt to find the associated label
 	// Assumes the label has a 'for' attribute matching the input's 'id'
-	var fieldId = $field.attr('id');
+	var fieldId = $field.attr('name');
 	if (fieldId) {
 		var $label = $("label[for='" + fieldId + "']");
 		if ($label.length) {
 			// Check if an asterisk already exists to avoid duplicates
 			if ($label.find('.required-asterisk').length === 0) {
 				// Append the asterisk with the desired styling
-				$label.append(' <span class="required-asterisk">*</span>');
+				$label.append(' <span class="required-asterisk required">*</span>');
 			}
 		} else {
 			console.warn("No label found for input with id:", fieldId);
