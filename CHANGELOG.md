@@ -1,5 +1,10 @@
 # CHANGELOG
 
+1.1.22 - [2025/02/24]
+
+- ADILS-1585 | Renamed the category for students at other unis
+
+
 1.1.21 - [2024/12/13]
 
 - ADILS-1573 | Fix the js so that the required asterix is show
