@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.23 - [2025/03/19]
+
+- ADILS-1590 | Fixed vulnerabity in the simple saml code
+
 1.1.22 - [2025/02/24]
 
 - ADILS-1585 | Renamed the category for students at other unis
