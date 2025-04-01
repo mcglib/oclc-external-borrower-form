@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.24 - [2025/04/01]
+
+- Remove use of PROXY
+
 1.1.23 - [2025/03/19]
 
 - ADILS-1590 | Fixed vulnerabity in the simple saml code
