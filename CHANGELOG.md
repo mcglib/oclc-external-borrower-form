@@ -1,5 +1,9 @@
 # CHANGELOG
 
+1.1.25 - [2025/07/03]
+
+- ADILS-1606 | Updated pbkdf2 to 3.1.3 to avoid unintialized zero filled memory issue.
+
 1.1.24 - [2025/04/01]
 
 - Remove use of PROXY
