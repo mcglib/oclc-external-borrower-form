@@ -6,7 +6,7 @@
 
 <meta name="author" content="">
 
-<title>McGill Library Borrowing Card Application Form</title>
+<title>McGill Libraries Borrowing Card Application Form</title>
 
 <!-- Bootstrap core CSS -->
 

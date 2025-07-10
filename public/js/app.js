@@ -52,6 +52,45 @@ $.fn.clear_current_barcode_values = function () {
 	$("input[name=current_barcode]").val("");
 	$("input[name=department]").val("");
 };
+
+// Define the set_field_required function as a jQuery plugin
+$.fn.set_field_required = function (name_of_field) {
+	// Select the input field by its name attribute
+	var $field = $("input[name='" + name_of_field + "']");
+
+	// Check if the field exists
+	if ($field.length === 0) {
+		console.warn("No input field found with name:", name_of_field);
+		return this;
+	}
+
+	// Set the field as required
+	$field.attr('required', true);
+
+	// Attempt to find the associated label
+	// Assumes the label has a 'for' attribute matching the input's 'id'
+	var fieldId = $field.attr('name');
+	if (fieldId) {
+		var $label = $("label[for='" + fieldId + "']");
+		if ($label.length) {
+			// Check if an asterisk already exists to avoid duplicates
+			if ($label.find('.required-asterisk').length === 0) {
+				// Append the asterisk with the desired styling
+				$label.append(' <span class="required-asterisk required">*</span>');
+			}
+		} else {
+			console.warn("No label found for input with id:", fieldId);
+		}
+	} else {
+		console.warn("Input field", name_of_field, "does not have an id attribute.");
+	}
+
+	// Return 'this' to maintain jQuery chaining
+	return this;
+};
+
+
+
 $.fn.update_fields_info = function ($value) {
 	switch($value) {
 		case 'value1':
@@ -124,6 +163,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.set_field_required('mcgill_id');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
 			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
 			$.fn.clear_home_inst_values();
@@ -251,6 +291,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.set_field_required('mcgill_id');
 			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
 			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
 			$.fn.clear_home_inst_values();
@@ -261,21 +302,21 @@ $.fn.update_fields_info = function ($value) {
 			$.fn.clear_current_barcode_values();
 			break;
 		case 'value14':
-				$('#spouseDivCheck').add('no-display').hide();
-				$('#addressDivCheck').add('no-display').hide();
-				$('#telephoneDivCheck').add('no-display').hide();
-				$('#currentBarcodeDivCheck').add('no-display').hide();
-				$('#homeInstDivCheck').add('no-display').hide();
-				$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow');
-				$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
-				$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
-				$.fn.clear_address_values();
-				$.fn.clear_home_inst_values();
-				$.fn.clear_spouse_name_values();
-				$.fn.clear_telephone_no_values();
-				$.fn.clear_current_barcode_values();
-				$.fn.clear_mcgill_id_values();
-				break;
+			$('#spouseDivCheck').add('no-display').hide();
+			$('#addressDivCheck').add('no-display').hide();
+			$('#telephoneDivCheck').add('no-display').hide();
+			$('#currentBarcodeDivCheck').add('no-display').hide();
+			$('#homeInstDivCheck').add('no-display').hide();
+			$('#homeOnlyDivCheck').remove('no-display').fadeIn('slow');
+			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
+			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);
+			$.fn.clear_address_values();
+			$.fn.clear_home_inst_values();
+			$.fn.clear_spouse_name_values();
+			$.fn.clear_telephone_no_values();
+			$.fn.clear_current_barcode_values();
+			$.fn.clear_mcgill_id_values();
+			break;
 		case 'value15':
 			$('#spouseDivCheck').add('no-display').hide();
 			$('#homeInstDivCheck').add('no-display').hide();
@@ -283,6 +324,7 @@ $.fn.update_fields_info = function ($value) {
 			$('#addressDivCheck').add('no-display').hide();
 			$('#telephoneDivCheck').add('no-display').hide();
 			$('#mcgillIdDivCheck').remove('no-display').fadeIn('slow');
+			$.fn.set_field_required('mcgill_id');
 			$('#currentBarcodeDivCheck').add('no-display').hide();
 			$('#otherValueEmail').remove('no-display').fadeIn('slow').find('input').prop('disabled', false);
 			$('#AlumniValueEmail').add('no-display').hide().find('input').prop('disabled', true);

@@ -1,5 +1,51 @@
 # CHANGELOG
 
+1.1.25 - [2025/07/03]
+
+- ADILS-1606 | Updated pbkdf2 to 3.1.3 to avoid unintialized zero filled memory issue.
+
+1.1.24 - [2025/04/01]
+
+- Remove use of PROXY
+
+1.1.23 - [2025/03/19]
+
+- ADILS-1590 | Fixed vulnerabity in the simple saml code
+
+1.1.22 - [2025/02/24]
+
+- ADILS-1585 | Renamed the category for students at other unis
+
+
+1.1.21 - [2024/12/13]
+
+- ADILS-1573 | Fix the js so that the required asterix is show
+
+1.1.20 - [2024/12/12]
+
+- ADILS-1573 | Renaming McGill Library -> McGill Libraries
+- ADILS-1573 - Added a check so that the McGill ID is required where needed.
+
+
+1.1.19 - [2024/12/11]
+
+- ADILS-1573 | Found another training slash
+
+
+1.1.18 - [2024/12/11]
+
+- ADILS-1573 | OCLC api changes | Review trailing slash support
+
+
+1.1.17 - [2024/11/18]
+
+- ADILS-1558 security update - http-proxy-middleware | external-borrower-form
+- Downgrade to Laravel 8.
+
+1.1.16 - [2024/10/16]
+
+- ADILS-1555 Issue with API call. Re-enabled the form
+
 1.1.15 - [2024/10/15]
 
 - ADILS-1555 Issue with API call. Disable the form

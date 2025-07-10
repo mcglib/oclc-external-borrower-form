@@ -1,11 +1,11 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <h3 class="mb-0">McGill Library Borrowing Card Application Form</h3>
+    <h3 class="mb-0">McGill Libraries Borrowing Card Application Form</h3>
     <hr />
     <div class="well">
     Your application has been successfully submitted and a confirmation email sent to your email at <strong>{{$borrower->email}}</strong>.
-    Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Library Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong>:
+    Please bring your temporary barcode to a Library Services desk to complete your registration and pick up your McGill Libraries Borrowing Card by <strong>{{ substr($borrower->expiry_date, 0, 10) }}</strong>:
     </div>
         @csrf
         <table class="table">
