@@ -21,6 +21,7 @@
         "laravel/ui": "^4.0",
         "league/oauth2-client": "^2.6",
         "maher/laravel-counters": "^1.0",
+        "simplesamlphp/composer-module-installer": "^1.4",
         "simplesamlphp/saml2": "^5.0.0",
         "simplesamlphp/simplesamlphp": "^2.4",
         "symfony/yaml": "^6.0"
