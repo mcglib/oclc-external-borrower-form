@@ -1,8 +1,9 @@
 <?php 
 
+namespace App\Services;
+
 use App\Exceptions\VerifyEmailServiceException;
 
-namespace App\Services;
 /** 
  * Class to validate the email address 
  * 
