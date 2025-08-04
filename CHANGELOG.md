@@ -1,5 +1,12 @@
 # CHANGELOG
 
+1.1.26 - [2025/08/04]
+
+- ADILS-1606 | Updated 
+    - laravel version to 9 and Packages
+    - updated code
+    - changed .env mailhost , storage/cache to 755 
+
 1.1.25 - [2025/07/03]
 
 - ADILS-1606 | Updated pbkdf2 to 3.1.3 to avoid unintialized zero filled memory issue.
