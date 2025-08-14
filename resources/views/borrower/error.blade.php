@@ -2,8 +2,8 @@
 
 @section('content')
     <hr>
-    <h3 class="mb-0">McGill Library Borrowing Card Application Form - Error</h3>
-    <div class="container py-5">  
+    <h3 class="mb-0">McGill Libraries Borrowing Card Application Form - Error</h3>
+    <div class="container py-5">
 	    @if (session()->has('flash.message'))
 		   <div class="alert alert-{{ session('flash.class') }}">
 		   {{ session('flash.message') }}
@@ -21,7 +21,7 @@
 		     <p> If you think this is in error, Please contact <a href="mailto:web.library@mcgill.ca" class="alert-link">web.library@mcgill.ca</a>.
 		</div>
 	    @endif
-    </div>  
+    </div>
     <div class="form-group row">
  	   	<label class="col-lg-3 col-form-label form-control-label"></label>
 		<div class="col-lg-9">

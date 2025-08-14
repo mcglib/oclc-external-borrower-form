@@ -17,11 +17,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Yaml;
 use Mail;
 
-if ($_ENV['APP_ENV'] === 'production') {
-  putenv($_ENV['PROXY_HTTPS']);
-  putenv($_ENV['PROXY_HTTP']);
-}
-
 
 class BorrowerController extends BaseController
 {
